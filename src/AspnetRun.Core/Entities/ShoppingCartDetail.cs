@@ -8,9 +8,9 @@ namespace AspnetRun.Core.Entities
     {
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
-        public float Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        //public Product Product { get; set; }
     }
 }
