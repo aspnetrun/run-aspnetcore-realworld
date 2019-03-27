@@ -13,7 +13,8 @@ namespace AspnetRun.Core.Entities
         }
 
         public string CategoryName { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
+        public byte[] Picture { get; set; }
         public ICollection<Product> Products { get; private set; }
 
         public static Category Create(int categoryId, string name, string description = null)
@@ -27,12 +28,12 @@ namespace AspnetRun.Core.Entities
             return category;
         }
 
-        public void AddProduct(int productId, string productName)
-        {
-            if (!Products.Any(p => p.Id == productId))
-            {
-                Products.Add(Product.Create(productId, this.Id, productName));
-            }
-        }
+        //public void AddProduct(int productId, string productName)
+        //{
+        //    if (!Products.Any(p => p.Id == productId))
+        //    {
+        //        Products.Add(Product.Create(productId, this.Id, productName));
+        //    }
+        //}
     }
 }
