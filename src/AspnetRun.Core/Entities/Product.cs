@@ -7,8 +7,9 @@ namespace AspnetRun.Core.Entities
     public class Product : BaseEntity
     {
         public string ProductName { get; set; }
-        public int? SupplierId { get; set; }
-        public int? CategoryId { get; set; }
+        public string Description { get; set; }
+        public string PictureUri { get; set; }
+
         public string QuantityPerUnit { get; set; }
         public decimal? UnitPrice { get; set; }
         public short? UnitsInStock { get; set; }
@@ -16,7 +17,11 @@ namespace AspnetRun.Core.Entities
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        public int? BrandId { get; set; }
+        public Brand Brand { get; set; }
+        public int? SupplierId { get; set; }
         public Supplier Supplier { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; private set; }
     }

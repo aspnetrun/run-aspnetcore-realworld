@@ -14,7 +14,6 @@ namespace AspnetRun.Core.Entities
 
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        public byte[] Picture { get; set; }
         public ICollection<Product> Products { get; private set; }
 
         public static Category Create(int categoryId, string name, string description = null)
