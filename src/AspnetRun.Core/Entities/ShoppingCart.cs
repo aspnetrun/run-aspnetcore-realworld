@@ -17,19 +17,22 @@ namespace AspnetRun.Core.Entities
 
         public void AddProductToCart(int productId, decimal unitPrice, short quantity = 1, decimal? discount = 0)
         {
-            if (!ShoppingCartDetails.Any(i => i.ProductId == productId))
+            var existingCart = ShoppingCartDetails.FirstOrDefault(i => i.ProductId == productId);
+            if (existingCart != null)
             {
-                ShoppingCartDetails.Add(new ShoppingCartDetail()
-                {
-                    ProductId = productId,
-                    UnitPrice = unitPrice,
-                    Quantity = quantity,
-                    Discount = discount
-                });
+                existingCart.Quantity += quantity;
                 return;
             }
-            var existingItem = ShoppingCartDetails.FirstOrDefault(i => i.ProductId == productId);
-            existingItem.Quantity += quantity;
+
+            ShoppingCartDetails.Add(new ShoppingCartDetail()
+            {
+                ProductId = productId,
+                UnitPrice = unitPrice,
+                Quantity = quantity,
+                Discount = discount
+            });
+
+            // TODO : here
         }
     }
 }
