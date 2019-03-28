@@ -9,30 +9,28 @@ namespace AspnetRun.Core.Entities
     {
         public ShoppingCart()
         {
-            ShoppingCartDetails = new HashSet<ShoppingCartDetail>();
+            ShoppingCartItems = new HashSet<ShoppingCartItem>();
         }
 
         public string UserId { get; set; }
-        public ICollection<ShoppingCartDetail> ShoppingCartDetails { get; private set; }
+        public ICollection<ShoppingCartItem> ShoppingCartItems { get; private set; }
 
         public void AddProductToCart(int productId, decimal unitPrice, short quantity = 1, decimal? discount = 0)
         {
-            var existingCart = ShoppingCartDetails.FirstOrDefault(i => i.ProductId == productId);
-            if (existingCart != null)
+            var existingItem = ShoppingCartItems.FirstOrDefault(i => i.ProductId == productId);
+            if (existingItem != null)
             {
-                existingCart.Quantity += quantity;
+                existingItem.Quantity += quantity;
                 return;
             }
 
-            ShoppingCartDetails.Add(new ShoppingCartDetail()
+            ShoppingCartItems.Add(new ShoppingCartItem()
             {
                 ProductId = productId,
                 UnitPrice = unitPrice,
                 Quantity = quantity,
                 Discount = discount
-            });
-
-            // TODO : here
+            });            
         }
     }
 }

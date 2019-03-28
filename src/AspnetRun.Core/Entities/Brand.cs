@@ -12,7 +12,7 @@ namespace AspnetRun.Core.Entities
         }
 
         public string BrandName { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
         public ICollection<Product> Products { get; private set; }
     }
 }
