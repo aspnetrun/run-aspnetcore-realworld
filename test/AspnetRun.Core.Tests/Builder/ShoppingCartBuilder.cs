@@ -25,7 +25,7 @@ namespace AspnetRun.Core.Tests.Builder
         public ShoppingCart WithOneBasketItem()
         {
             _shoppingCart = new ShoppingCart { Id = ShoppingCartId, UserId = ShoppingCartUserId };
-            _shoppingCart.AddProductToCart(2, 3.40m, 4);
+            _shoppingCart.AddItemToCart(2, 3.40m, 4);
             return _shoppingCart;
         }
 
