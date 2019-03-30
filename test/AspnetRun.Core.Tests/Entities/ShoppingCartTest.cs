@@ -14,7 +14,7 @@ namespace AspnetRun.Core.Tests.Entities
         // USE CASE :  Add_ShoppingCartItem_Increment_UnitPrice
         // USE CASE :  Add_2_ShoppingCartItem
         // USE CASE :  Update_ShoppingCartItem_Quantity
-        // USE CASE :  Delete_ShoppingCartItem
+        // USE CASE :  Remove_ShoppingCartItem
 
         private int _testProductId = 123;
         private decimal _testUnitPrice = 1.23m;
@@ -69,12 +69,59 @@ namespace AspnetRun.Core.Tests.Entities
         {
             var shoppingCart = new ShoppingCart();
             shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
-            shoppingCart.AddItemToCart(_testProductId, _testUnitPrice * 2, _testQuantity);
+            shoppingCart.AddItemToCart(_testProductId + 1, _testUnitPrice, _testQuantity);
 
             var itemCount = shoppingCart.Items.Count();
             Assert.Equal(2, itemCount);
         }
 
+        [Fact]
+        public void Get_Item_By_ProductId()
+        {
+            var shoppingCart = new ShoppingCart();
+            shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
+
+            var item = shoppingCart.GetItem(_testProductId);            
+
+            Assert.NotEqual(null, item);
+        }
+
+        [Fact]
+        public void Increment_Quantity_Existing_Product_In_ShoppingCart()
+        {
+            var shoppingCart = new ShoppingCart();
+            shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
+
+            var item = shoppingCart.GetItem(_testProductId);
+            item.IncrementQuantity(1);
+            
+            Assert.Equal(3, item.Quantity);
+        }
+
+        [Fact]
+        public void Decrease_Quantity_Existing_Product_In_ShoppingCart()
+        {
+            var shoppingCart = new ShoppingCart();
+            shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
+
+            var item = shoppingCart.GetItem(_testProductId);
+            item.DecreaseQuantity(1);
+
+            Assert.Equal(1, item.Quantity);
+        }
+
+        [Fact]
+        public void Remove_Item_From_Cart()
+        {
+            var shoppingCart = new ShoppingCart();
+            shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
+            shoppingCart.AddItemToCart(_testProductId + 1, _testUnitPrice, _testQuantity);
+            shoppingCart.AddItemToCart(_testProductId + 2, _testUnitPrice, _testQuantity);
+
+            shoppingCart.RemoveItem(_testProductId);
+
+            Assert.Equal(2, shoppingCart.Items.Count());
+        }
 
     }
 }

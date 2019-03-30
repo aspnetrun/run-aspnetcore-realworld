@@ -32,5 +32,17 @@ namespace AspnetRun.Core.Entities
                 Discount = discount
             });            
         }
+
+        public ShoppingCartItem GetItem(int productId)
+        {
+            var item = Items.FirstOrDefault(x => x.ProductId == productId);
+            return item;
+        }
+
+        public void RemoveItem(int productId)
+        {
+            var item = Items.FirstOrDefault(x => x.ProductId == productId);
+            Items.Remove(item);
+        }
     }
 }
