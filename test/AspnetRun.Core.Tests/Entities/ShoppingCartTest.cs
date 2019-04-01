@@ -41,6 +41,7 @@ namespace AspnetRun.Core.Tests.Entities
 
             var firstItem = shoppingCart.Items.Single();
             Assert.Equal(_testQuantity * 2, firstItem.Quantity);
+            Assert.Equal(_testQuantity * 2, firstItem.Quantity);
         }
 
         [Fact]
