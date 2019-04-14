@@ -12,10 +12,10 @@ There are **2 types** of aspnetrun repositories;
 
 And there are 2 sample repositories which are implemented base repository and **applying real-world examples** with developing new features for example Identity, Localization etc..
 * **[run-core-sample](https://github.com/aspnetrun/run-core-sample)** - implemented this repository and build **sample of eCommerce reference application** on Multi-Page Web Applications(MPA) using ASP.NET Default Web Page template which is **Razor Pages** templates. **YOU ARE HERE.**
-* [run-angular-sample](https://github.com/aspnetrun/run-angular-sample) - implemented run-angular repository and build **sample of eCommerce reference application** on Single Page Web Application(SPA) architecture using ASP.NET Core + Angular.
+* **[run-angular-sample](https://github.com/aspnetrun/run-angular-sample)** - implemented run-angular repository and build **sample of eCommerce reference application** on Single Page Web Application(SPA) architecture using ASP.NET Core + Angular.
 
 # run-core-sample
-This repository is **under development**. It is **not finished yet**.
+This repository is ***under development***. It is **not finished yet**.
 It will include eCommerce Real world example of run-core based application.
 
 * paging
