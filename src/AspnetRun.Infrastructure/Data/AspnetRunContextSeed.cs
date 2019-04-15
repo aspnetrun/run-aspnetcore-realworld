@@ -20,17 +20,16 @@ namespace AspnetRun.Infrastructure.Persistence
                 // aspnetrunContext.Database.Migrate();
                 // aspnetrunContext.Database.EnsureCreated();
 
-                if (!aspnetrunContext.Categories.Any())
-                {
-                    aspnetrunContext.Categories.AddRange(GetPreconfiguredCategories());
-                    await aspnetrunContext.SaveChangesAsync();
-                }
+                if (aspnetrunContext.Categories.Any())                
+                    return; // Db has been seeded
 
-                if (!aspnetrunContext.Products.Any())
-                {
-                    aspnetrunContext.Products.AddRange(GetPreconfiguredProducts());
-                    await aspnetrunContext.SaveChangesAsync();
-                }
+                await SeedCustomers(aspnetrunContext);
+                await SeedCategories(aspnetrunContext);
+                await SeedProducts(aspnetrunContext);
+
+
+                // TODO : here - seed database methods
+
             }
             catch (Exception exception)
             {
@@ -45,23 +44,51 @@ namespace AspnetRun.Infrastructure.Persistence
             }
         }
 
-        private static IEnumerable<Category> GetPreconfiguredCategories()
+        public static async Task SeedCustomers(AspnetRunContext context)
         {
-            return new List<Category>()
+            if (!context.Customers.Any())
+                return;
+
+            var customers = new List<Customer>()
             {
-                new Category() { CategoryName = "Phone"},
-                new Category() { CategoryName = "TV"}
-            };
+                new Customer { Id = 1, FirstName = "ALFKI", LastName = "Alfreds", BirthDate = new DateTime(1988, 5, 18), CompanyName = "Alfreds Futterkiste", Phone = "030-0074321", Title = "Sales Representative", Address = new Core.ValueObjects.Address{ AddressDesc = "Obere Str. 57", Region = "RMEA", Country = "Germany", City = "Berlin", PostalCode = "12209"} },
+                new Customer { Id = 2, FirstName = "ANATR", LastName = "Trujillo", BirthDate = new DateTime(1988, 5, 18), CompanyName = "Ana Trujillo Emparedados y helados", Phone = "030-4729", Title = "Sales Representative", Address = new Core.ValueObjects.Address{ AddressDesc = "Avda. de la Constitución 2222", Region = "RMEA", Country = "Mexico", City = "México D.F.", PostalCode = "05021"} }                                
+            };            
+
+            context.Customers.AddRange(customers);
+            await context.SaveChangesAsync();
         }
 
-        private static IEnumerable<Product> GetPreconfiguredProducts()
+        public static async Task SeedCategories(AspnetRunContext context)
         {
-            return new List<Product>()
-            {
-                new Product() { ProductName = "IPhone", CategoryId = 1 , UnitPrice = 19.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false },
-                new Product() { ProductName = "Samsung", CategoryId = 1 , UnitPrice = 33.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false },
-                new Product() { ProductName = "LG TV", CategoryId = 2 , UnitPrice = 33.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false }
+            if (!context.Categories.Any())
+                return;
+
+            var catgories = new List<Category>()
+            {                
+                new Category() { Id = 1, CategoryName = "Phone", Description = "" },
+                new Category() { Id = 2, CategoryName = "TV", Description = "" }
             };
+
+            context.Categories.AddRange(catgories);
+            await context.SaveChangesAsync();
         }
+
+        public static async Task SeedProducts(AspnetRunContext context)
+        {
+            if (!context.Products.Any())
+                return;
+
+            var products = new List<Product>()
+            {
+                new Product() { Id = 1, ProductName = "IPhone", CategoryId = 1 , UnitPrice = 19.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false },
+                new Product() { Id = 2, ProductName = "Samsung", CategoryId = 1 , UnitPrice = 33.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false },
+                new Product() { Id = 3, ProductName = "LG TV", CategoryId = 2 , UnitPrice = 33.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false }
+            };
+
+            context.Products.AddRange(products);
+            await context.SaveChangesAsync();
+        }
+        
     }
 }
