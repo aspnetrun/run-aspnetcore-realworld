@@ -19,17 +19,26 @@ namespace AspnetRun.Infrastructure.Persistence
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<User> Users { get; set; }        
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Product>(ConfigureProduct);
+            builder.Entity<Brand>(ConfigureBrand);
             builder.Entity<Category>(ConfigureCategory);
+            builder.Entity<Customer>(ConfigureCustomer);
+            builder.Entity<Order>(ConfigureOrder);
+            builder.Entity<OrderDetail>(ConfigureOrderDetail);
+            builder.Entity<Product>(ConfigureProduct);
+            builder.Entity<ShoppingCart>(ConfigureShoppingCart);
+            builder.Entity<ShoppingCartItem>(ConfigureShoppingCartItem);
+            builder.Entity<Supplier>(ConfigureSupplier);
+            builder.Entity<User>(ConfigureUser);
+            
         }
 
-        private void ConfigureProduct(EntityTypeBuilder<Product> builder)
+        private void ConfigureBrand(EntityTypeBuilder<Brand> builder)
         {
-            builder.ToTable("Product");
+            builder.ToTable("Brand");
 
             builder.HasKey(ci => ci.Id);
 
@@ -37,7 +46,7 @@ namespace AspnetRun.Infrastructure.Persistence
                .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
                .IsRequired();
 
-            builder.Property(cb => cb.ProductName)
+            builder.Property(cb => cb.BrandName)
                 .IsRequired()
                 .HasMaxLength(100);
         }
@@ -55,6 +64,108 @@ namespace AspnetRun.Infrastructure.Persistence
             builder.Property(cb => cb.CategoryName)
                 .IsRequired()
                 .HasMaxLength(100);
+        }
+
+        private void ConfigureCustomer(EntityTypeBuilder<Customer> builder)
+        {
+            builder.ToTable("Customer");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.FirstName)
+                .IsRequired()
+                .HasMaxLength(100);
+        }
+
+        private void ConfigureOrder(EntityTypeBuilder<Order> builder)
+        {
+            builder.ToTable("Order");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.OrderDate)
+                .IsRequired();                
+        }
+
+        private void ConfigureOrderDetail(EntityTypeBuilder<OrderDetail> builder)
+        {
+            builder.ToTable("OrderDetail");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.OrderId)
+                .IsRequired();                
+        }
+
+        private void ConfigureProduct(EntityTypeBuilder<Product> builder)
+        {
+            builder.ToTable("Product");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.ProductName)
+                .IsRequired()
+                .HasMaxLength(100);
+        }
+
+        private void ConfigureShoppingCart(EntityTypeBuilder<ShoppingCart> builder)
+        {
+            builder.ToTable("ShoppingCart");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();       
+        }
+
+        private void ConfigureShoppingCartItem(EntityTypeBuilder<ShoppingCartItem> builder)
+        {
+            builder.ToTable("ShoppingCartItem");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+        }
+
+        private void ConfigureSupplier(EntityTypeBuilder<Supplier> builder)
+        {
+            builder.ToTable("Supplier");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+        }
+
+        private void ConfigureUser(EntityTypeBuilder<User> builder)
+        {
+            builder.ToTable("User");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
         }
     }
 }

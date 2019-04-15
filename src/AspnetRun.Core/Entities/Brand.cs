@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
-    public class Brand
+    public class Brand : BaseEntity
     {
         public Brand()
         {
