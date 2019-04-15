@@ -21,4 +21,7 @@ It will include eCommerce Real world example of run-core based application.
 * paging
 * full use case of northwind
 * identity
+* authentication
+* authorization
+* validation
 * theme
