@@ -30,7 +30,7 @@ namespace AspnetRun.Core.Entities
                 UnitPrice = unitPrice,
                 Quantity = quantity,
                 Discount = discount
-            });            
+            });
         }
 
         public ShoppingCartItem GetItem(int productId)
