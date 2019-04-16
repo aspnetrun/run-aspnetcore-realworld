@@ -27,6 +27,18 @@ namespace AspnetRun.Infrastructure.Persistence
                 await SeedCategories(aspnetrunContext);
                 await SeedProducts(aspnetrunContext);
 
+                await SeedBrands(aspnetrunContext);
+                await SeedOrders(aspnetrunContext);
+                await SeedOrderDetails(aspnetrunContext);
+
+                await SeedShoppingCarts(aspnetrunContext);
+                await SeedShoppingCartItems(aspnetrunContext);
+
+                await SeedSuppliers(aspnetrunContext);
+                await SeedUsers(aspnetrunContext);
+
+
+
 
                 // TODO : here - seed database methods
 
