@@ -114,6 +114,8 @@ namespace AspnetRun.Infrastructure.Persistence
             builder.Property(cb => cb.FirstName)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            builder.OwnsOne(c => c.Address);
         }
 
         private void ConfigureOrder(EntityTypeBuilder<Order> builder)
@@ -128,6 +130,8 @@ namespace AspnetRun.Infrastructure.Persistence
 
             builder.Property(cb => cb.OrderDate)
                 .IsRequired();
+
+            builder.OwnsOne(o => o.ShippingAddress);
         }
 
         private void ConfigureOrderDetail(EntityTypeBuilder<OrderDetail> builder)
