@@ -208,6 +208,21 @@ namespace AspnetRun.Infrastructure.Persistence
             await context.SaveChangesAsync();
         }
 
-        
+        public static async Task SeedUsers(AspnetRunContext context)
+        {
+            if (!context.Users.Any())
+                return;
+
+            var users = new List<User>()
+            {
+                new User { Id = 1, IdentityGuid = "testuser@user.com", AdAccount = Core.ValueObjects.AdAccount.For("TCRM32LAB\\Admin") },
+                new User { Id = 2, IdentityGuid = "testuser2@user.com", AdAccount = Core.ValueObjects.AdAccount.For("TCRM32LAB\\ezozkme") },
+                new User { Id = 3, IdentityGuid = "testuser3@user.com", AdAccount = Core.ValueObjects.AdAccount.For("TCRM32LAB\\emehozk") }
+            };
+
+            context.Users.AddRange(users);
+            await context.SaveChangesAsync();
+        }
+
     }
 }
