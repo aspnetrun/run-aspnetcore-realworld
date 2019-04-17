@@ -31,7 +31,7 @@ namespace AspnetRun.Infrastructure.Persistence
                 await SeedCustomers(aspnetrunContext);
 
                 await SeedOrders(aspnetrunContext);
-                //await SeedOrderDetails(aspnetrunContext);
+                await SeedOrderDetails(aspnetrunContext);
 
                 //await SeedShoppingCarts(aspnetrunContext);
                 //await SeedShoppingCartItems(aspnetrunContext);
@@ -145,10 +145,31 @@ namespace AspnetRun.Infrastructure.Persistence
 
             var orders = new List<Order>()
             {
-                new Order { Id = 1, CustomerId = 1, OrderDate = DateTime.Now, ShippedDate = DateTime.Now, Freight = 32.38m, ShipVia = 0, ShippingAddress = new Core.ValueObjects.Address { AddressDesc = "59 rue de l'Abbaye", City = "Reims", Country = "France", Region = "", PostalCode = "51100" } },
+                new Order { Id = 1, CustomerId = 1, OrderDate = DateTime.Now.AddDays(-5), ShippedDate = DateTime.Now.AddDays(-2), Freight = 32.38m, ShipVia = 0, ShippingAddress = new Core.ValueObjects.Address { AddressDesc = "59 rue de l'Abbaye", City = "Reims", Country = "France", Region = "", PostalCode = "51100" } },
+                new Order { Id = 2, CustomerId = 2, OrderDate = DateTime.Now.AddDays(-5), ShippedDate = DateTime.Now.AddDays(-2), Freight = 32.38m, ShipVia = 0, ShippingAddress = new Core.ValueObjects.Address { AddressDesc = "59 rue de l'Abbaye", City = "Reims", Country = "France", Region = "", PostalCode = "51100" } },
+                new Order { Id = 3, CustomerId = 1, OrderDate = DateTime.Now.AddDays(-5), ShippedDate = DateTime.Now.AddDays(-2), Freight = 32.38m, ShipVia = 0, ShippingAddress = new Core.ValueObjects.Address { AddressDesc = "59 rue de l'Abbaye", City = "Reims", Country = "France", Region = "", PostalCode = "51100" } }
             };
 
             context.Orders.AddRange(orders);
+            await context.SaveChangesAsync();
+        }
+
+        public static async Task SeedOrderDetails(AspnetRunContext context)
+        {
+            if (!context.OrderDetails.Any())
+                return;
+
+            var orderDetails = new List<OrderDetail>()
+            {
+                new OrderDetail { Id = 1, OrderId = 1, ProductId = 1, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new OrderDetail { Id = 2, OrderId = 1, ProductId = 2, Quantity = 1, Discount = 0, UnitPrice = 1.4M },
+                new OrderDetail { Id = 3, OrderId = 1, ProductId = 3, Quantity = 2, Discount = 0, UnitPrice = 1.4M },
+                new OrderDetail { Id = 4, OrderId = 2, ProductId = 4, Quantity = 2, Discount = 0, UnitPrice = 1.4M },
+                new OrderDetail { Id = 5, OrderId = 2, ProductId = 5, Quantity = 2, Discount = 0, UnitPrice = 1.4M },
+                new OrderDetail { Id = 6, OrderId = 3, ProductId = 6, Quantity = 2, Discount = 0, UnitPrice = 1.4M }
+            };
+
+            context.OrderDetails.AddRange(orderDetails);
             await context.SaveChangesAsync();
         }
 
