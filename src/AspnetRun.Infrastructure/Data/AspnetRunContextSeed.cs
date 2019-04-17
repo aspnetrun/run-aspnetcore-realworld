@@ -53,7 +53,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         private static async Task SeedBrands(AspnetRunContext context)
         {
-            if (!context.Brands.Any())
+            if (context.Brands.Any())
                 return;
 
             var brands = new List<Brand>()
@@ -70,7 +70,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         private static async Task SeedSuppliers(AspnetRunContext context)
         {
-            if (!context.Suppliers.Any())
+            if (context.Suppliers.Any())
                 return;
 
             var suppliers = new List<Supplier>()
@@ -86,7 +86,7 @@ namespace AspnetRun.Infrastructure.Persistence
         
         public static async Task SeedCategories(AspnetRunContext context)
         {
-            if (!context.Categories.Any())
+            if (context.Categories.Any())
                 return;
 
             var catgories = new List<Category>()
@@ -104,7 +104,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedProducts(AspnetRunContext context)
         {
-            if (!context.Products.Any())
+            if (context.Products.Any())
                 return;
 
             var products = new List<Product>()
@@ -123,7 +123,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedCustomers(AspnetRunContext context)
         {
-            if (!context.Customers.Any())
+            if (context.Customers.Any())
                 return;
 
             var customers = new List<Customer>()
@@ -138,7 +138,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedOrders(AspnetRunContext context)
         {
-            if (!context.Orders.Any())
+            if (context.Orders.Any())
                 return;
 
             var orders = new List<Order>()
@@ -154,7 +154,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedOrderDetails(AspnetRunContext context)
         {
-            if (!context.OrderDetails.Any())
+            if (context.OrderDetails.Any())
                 return;
 
             var orderDetails = new List<OrderDetail>()
@@ -173,7 +173,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedShoppingCarts(AspnetRunContext context)
         {
-            if (!context.ShoppingCarts.Any())
+            if (context.ShoppingCarts.Any())
                 return;
 
             var shoppingCarts = new List<ShoppingCart>()
@@ -189,7 +189,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedShoppingCartItems(AspnetRunContext context)
         {
-            if (!context.ShoppingCartItems.Any())
+            if (context.ShoppingCartItems.Any())
                 return;
 
             var shoppingCartItems = new List<ShoppingCartItem>()
@@ -208,7 +208,7 @@ namespace AspnetRun.Infrastructure.Persistence
 
         public static async Task SeedUsers(AspnetRunContext context)
         {
-            if (!context.Users.Any())
+            if (context.Users.Any())
                 return;
 
             var users = new List<User>()
