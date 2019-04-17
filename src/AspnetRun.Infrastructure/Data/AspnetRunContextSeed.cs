@@ -36,9 +36,7 @@ namespace AspnetRun.Infrastructure.Persistence
                 await SeedShoppingCarts(aspnetrunContext);
                 await SeedShoppingCartItems(aspnetrunContext);
                 
-                //await SeedUsers(aspnetrunContext);
-
-                // TODO : here - seed database methods
+                await SeedUsers(aspnetrunContext);
             }
             catch (Exception exception)
             {

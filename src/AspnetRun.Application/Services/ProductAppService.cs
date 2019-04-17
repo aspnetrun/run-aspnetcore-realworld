@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+    // TODOX : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
     public class ProductAppService : IProductAppService
     {
         private readonly IProductRepository _productRepository;
