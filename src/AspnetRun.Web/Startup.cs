@@ -96,15 +96,15 @@ namespace AspnetRun.Web
 
         public void ConfigureDatabases(IServiceCollection services)
         {
-            // use in-memory database
-            services.AddDbContext<AspnetRunContext>(c =>
-                c.UseInMemoryDatabase("AspnetRunConnection")
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
-
-            //// use real database
+            //// use in-memory database
             //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"))
+            //    c.UseInMemoryDatabase("AspnetRunConnection")
             //    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            // use real database
+            services.AddDbContext<AspnetRunContext>(c =>
+                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         }
     }
 }
