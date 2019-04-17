@@ -6,6 +6,10 @@ namespace AspnetRun.Core.Entities
 {
     public class Product : BaseEntity
     {
+        public Product()
+        {
+        }
+
         public string ProductName { get; set; }
         public string Description { get; set; }
         public string PictureUri { get; set; }
@@ -22,7 +26,6 @@ namespace AspnetRun.Core.Entities
         public int? BrandId { get; set; }
         public Brand Brand { get; set; }
         public int? SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; private set; }
+        public Supplier Supplier { get; set; }        
     }
 }

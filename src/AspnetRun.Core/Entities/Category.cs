@@ -23,6 +23,6 @@ namespace AspnetRun.Core.Entities
                 Description = description
             };
             return category;
-        }        
+        }
     }
 }

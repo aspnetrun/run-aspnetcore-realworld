@@ -18,4 +18,8 @@
     <ProjectReference Include="..\AspnetRun.Core\AspnetRun.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

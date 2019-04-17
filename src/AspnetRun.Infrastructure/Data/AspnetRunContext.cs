@@ -6,7 +6,7 @@ namespace AspnetRun.Infrastructure.Persistence
 {
     public class AspnetRunContext : DbContext
     {
-        public AspnetRunContext(DbContextOptions options) : base(options)
+        public AspnetRunContext(DbContextOptions<AspnetRunContext> options) : base(options)
         {
         }
 
@@ -67,6 +67,8 @@ namespace AspnetRun.Infrastructure.Persistence
             builder.Property(ci => ci.Id)
                .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
                .IsRequired();
+
+            builder.OwnsOne(s => s.Address);
         }
 
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
@@ -173,6 +175,8 @@ namespace AspnetRun.Infrastructure.Persistence
             builder.Property(ci => ci.Id)
                .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
                .IsRequired();
+
+            builder.OwnsOne(u => u.AdAccount);
         }
     }
 }
