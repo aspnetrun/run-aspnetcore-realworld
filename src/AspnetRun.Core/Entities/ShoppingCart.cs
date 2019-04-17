@@ -12,7 +12,7 @@ namespace AspnetRun.Core.Entities
             Items = new HashSet<ShoppingCartItem>();
         }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public ICollection<ShoppingCartItem> Items { get; private set; }
 
         public void AddItemToCart(int productId, decimal unitPrice, short quantity = 1, decimal? discount = 0)

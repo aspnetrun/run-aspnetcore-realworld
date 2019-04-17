@@ -8,7 +8,8 @@ namespace AspnetRun.Core.Tests.Builder
     public class ShoppingCartBuilder
     {
         private ShoppingCart _shoppingCart;
-        public string ShoppingCartUserId => "testuserId@test.com";
+        public string ShoppingCartUserId_X => "testuserId@test.com";
+        public int ShoppingCartUserId => 1;
         public int ShoppingCartId => 1;
 
         public ShoppingCartBuilder()

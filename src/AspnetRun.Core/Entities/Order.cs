@@ -18,7 +18,7 @@ namespace AspnetRun.Core.Entities
         public decimal? Freight { get; set; }
         public Address ShippingAddress { get; set; }
 
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         
         public ICollection<OrderDetail> OrderDetails { get; private set; }
