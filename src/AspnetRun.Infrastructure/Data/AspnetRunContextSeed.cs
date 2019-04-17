@@ -33,8 +33,8 @@ namespace AspnetRun.Infrastructure.Persistence
                 await SeedOrders(aspnetrunContext);
                 await SeedOrderDetails(aspnetrunContext);
 
-                //await SeedShoppingCarts(aspnetrunContext);
-                //await SeedShoppingCartItems(aspnetrunContext);
+                await SeedShoppingCarts(aspnetrunContext);
+                await SeedShoppingCartItems(aspnetrunContext);
                 
                 //await SeedUsers(aspnetrunContext);
 
@@ -173,5 +173,41 @@ namespace AspnetRun.Infrastructure.Persistence
             await context.SaveChangesAsync();
         }
 
+        public static async Task SeedShoppingCarts(AspnetRunContext context)
+        {
+            if (!context.ShoppingCarts.Any())
+                return;
+
+            var shoppingCarts = new List<ShoppingCart>()
+            {
+                new ShoppingCart { Id = 1, UserId = 1 },
+                new ShoppingCart { Id = 2, UserId = 2 },
+                new ShoppingCart { Id = 3, UserId = 3 }
+            };
+
+            context.ShoppingCarts.AddRange(shoppingCarts);
+            await context.SaveChangesAsync();
+        }
+
+        public static async Task SeedShoppingCartItems(AspnetRunContext context)
+        {
+            if (!context.ShoppingCartItems.Any())
+                return;
+
+            var shoppingCartItems = new List<ShoppingCartItem>()
+            {
+                new ShoppingCartItem { Id = 1, ShoppingCartId = 1, ProductId = 1, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new ShoppingCartItem { Id = 2, ShoppingCartId = 1, ProductId = 2, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new ShoppingCartItem { Id = 3, ShoppingCartId = 2, ProductId = 1, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new ShoppingCartItem { Id = 4, ShoppingCartId = 2, ProductId = 3, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new ShoppingCartItem { Id = 5, ShoppingCartId = 2, ProductId = 4, Quantity = 4, Discount = 0, UnitPrice = 1.4M },
+                new ShoppingCartItem { Id = 6, ShoppingCartId = 3, ProductId = 5, Quantity = 4, Discount = 0, UnitPrice = 1.4M }
+            };
+
+            context.ShoppingCartItems.AddRange(shoppingCartItems);
+            await context.SaveChangesAsync();
+        }
+
+        
     }
 }
