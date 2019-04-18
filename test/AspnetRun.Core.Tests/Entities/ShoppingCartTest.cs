@@ -1,8 +1,5 @@
 ﻿using AspnetRun.Core.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace AspnetRun.Core.Tests.Entities
@@ -84,7 +81,7 @@ namespace AspnetRun.Core.Tests.Entities
             var shoppingCart = new ShoppingCart();
             shoppingCart.AddItemToCart(_testProductId, _testUnitPrice, _testQuantity);
 
-            var item = shoppingCart.GetItem(_testProductId);            
+            var item = shoppingCart.GetItem(_testProductId);
 
             Assert.NotEqual(null, item);
         }
