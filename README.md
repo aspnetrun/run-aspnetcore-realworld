@@ -25,4 +25,5 @@ It will include eCommerce Real world example of run-core based application.
 * authorization
 * business rule check, domain policy apply
 * validation
+* configuration
 * theme
