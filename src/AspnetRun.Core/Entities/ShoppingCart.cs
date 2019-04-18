@@ -24,13 +24,15 @@ namespace AspnetRun.Core.Entities
                 return;
             }
 
-            Items.Add(new ShoppingCartItem()
+            var item = new ShoppingCartItem
             {
                 ProductId = productId,
                 UnitPrice = unitPrice,
                 Quantity = quantity,
                 Discount = discount
-            });
+            };
+
+            Items.Add(item);
         }
 
         public ShoppingCartItem GetItem(int productId)
