@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AspnetRun.Core.Policy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,10 @@ namespace AspnetRun.Core.Entities
 
         public void AddItemToCart(int productId, decimal unitPrice, short quantity = 1, decimal? discount = 0)
         {
+            // TODOX : apply policy in here
+            //IShoppingCartPolicy policy = new ShoppingCartPolicy()
+            //policy.CheckAddingItem(this);
+
             var existingItem = Items.FirstOrDefault(i => i.ProductId == productId);
             if (existingItem != null)
             {
