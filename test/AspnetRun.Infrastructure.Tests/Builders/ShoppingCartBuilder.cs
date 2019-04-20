@@ -7,8 +7,8 @@ namespace AspnetRun.Infrastructure.Tests.Builders
 {
     public class ShoppingCartBuilder
     {
-        private ShoppingCart _shoppingCart;        
-        public int TestUserId => 234;        
+        private ShoppingCart _shoppingCart;
+        public int TestUserId => 234;
 
         public ShoppingCartBuilder()
         {

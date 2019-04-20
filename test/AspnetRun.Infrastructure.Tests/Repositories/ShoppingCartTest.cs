@@ -2,6 +2,7 @@
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository;
+using AspnetRun.Infrastructure.Tests.Builders;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
@@ -17,6 +18,7 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
         private readonly AspnetRunContext _context;
         private readonly IAsyncRepository<ShoppingCart> _repository;
         private readonly ITestOutputHelper _testOutput;
+        private readonly ShoppingCartBuilder _builder;
 
         public ShoppingCartTest(ITestOutputHelper testOutput)
         {
@@ -28,12 +30,22 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
 
             _context = new AspnetRunContext(options);
             _repository = new AspnetRunRepository<ShoppingCart>(_context);
+            _builder = new ShoppingCartBuilder();
         }
 
         [Fact]
         public async Task Get_Existing_Shopping_Cart()
         {
+            var existingShoppingCart = _builder.WithDefaultValues();
 
+            _context.ShoppingCarts.Add(existingShoppingCart);
+            _context.SaveChanges();
+
+            int shoppingCartId = existingShoppingCart.Id;
+            _testOutput.WriteLine($"Shopping Cart Id : {shoppingCartId}");
+
+            var scFromRepo = await _repository.GetByIdAsync(shoppingCartId);
+            Assert.Equal(_builder.TestUserId, scFromRepo.UserId);
         }
     }
 }
