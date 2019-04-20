@@ -1,5 +1,6 @@
 ﻿using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Infrastructure.Data;
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +10,9 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
 {
     public class ShoppingCartTest
     {
+        private readonly AspnetRunContext _context;
+
+
         private Mock<IAsyncRepository<ShoppingCart>> _mockShoppingCartRepository;
         private Mock<IAsyncRepository<ShoppingCartItem>> _mockShoppingCartItemRepository;
 
