@@ -28,13 +28,15 @@ namespace AspnetRun.Core.Entities
         public int? SupplierId { get; set; }
         public Supplier Supplier { get; set; }
 
-        public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
+        public static Product Create(int productId, int categoryId, string name, int? brandId = null, int? supplierId = null, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
         {
             var product = new Product
             {
                 Id = productId,
                 CategoryId = categoryId,
-                ProductName = name,                
+                ProductName = name,     
+                BrandId = brandId,
+                SupplierId = supplierId,
                 UnitPrice = unitPrice,
                 UnitsInStock = unitsInStock,
                 UnitsOnOrder = unitsOnOrder,
