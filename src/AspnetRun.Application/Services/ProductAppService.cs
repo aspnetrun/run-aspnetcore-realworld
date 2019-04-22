@@ -49,6 +49,19 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
+        public Task<IEnumerable<ProductDto>> GetProductByBrand(int brandId)
+        {
+            // TODOX : develop
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<ProductDto>> GetProductBySupplier(int supplierId)
+        {
+            // TODOX : develop
+            throw new NotImplementedException();
+        }
+
+        // CRUD
         public async Task<ProductDto> Create(ProductDto entityDto)
         {
             await ValidateProductIfExist(entityDto);
@@ -101,5 +114,6 @@ namespace AspnetRun.Application.Services
             if (existingEntity == null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id is not exists");
         }
+       
     }
 }

@@ -32,7 +32,7 @@ namespace AspnetRun.Web
         public void ConfigureServices(IServiceCollection services)
         {            
             // aspnetrun dependencies
-            ConfigureAspnetRunServices(services);            
+            ConfigureAspnetRunServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {

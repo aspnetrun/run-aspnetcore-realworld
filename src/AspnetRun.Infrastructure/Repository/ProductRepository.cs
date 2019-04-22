@@ -19,10 +19,10 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IEnumerable<Product>> GetProductListAsync()
         {
-            // return await GetAllAsync();
-
             var spec = new ProductWithCategorySpecification();
             return await GetAsync(spec);
+            
+            // return await GetAllAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
