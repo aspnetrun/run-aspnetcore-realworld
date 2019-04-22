@@ -26,6 +26,23 @@ namespace AspnetRun.Core.Entities
         public int? BrandId { get; set; }
         public Brand Brand { get; set; }
         public int? SupplierId { get; set; }
-        public Supplier Supplier { get; set; }        
+        public Supplier Supplier { get; set; }
+
+        public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
+        {
+            var product = new Product
+            {
+                Id = productId,
+                CategoryId = categoryId,
+                ProductName = name,                
+                UnitPrice = unitPrice,
+                UnitsInStock = unitsInStock,
+                UnitsOnOrder = unitsOnOrder,
+                ReorderLevel = reorderLevel,
+                Discontinued = discontinued
+            };
+            return product;
+        }
+
     }
 }

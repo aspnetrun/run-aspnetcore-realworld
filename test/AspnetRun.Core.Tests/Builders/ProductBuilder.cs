@@ -18,9 +18,9 @@ namespace AspnetRun.Core.Tests.Builders
         {
             return new List<Product>()
             {
-                //Product.Create(ProductId1, 1, ProductName1),
-                //Product.Create(ProductId2, 1, ProductName2),
-                //Product.Create(ProductId3, 1, ProductName3)
+                Product.Create(ProductId1, 1, ProductName1),
+                Product.Create(ProductId2, 1, ProductName2),
+                Product.Create(ProductId3, 1, ProductName3)
             };
         }
     }
