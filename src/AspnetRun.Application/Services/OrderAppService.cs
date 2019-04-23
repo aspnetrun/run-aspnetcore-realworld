@@ -13,5 +13,40 @@ namespace AspnetRun.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<OrderDto> GetOrderDetail(int orderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<OrderDto>> GetOrderList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task PayOrder(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendOrderConfirmationEmail(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SpecifyCreditCart(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SpecifyDeliveryAddress(AddressDto addressDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SpecifyDeliveryNote(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

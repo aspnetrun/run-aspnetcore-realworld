@@ -114,6 +114,10 @@ namespace AspnetRun.Application.Services
             if (existingEntity == null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id is not exists");
         }
-       
+
+        public Task<ProductDto> GetStockInfo(int productId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
