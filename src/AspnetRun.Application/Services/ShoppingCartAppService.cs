@@ -14,5 +14,10 @@ namespace AspnetRun.Application.Services
             // TODOX : develop
             throw new NotImplementedException();
         }
+
+        public double GetTotalCostOfCart(ShoppingCartDto shoppingCartDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

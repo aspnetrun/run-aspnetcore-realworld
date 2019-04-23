@@ -9,5 +9,6 @@ namespace AspnetRun.Application.Interfaces
     public interface IShoppingCartAppService
     {
         Task AddItemToCart(ShoppingCartItemDto entityDto);
+        double GetTotalCostOfCart(ShoppingCartDto shoppingCartDto);
     }
 }
