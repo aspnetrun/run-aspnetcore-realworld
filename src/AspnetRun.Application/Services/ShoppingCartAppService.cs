@@ -19,5 +19,10 @@ namespace AspnetRun.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public double GetTotalCostOfCartItem(ShoppingCartItemDto shoppingCartItemDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

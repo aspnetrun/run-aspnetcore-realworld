@@ -10,5 +10,6 @@ namespace AspnetRun.Application.Interfaces
     {
         Task AddItemToCart(ShoppingCartItemDto entityDto);
         double GetTotalCostOfCart(ShoppingCartDto shoppingCartDto);
+        double GetTotalCostOfCartItem(ShoppingCartItemDto shoppingCartItemDto);
     }
 }
