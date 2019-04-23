@@ -12,6 +12,8 @@ namespace AspnetRun.Application.Interfaces
         Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId);
         Task<IEnumerable<ProductDto>> GetProductByBrand(int brandId);
         Task<IEnumerable<ProductDto>> GetProductBySupplier(int supplierId);
+        Task<ProductDto> GetStockInfo(int productId);
+
 
         Task<ProductDto> Create(ProductDto entityDto);
         Task Update(ProductDto entityDto);
