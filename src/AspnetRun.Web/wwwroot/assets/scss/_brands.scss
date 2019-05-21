@@ -1,0 +1,23 @@
+/*---------------------------------------
+    23. Brands
+-----------------------------------------*/
+.brands-section {}
+
+/*-- Brand Slider --*/
+.brand-slider {
+    text-align: center;
+    
+    & .slick-track {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    // Brand Slide Item
+    & .brand-item {
+        & img {
+            display: inline-block;
+            max-width: 100%;
+        }
+    }
+}

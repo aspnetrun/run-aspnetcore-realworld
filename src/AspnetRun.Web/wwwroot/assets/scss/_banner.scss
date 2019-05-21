@@ -1,0 +1,75 @@
+/*---------------------------------------
+    05. Banner
+-----------------------------------------*/
+.banner-section {}
+
+/*-- Banner --*/
+.banner {
+    & a {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        
+        // Before & After Element
+        &::before {
+            background-color: rgba(255, 255, 255, 0.2);
+            content: "";
+            height: 200%;
+            left: -280px;
+            position: absolute;
+            top: -50%;
+            -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+            -webkit-transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            width: 80px;
+            z-index: 0;
+        }
+        &::after {
+            background-color: rgba(255, 255, 255, 0.2);
+            content: "";
+            height: 200%;
+            left: 180%;
+            position: absolute;
+            top: -50%;
+            -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+            -webkit-transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            width: 80px;
+            z-index: 0;
+        }
+        
+        // Hover Before & After Element
+        &:hover {
+            &::before {
+                left: 180%;
+                -webkit-transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+                transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            }
+            &::after {
+                left: -280px;
+                -webkit-transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+                transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+        
+        // Image
+        & img {
+            width: 100%;
+        }
+    }
+}
+
+.hero-banner {
+	float: right;
+	width: 260px;
+        
+    // Responsive
+    @media #{$tablet-device}{
+        width: 100%;
+    }
+    @media #{$large-mobile}{
+        width: 100%;
+    }
+}

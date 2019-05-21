@@ -1,0 +1,1870 @@
+/*---------------------------------------
+    04. Hero
+-----------------------------------------*/
+.hero-section {}
+
+/*--
+    04.1 Hero Slider One
+-----------------------------------------*/
+/*-- Hero Slider --*/
+.hero-slider-one {
+    
+    /*-- Arrow --*/
+    & .slick-arrow {
+        display: none !important;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #959595;
+        color: $heading-color;
+        border-radius: 50px;
+        background-color: transparent;
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        margin-top: -22px;
+        z-index: 9;
+        opacity: 0;
+        
+        & i {
+            font-size: 28px;
+            line-height: 42px;
+            display: block;
+        }
+        &.slick-prev {
+            left: 30px;   
+        }
+        &.slick-next {
+            right: 30px;
+        }
+        
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+    
+    /*-- Dots --*/
+    & .slick-dots {
+        position: absolute;
+        left: 100px;
+        bottom: 50px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            left: 50px;
+        }
+        @media #{$large-mobile}{
+            left: 50px;
+            bottom: 30px;
+        }
+        @media #{$small-mobile}{
+            left: 40px;
+        }
+        
+        & li {
+            float: left;
+            margin-right: 5px;
+            
+            & button {
+                border: 1px solid #959595;
+                background-color: transparent;
+                text-indent: -99999px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                display: block;
+                padding: 0;
+                
+                // Hover
+                &:hover {
+                    border-color: $heading-color;
+                }
+            }
+            
+            &.slick-active {
+                & button {
+                    border-color: $heading-color;
+                }
+            }
+            
+        }
+    }
+    
+    &:hover {
+        & .slick-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+/*-- Hero Item --*/
+.hero-item {
+    padding: 85px 150px 60px 100px;
+    background-color: $tc-extra-light;
+        
+    // Responsive
+    @media #{$desktop-device}{
+        padding: 85px 100px 60px 100px;
+    }
+    @media #{$tablet-device}{
+        padding: 50px 50px 40px 50px;
+    }
+    @media #{$large-mobile}{
+        padding: 70px 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 50px 40px;
+    }
+    
+    & .col, & [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+    
+/*-- Hero Image --*/
+.hero-image {
+        
+    // Responsive
+    @media #{$tablet-device}{
+        max-width: 240px;
+    }
+    @media #{$large-mobile}{
+        order: 1;
+        max-width: 200px;
+        margin: auto;
+    }
+    @media #{$small-mobile}{
+        max-width: 160px;
+    }
+    
+    & img {
+        max-width: 100%;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+}
+
+/*-- Hero Content --*/
+.hero-content {
+    @media #{$large-mobile}{
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    // All Element Selector
+    & > * {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+    
+    & h2 {
+        font-size: 32px;
+        line-height: 1;
+        margin: 0;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            font-size: 24px;
+        }
+        @media #{$large-mobile}{
+            font-size: 22px;
+        }
+        @media #{$small-mobile}{
+            font-size: 18px;
+        }
+    }
+    
+    & h1 {
+        font-size: 70px;
+        font-weight: 400;
+        line-height: 80px;
+        margin: 0;
+        & span {
+            font-weight: 900;
+            &.big {
+                font-size: 85px;
+        
+                // Responsive
+                @media #{$desktop-device}{
+                    font-size: 70px;
+                }
+                @media #{$tablet-device}{
+                    font-size: 60px;
+                }
+                @media #{$large-mobile}{
+                    font-size: 55px;
+                }
+                @media #{$small-mobile}{
+                    font-size: 36px;
+                }
+            }
+        }
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 60px;
+            line-height: 70px;
+        }
+        @media #{$tablet-device}{
+            font-size: 50px;
+            line-height: 60px;
+        }
+        @media #{$large-mobile}{
+            font-size: 44px;
+            line-height: 54px;
+        }
+        @media #{$small-mobile}{
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+    
+    & a {
+        border: 1px solid #626262;
+        border-radius: 50px;
+        line-height: 24px;
+        padding: 10px 30px;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $heading-color;
+        margin-top: 22px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        // Before & After Selector
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 0;
+            width: 100%;
+            background-color: $heading-color;
+            transition: all 0.3s ease 0s;
+            content: "";
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        // Hover
+        &:hover {
+            color: $theme-color;
+            
+            
+            &::before {
+                height: 300%;
+                opacity: 1;
+            }
+            
+        }
+        
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 12px;
+            padding: 7px 25px;
+        }
+        @media #{$small-mobile}{
+            font-size: 11px;
+            padding: 5px 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+/*-- Slide Content In Animation --*/
+.slick-active {
+    
+    /*-- Hero Image --*/
+    & .hero-image {
+
+        & img {
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+    }
+
+    /*-- Hero Content --*/
+    & .hero-content {
+
+        // All Element Selector
+        & > * {
+            animation-name: fadeInUp;
+            
+            // Child Selector
+            &:nth-child(1) {
+                animation-delay: 0.5s;
+            }
+            &:nth-child(2) {
+                animation-delay: 1s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1.5s;
+            }
+            &:nth-child(4) {
+                animation-delay: 2s;
+            }
+            &:nth-child(5) {
+                animation-delay: 2.5s;
+            }
+            &:nth-child(6) {
+                animation-delay: 3s;
+            }
+            
+        }
+    }
+    
+}
+
+
+/*--
+    04.2 Hero Slider Two
+-----------------------------------------*/
+/*-- Hero Slider --*/
+.hero-slider-two {
+        
+    // Responsive
+    @media #{$tablet-device}{
+        width: 100%;
+    }
+    @media #{$large-mobile}{
+        width: 100%;
+    }
+    
+    /*-- Arrow --*/
+    & .slick-arrow {
+        display: block;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #959595;
+        color: $heading-color;
+        border-radius: 50px;
+        background-color: transparent;
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        margin-top: -22px;
+        z-index: 5;
+        opacity: 0;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            display: none !important;
+        }
+        
+        & i {
+            font-size: 28px;
+            line-height: 42px;
+            display: block;
+        }
+        &.slick-prev {
+            left: 20px;  
+        
+            // Responsive
+            @media #{$desktop-device}{
+                left: 15px;
+            }
+        }
+        &.slick-next {
+            right: 20px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                right: 15px;
+            }
+        }
+        
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+    
+    /*-- Dots --*/
+    & .slick-dots {
+        display: none !important;
+        position: absolute;
+        left: 85px;
+        bottom: 30px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            left: 50px;
+        }
+        @media #{$large-mobile}{
+            left: 50px;
+            display: block !important;
+        }
+        @media #{$small-mobile}{
+            left: 40px;
+            bottom: 20px;
+        }
+        
+        & li {
+            float: left;
+            margin-right: 5px;
+            
+            & button {
+                border: 1px solid #959595;
+                background-color: transparent;
+                text-indent: -99999px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                display: block;
+                padding: 0;
+                
+                // Hover
+                &:hover {
+                    border-color: $heading-color;
+                }
+            }
+            
+            &.slick-active {
+                & button {
+                    border-color: $heading-color;
+                }
+            }
+            
+        }
+    }
+    
+    &:hover {
+        & .slick-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+/*-- Hero Item --*/
+.hero-item-two {
+    padding: 49px 85px;
+    background-color: #eceded;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+        
+    // Responsive
+    @media #{$desktop-device}{
+        padding: 78px 70px;
+    }
+    @media #{$tablet-device}{
+        padding: 78px 80px;
+    }
+    @media #{$large-mobile}{
+        padding: 70px 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 50px 40px;
+    }
+    
+    & .col, & [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+    
+/*-- Hero Image --*/
+.hero-image-two {
+        
+    // Responsive
+    @media #{$desktop-device}{
+        max-width: 220px;
+    }
+    @media #{$tablet-device}{
+        max-width: 200px;
+    }
+    @media #{$large-mobile}{
+        max-width: 200px;
+        margin: auto;
+        order: 1;
+    }
+    @media #{$small-mobile}{
+        max-width: 150px;
+    }
+    
+    & img {
+        max-width: 100%;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+}
+
+/*-- Hero Content --*/
+.hero-content-two {
+    @media #{$large-mobile}{
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    // All Element Selector
+    & > * {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+    
+    & .offer {
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+        background-image: url(../images/hero/home-2-offer.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 30px 10px;
+        width: 134px;
+        height: 126px;
+        margin-bottom: 20px;
+        
+        & span {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            
+            // Responsive
+            @media #{$small-mobile}{
+                font-size: 18px;
+            }
+        }
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 30px;
+        }
+        @media #{$tablet-device}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 20px;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            padding: 15px 10px;
+            width: 80px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+    }
+    
+    & h1 {
+        font-size: 46px;
+        font-weight: 800;
+        margin: 0;
+        line-height: 55px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+            line-height: 36px;
+        }
+        @media #{$tablet-device}{
+            font-size: 30px;
+            line-height: 36px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+            line-height: 36px;
+        }
+        @media #{$small-mobile}{
+            font-size: 20px;
+            line-height: 26px;
+        }
+    }
+    
+    & a {
+        border: 1px solid #626262;
+        border-radius: 50px;
+        line-height: 24px;
+        padding: 10px 30px;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $heading-color;
+        margin-top: 30px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        // Before & After Selector
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 0;
+            width: 100%;
+            background-color: $heading-color;
+            transition: all 0.3s ease 0s;
+            content: "";
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        // Hover
+        &:hover {
+            color: $theme-color;
+            
+            
+            &::before {
+                height: 300%;
+                opacity: 1;
+            }
+            
+        }
+        
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 12px;
+            padding: 7px 25px;
+        }
+        @media #{$small-mobile}{
+            font-size: 11px;
+            padding: 5px 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+/*-- Slide Content In Animation --*/
+.slick-active {
+    
+    /*-- Hero Image --*/
+    & .hero-image-two {
+
+        & img {
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+    }
+
+    /*-- Hero Content --*/
+    & .hero-content-two {
+
+        // All Element Selector
+        & > * {
+            animation-name: fadeInUp;
+            
+            // Child Selector
+            &:nth-child(1) {
+                animation-delay: 0.5s;
+            }
+            &:nth-child(2) {
+                animation-delay: 1s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1.5s;
+            }
+            &:nth-child(4) {
+                animation-delay: 2s;
+            }
+            &:nth-child(5) {
+                animation-delay: 2.5s;
+            }
+            &:nth-child(6) {
+                animation-delay: 3s;
+            }
+            
+        }
+    }
+    
+}
+
+/*--
+    04.3 Hero Slider Three
+-----------------------------------------*/
+/*-- Hero Slider --*/
+.hero-slider-three {
+        
+    // Responsive
+    @media #{$tablet-device}{
+        width: 100%;
+    }
+    @media #{$large-mobile}{
+        width: 100%;
+    }
+    
+    /*-- Arrow --*/
+    & .slick-arrow {
+        display: block;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #959595;
+        color: $heading-color;
+        border-radius: 50px;
+        background-color: transparent;
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        margin-top: -22px;
+        z-index: 5;
+        opacity: 0;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            display: none !important;
+        }
+        
+        & i {
+            font-size: 28px;
+            line-height: 42px;
+            display: block;
+        }
+        &.slick-prev {
+            left: 20px;  
+        
+            // Responsive
+            @media #{$desktop-device}{
+                left: 15px;
+            }
+        }
+        &.slick-next {
+            right: 20px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                right: 15px;
+            }
+        }
+        
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+    
+    /*-- Dots --*/
+    & .slick-dots {
+        display: none !important;
+        position: absolute;
+        left: 85px;
+        bottom: 30px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            left: 50px;
+        }
+        @media #{$large-mobile}{
+            left: 50px;
+            display: block !important;
+        }
+        @media #{$small-mobile}{
+            left: 40px;
+            bottom: 20px;
+        }
+        
+        & li {
+            float: left;
+            margin-right: 5px;
+            
+            & button {
+                border: 1px solid #959595;
+                background-color: transparent;
+                text-indent: -99999px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                display: block;
+                padding: 0;
+                
+                // Hover
+                &:hover {
+                    border-color: $heading-color;
+                }
+            }
+            
+            &.slick-active {
+                & button {
+                    border-color: $heading-color;
+                }
+            }
+            
+        }
+    }
+    
+    &:hover {
+        & .slick-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+/*-- Hero Item --*/
+.hero-item-three {
+    padding: 59px 85px;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+        
+    // Responsive
+    @media #{$desktop-device}{
+        padding: 85px 70px;
+    }
+    @media #{$tablet-device}{
+        padding: 75px 80px;
+    }
+    @media #{$large-mobile}{
+        padding: 70px 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 50px 40px;
+    }
+    
+    & .col, & [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+    
+/*-- Hero Image --*/
+.hero-image-three {
+        
+    // Responsive
+    @media #{$desktop-device}{
+        max-width: 270px;
+    }
+    @media #{$tablet-device}{
+        max-width: 270px;
+    }
+    @media #{$large-mobile}{
+        order: 1;
+    }
+    
+    & img {
+        max-width: 100%;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+}
+
+/*-- Hero Content --*/
+.hero-content-three {
+    @media #{$large-mobile}{
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    // All Element Selector
+    & > * {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+    
+    & .offer {
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+        background-image: url(../images/hero/home-2-offer.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 30px 10px;
+        width: 134px;
+        height: 126px;
+        margin-bottom: 20px;
+        
+        & span {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            
+            // Responsive
+            @media #{$small-mobile}{
+                font-size: 18px;
+            }
+        }
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 30px;
+        }
+        @media #{$tablet-device}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 30px;
+            padding: 18px 10px;
+            width: 100px;
+            height: 90px;
+            margin-bottom: 20px;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            padding: 15px 10px;
+            width: 80px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+    }
+    
+    & h1 {
+        font-size: 46px;
+        font-weight: 800;
+        margin: 0;
+        line-height: 55px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 36px;
+            line-height: 46px;
+        }
+        @media #{$tablet-device}{
+            font-size: 36px;
+            line-height: 46px;
+        }
+        @media #{$large-mobile}{
+            font-size: 36px;
+            line-height: 46px;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    
+    & a {
+        border: 1px solid #626262;
+        border-radius: 50px;
+        line-height: 24px;
+        padding: 10px 30px;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $heading-color;
+        margin-top: 30px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        // Before & After Selector
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 0;
+            width: 100%;
+            background-color: $heading-color;
+            transition: all 0.3s ease 0s;
+            content: "";
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        // Hover
+        &:hover {
+            color: $theme-color;
+            
+            
+            &::before {
+                height: 300%;
+                opacity: 1;
+            }
+            
+        }
+        
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 12px;
+            padding: 7px 25px;
+        }
+        @media #{$small-mobile}{
+            font-size: 11px;
+            padding: 5px 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+/*-- Slide Content In Animation --*/
+.slick-active {
+    
+    /*-- Hero Image --*/
+    & .hero-image-three {
+
+        & img {
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+    }
+
+    /*-- Hero Content --*/
+    & .hero-content-three {
+
+        // All Element Selector
+        & > * {
+            animation-name: fadeInUp;
+            
+            // Child Selector
+            &:nth-child(1) {
+                animation-delay: 0.5s;
+            }
+            &:nth-child(2) {
+                animation-delay: 1s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1.5s;
+            }
+            &:nth-child(4) {
+                animation-delay: 2s;
+            }
+            &:nth-child(5) {
+                animation-delay: 2.5s;
+            }
+            &:nth-child(6) {
+                animation-delay: 3s;
+            }
+            
+        }
+    }
+    
+}
+
+/*--
+    04.4 Hero Slider Four
+-----------------------------------------*/
+/*-- Hero Slider --*/
+.hero-slider-four {
+        
+    // Responsive
+    @media #{$tablet-device}{
+        width: 100%;
+    }
+    @media #{$large-mobile}{
+        width: 100%;
+    }
+    
+    /*-- Arrow --*/
+    & .slick-arrow {
+        display: block;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #959595;
+        color: $heading-color;
+        border-radius: 50px;
+        background-color: transparent;
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        margin-top: -22px;
+        z-index: 5;
+        opacity: 0;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            display: none !important;
+        }
+        
+        & i {
+            font-size: 28px;
+            line-height: 44px;
+            display: block;
+        }
+        &.slick-prev {
+            left: 20px;  
+        
+            // Responsive
+            @media #{$desktop-device}{
+                left: 15px;
+            }
+        }
+        &.slick-next {
+            right: 20px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                right: 15px;
+            }
+        }
+        
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+    
+    /*-- Dots --*/
+    & .slick-dots {
+        display: none !important;
+        position: absolute;
+        left: 85px;
+        bottom: 30px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            left: 50px;
+        }
+        @media #{$large-mobile}{
+            left: 50px;
+            display: block !important;
+        }
+        @media #{$small-mobile}{
+            left: 40px;
+            bottom: 20px;
+        }
+        
+        & li {
+            float: left;
+            margin-right: 5px;
+            
+            & button {
+                border: 1px solid #959595;
+                background-color: transparent;
+                text-indent: -99999px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                display: block;
+                padding: 0;
+                
+                // Hover
+                &:hover {
+                    border-color: $heading-color;
+                }
+            }
+            
+            &.slick-active {
+                & button {
+                    border-color: $heading-color;
+                }
+            }
+            
+        }
+    }
+    
+    &:hover {
+        & .slick-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+/*-- Hero Item --*/
+.hero-item-four {
+    padding: 170px 80px;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+        
+    // Responsive
+    @media #{$laptop-device}{
+        padding: 175px 80px;
+    }
+    @media #{$desktop-device}{
+        padding: 79px 70px;
+    }
+    @media #{$tablet-device}{
+        padding: 75px 80px;
+    }
+    @media #{$large-mobile}{
+        padding: 70px 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 50px 40px;
+    }
+    
+    & .col, & [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+    
+/*-- Hero Image --*/
+.hero-image-four {
+        
+    // Responsive
+    @media #{$laptop-device}{
+        max-width: 350px;
+    }
+    @media #{$desktop-device}{
+        max-width: 400px;
+        order: 1;
+    }
+    @media #{$tablet-device}{
+        max-width: 400px;
+        order: 1;
+    }
+    @media #{$large-mobile}{
+        order: 1;
+    }
+    
+    & img {
+        max-width: 100%;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+}
+
+/*-- Hero Content --*/
+.hero-content-four {
+    
+    // Responsive
+    @media #{$desktop-device}{
+        order: 2;
+        margin-top: 30px;
+    }
+    @media #{$tablet-device}{
+        order: 2;
+        margin-top: 30px;
+    }
+    @media #{$large-mobile}{
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    // All Element Selector
+    & > * {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+    
+    & .offer {
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+        background-image: url(../images/hero/home-4-offer.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 37px 25px 37px 40px;
+        width: 130px;
+        height: 130px;
+        margin-bottom: 43px;
+        
+        & span {
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            
+            // Responsive
+            @media #{$desktop-device}{
+                font-size: 16px;
+            }
+            @media #{$tablet-device}{
+                font-size: 16px;
+            }
+            @media #{$large-mobile}{
+                font-size: 12px;
+            }
+        }
+        
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 20px;
+            padding: 30px 15px 30px 30px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        @media #{$tablet-device}{
+            font-size: 20px;
+            padding: 30px 15px 30px 30px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        @media #{$large-mobile}{
+            font-size: 20px;
+            padding: 30px 15px 30px 30px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        @media #{$small-mobile}{
+            font-size: 18px;
+            padding: 27px 10px 27px 20px;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 20px;
+        }
+    }
+    
+    & h2 {
+        font-size: 40px;
+        font-weight: 400;
+        margin: 0;
+        line-height: 50px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            font-size: 32px;
+            line-height: 46px;
+        }
+        @media #{$desktop-device}{
+            font-size: 32px;
+            line-height: 46px;
+        }
+        @media #{$tablet-device}{
+            font-size: 32px;
+            line-height: 46px;
+        }
+        @media #{$large-mobile}{
+            font-size: 36px;
+            line-height: 46px;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    
+    & h1 {
+        font-size: 72px;
+        font-weight: 800;
+        margin: 0;
+        line-height: 72px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            font-size: 55px;
+            line-height: 66px;
+        }
+        @media #{$desktop-device}{
+            font-size: 55px;
+            line-height: 66px;
+        }
+        @media #{$tablet-device}{
+            font-size: 55px;
+            line-height: 66px;
+        }
+        @media #{$large-mobile}{
+            font-size: 36px;
+            line-height: 46px;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    
+    & a {
+        border: 0px solid transparent;
+        border-radius: 50px;
+        line-height: 24px;
+        padding: 10px 30px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: $theme-color;
+        color: $heading-color;
+        margin-top: 45px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        // Before & After Selector
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 0;
+            width: 100%;
+            background-color: $heading-color;
+            transition: all 0.3s ease 0s;
+            content: "";
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        // Hover
+        &:hover {
+            color: $theme-color;
+            
+            
+            &::before {
+                height: 300%;
+                opacity: 1;
+            }
+            
+        }
+        
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 12px;
+            padding: 7px 25px;
+        }
+        @media #{$small-mobile}{
+            font-size: 11px;
+            padding: 5px 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+/*-- Slide Content In Animation --*/
+.slick-active {
+    
+    /*-- Hero Image --*/
+    & .hero-image-four {
+
+        & img {
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+    }
+
+    /*-- Hero Content --*/
+    & .hero-content-four {
+
+        // All Element Selector
+        & > * {
+            animation-name: fadeInUp;
+            
+            // Child Selector
+            &:nth-child(1) {
+                animation-delay: 0.5s;
+            }
+            &:nth-child(2) {
+                animation-delay: 1s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1.5s;
+            }
+            &:nth-child(4) {
+                animation-delay: 2s;
+            }
+            &:nth-child(5) {
+                animation-delay: 2.5s;
+            }
+            &:nth-child(6) {
+                animation-delay: 3s;
+            }
+            
+        }
+    }
+    
+}
+
+
+/*--
+    04.5 Hero Slider Five
+-----------------------------------------*/
+/*-- Hero Slider --*/
+.hero-slider-five {
+    width: calc(100% - 520px);
+    float: left;
+    padding: 0 10px;
+    // Responsive
+    @media #{$tablet-device}{
+        width: 100%;
+        padding: 0;
+    }
+    @media #{$large-mobile}{
+        width: 100%;
+        padding: 0;
+    }
+    
+    /*-- Arrow --*/
+    & .slick-arrow {
+        display: none !important;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #959595;
+        color: $heading-color;
+        border-radius: 50px;
+        background-color: transparent;
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        margin-top: -22px;
+        z-index: 5;
+        opacity: 0;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            display: none !important;
+        }
+        
+        & i {
+            font-size: 28px;
+            line-height: 44px;
+            display: block;
+        }
+        &.slick-prev {
+            left: 20px;  
+        
+            // Responsive
+            @media #{$desktop-device}{
+                left: 15px;
+            }
+        }
+        &.slick-next {
+            right: 20px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                right: 15px;
+            }
+        }
+        
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+    
+    /*-- Dots --*/
+    & .slick-dots {
+        display: block;
+        position: absolute;
+        left: 60px;
+        bottom: 30px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            left: 50px;
+        }
+        @media #{$large-mobile}{
+            left: 50px;
+            display: block !important;
+        }
+        @media #{$small-mobile}{
+            left: 40px;
+            bottom: 20px;
+        }
+        
+        & li {
+            float: left;
+            margin-right: 5px;
+            
+            & button {
+                border: 1px solid #959595;
+                background-color: transparent;
+                text-indent: -99999px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                display: block;
+                padding: 0;
+                
+                // Hover
+                &:hover {
+                    border-color: $heading-color;
+                }
+            }
+            
+            &.slick-active {
+                & button {
+                    border-color: $heading-color;
+                }
+            }
+            
+        }
+    }
+    
+    &:hover {
+        & .slick-arrow {
+            opacity: 1;
+        }
+    }
+}
+
+/*-- Hero Item --*/
+.hero-item-five {
+    padding: 102px 50px;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    
+    @media #{$desktop-device}{
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $black;
+            content: "";
+            opacity: 0.4;
+        }
+    }
+    @media #{$tablet-device}{
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $black;
+            content: "";
+            opacity: 0.4;
+        }
+    }
+    @media #{$large-mobile}{
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $black;
+            content: "";
+            opacity: 0.4;
+        }
+    }
+        
+    // Responsive
+    @media #{$laptop-device}{
+        padding: 140px 50px;
+    }
+    @media #{$desktop-device}{
+        padding: 79px 50px;
+    }
+    @media #{$tablet-device}{
+        padding: 75px 50px;
+    }
+    @media #{$large-mobile}{
+        padding: 70px 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 50px 40px;
+    }
+    
+    & .col, & [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+
+/*-- Hero Content --*/
+.hero-content-five {
+    
+    // Responsive
+    @media #{$desktop-device}{
+        order: 2;
+        margin-top: 30px;
+    }
+    @media #{$tablet-device}{
+        order: 2;
+        margin-top: 30px;
+    }
+    @media #{$large-mobile}{
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    // All Element Selector
+    & > * {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-name: fadeOutUp;
+    }
+    
+    & img {
+        max-width: 100%;
+        margin-bottom: 33px;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            width: 120px;
+            margin-bottom: 10px;
+        }
+        @media #{$large-mobile}{
+            width: 120px;
+        }
+    }
+    
+    & h2 {
+        font-size: 36px;
+        font-weight: 400;
+        margin: 0;
+        line-height: 42px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            font-size: 32px;
+            line-height: 46px;
+        }
+        @media #{$desktop-device}{
+            font-size: 32px;
+            line-height: 46px;
+            color: $white;
+        }
+        @media #{$tablet-device}{
+            font-size: 32px;
+            line-height: 46px;
+            color: $white;
+        }
+        @media #{$large-mobile}{
+            font-size: 36px;
+            line-height: 46px;
+            color: $white;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    
+    & h1 {
+        font-size: 66px;
+        font-weight: 800;
+        margin: 0;
+        line-height: 68px;
+        text-transform: uppercase;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            font-size: 55px;
+            line-height: 66px;
+        }
+        @media #{$desktop-device}{
+            font-size: 55px;
+            line-height: 66px;
+            color: $white;
+        }
+        @media #{$tablet-device}{
+            font-size: 55px;
+            line-height: 66px;
+            color: $white;
+        }
+        @media #{$large-mobile}{
+            font-size: 36px;
+            line-height: 46px;
+            color: $white;
+        }
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    
+    & a {
+        border: 0px solid transparent;
+        border-radius: 50px;
+        line-height: 24px;
+        padding: 10px 30px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: $theme-color;
+        color: $heading-color;
+        margin-top: 45px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        // Before & After Selector
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 0;
+            width: 100%;
+            background-color: $heading-color;
+            transition: all 0.3s ease 0s;
+            content: "";
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        // Hover
+        &:hover {
+            color: $theme-color;
+            
+            
+            &::before {
+                height: 300%;
+                opacity: 1;
+            }
+            
+        }
+        
+        // Responsive
+        @media #{$large-mobile}{
+            font-size: 12px;
+            padding: 7px 25px;
+        }
+        @media #{$small-mobile}{
+            font-size: 11px;
+            padding: 5px 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+/*-- Slide Content In Animation --*/
+.slick-active {
+    
+    /*-- Hero Image --*/
+    & .hero-image-five {
+
+        & img {
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+    }
+
+    /*-- Hero Content --*/
+    & .hero-content-five {
+
+        // All Element Selector
+        & > * {
+            animation-name: fadeInUp;
+            
+            // Child Selector
+            &:nth-child(1) {
+                animation-delay: 0.5s;
+            }
+            &:nth-child(2) {
+                animation-delay: 1s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1.5s;
+            }
+            &:nth-child(4) {
+                animation-delay: 2s;
+            }
+            &:nth-child(5) {
+                animation-delay: 2.5s;
+            }
+            &:nth-child(6) {
+                animation-delay: 3s;
+            }
+            
+        }
+    }
+    
+}

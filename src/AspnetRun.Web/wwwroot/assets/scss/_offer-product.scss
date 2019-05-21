@@ -1,0 +1,175 @@
+/*---------------------------------------
+    09. Offer Product
+-----------------------------------------*/
+
+/*-- Offer Product Wrap --*/
+.offer-product-wrap {
+    
+    & > [class*="col"] {
+        flex: 1 0 auto;
+        float: left;
+        
+        // Child Selector
+        &:nth-child(1) {
+            width: 100%;
+        
+            // Responsive
+            @media #{$tablet-device}{
+                order: 2;
+            } 
+            @media #{$large-mobile}{
+                order: 2;
+            } 
+        }
+        &:nth-child(2) {
+            width: 360px;
+        
+            // Responsive
+            @media #{$tablet-device}{
+                order: 1;
+            } 
+            @media #{$large-mobile}{
+                order: 1;
+            } 
+        }
+        &:nth-child(3) {
+            width: calc(100% - 360px); 
+        
+            // Responsive
+            @media #{$tablet-device}{
+                width: 100%;
+                order: 3;
+            } 
+            @media #{$large-mobile}{
+                order: 3;
+            } 
+        }
+    }
+}
+
+/*-- Offer Time Wrap --*/
+.offer-time-wrap {
+    text-align: center;
+    padding: 55px 30px 35px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+
+    // Responsive
+    @media #{$desktop-device}{
+        padding: 66px 30px 46px;
+    } 
+    @media #{$tablet-device}{
+        padding: 70px 30px 50px;
+    } 
+    @media #{$large-mobile}{
+        padding: 70px 30px 50px;
+    } 
+    
+    & h1 {
+        color: $white;
+        font-size: 46px;
+        line-height: 1;
+        font-weight: 700;
+        margin-bottom: 20px;
+        & span {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 3px;
+        }
+    }
+    & h3 {
+        color: $white;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 34px;
+        margin-bottom: 20px;
+        & span {
+            font-weight: 700;
+            font-size: 30px;
+            display: block;
+        }
+    }
+    & h4 {
+        color: #e1e1e1;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24px;
+        margin: 0;
+        & span {
+            font-size: 16px;
+            display: block;
+        }
+    }
+    
+    // Countdown
+    & .countdown {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 40px;
+        
+        // Responsive
+        @media #{$tablet-device}{
+            width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+        } 
+
+        // Countdown Item
+        & .cdown {
+            margin-bottom: 20px;
+
+            // Responsive
+            @media #{$small-mobile}{
+                width: 50%;
+            } 
+            
+            & span {
+                display: block;
+                font-weight: 600;
+                font-size: 28px;
+                line-height: 1;
+                color: #efefef;
+                margin-bottom: 4px;
+            }
+            & p {
+                color: #b0b0b0;
+                font-size: 13px;
+                line-height: 1;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+        }
+    }
+    
+    // Dark Text
+    &.dark {
+    
+        & h1 {
+            color: $heading-color;
+        }
+        & h3 {
+            color: $heading-color;
+        }
+        & h4 {
+            color: $heading-color;
+        }
+
+        // Countdown
+        & .countdown {
+
+            // Countdown Item
+            & .cdown {
+
+                & span {
+                    color: $heading-color;
+                }
+                & p {
+                    color: $body-color;
+                }
+            }
+        }
+    }
+}

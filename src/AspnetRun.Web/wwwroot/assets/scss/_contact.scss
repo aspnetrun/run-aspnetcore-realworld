@@ -1,0 +1,101 @@
+/*---------------------------------------
+    28. Contact
+-----------------------------------------*/
+
+/*-- Contact Page Title --*/
+.contact-page-title {
+    & h1 {
+        font-size: 36px;
+        font-weight: 700;
+        font-family: $oswald;
+    }
+}
+
+/*-- Contact Tab List --*/
+.contact-tab-list {
+    & li {
+        flex: 1 0 100%;
+        margin-bottom: 12px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        & a {
+            font-size: 18px;
+            line-height: 24px;
+            color: #5b5b5b;
+            &::before {
+                font-family: Fontawesome;
+                content: "\f101";
+                line-height: 22px;
+                font-size: 20px;
+                float: left;
+                margin-right: 6px;
+            }
+            &:hover {
+                color: $body-color;
+            }
+            &.active {
+                color: $body-color;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+/*-- Contact Information --*/
+.contact-information {
+    & h4 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    & p {
+        font-size: 16px;
+        color: #606060;
+        line-height: 23px;
+        & a {
+            display: block;
+        }
+    }
+}
+
+/*-- Contact Form --*/
+.contact-form {
+    & label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        margin-bottom: 17px;
+    }
+    & input {
+        width: 100%;
+        border: 1px solid #999999;
+        line-height: 23px;
+        padding: 10px 20px;
+        border-radius: 50px;
+        background-color: transparent;
+        &[type="submit"] {
+            width: auto;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 10px 30px;
+            background-color: transparent;
+            &:hover {
+                background-color: $heading-color;
+                border-color: $heading-color;
+                color: $theme-color;
+            }
+        }
+    }
+    & textarea {
+        width: 100%;
+        border: 1px solid #999999;
+        line-height: 23px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        height: 120px;
+        resize: none;
+        background-color: transparent;
+    }
+}

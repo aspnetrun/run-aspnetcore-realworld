@@ -1,0 +1,151 @@
+/*---------------------------------------
+    16. Blog Sidebar
+-----------------------------------------*/
+.blog-sidebar {
+    background-color: $grey;
+    
+    // Title
+    & .title {
+        background-color: $tc-extra-light;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 30px;
+        padding: 15px 35px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    // List Style
+    ul {
+        & li {
+            padding: 10px 35px;
+            border-bottom: 1px solid #dddddd;
+            
+            // Child Element
+            &:last-child {
+                border-bottom: 0px;
+            }
+            & a {
+                font-size: 14px;
+                color: $body-color;
+                text-transform: uppercase;
+                line-height: 30px;
+                position: relative;
+                padding-left: 15px;
+
+                // Hover
+                &:hover {
+                    color: $heading-color;
+                    
+                    // Before & After Element
+                    &::before {
+                        color: $heading-color;
+                    }
+                }
+
+                // Before & After Element
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    color: $body-color;
+                    line-height: 29px;
+                    font-family: Fontawesome;
+                    transition: all 0.3s ease 0s;
+                    content: "\f105";
+                }
+            }
+
+            & ul {
+                & li {
+                    border: none;
+                    padding: 5px 25px;
+                    & a {
+                        text-transform: capitalize;
+                        padding-left: 20px;
+
+                        // Before & After Element
+                        &::before {
+                            content: "\f178";
+                            color: $body-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Tags
+    .tags-cloud {
+        margin: 0 -5px;
+        padding: 20px 35px;
+        overflow: hidden;
+        & a {
+            font-size: 14px;
+            border: 1px solid #999999;
+            line-height: 23px;
+            padding: 5px 12px 3px;
+            color: $body-color;
+            float: left;
+            margin: 5px;
+            text-transform: uppercase;
+            
+            // Hover
+            &:hover {
+                color: $heading-color;
+                background-color: $theme-color;
+                border-color: $theme-color;
+            }
+        }
+    }
+    
+}
+
+
+/*-- Sidebar Blog --*/
+.sidebar-blog {
+    padding: 20px 35px;
+    border-bottom: 1px solid #dddddd;
+    overflow: hidden;
+    
+    // Child ELement
+    &:last-child {
+        border-bottom: none;
+    }
+    
+    // Image
+    & .image {
+        display: block;
+        float: left;
+        width: 70px;
+        margin-right: 20px;
+        & img {
+            width: 100%;
+        }
+    }
+    
+    // Content
+    & .content {
+        overflow: hidden;
+        & h5 {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 18px;
+            & a {
+                color: $body-color;
+                
+                // Hover
+                &:hover {
+                    color: $heading-color;
+                }
+            }
+        }
+        & span {
+            display: block;
+            font-size: 13px;
+            z-index: 18px;
+            color: $body-color;
+        }
+    }
+}

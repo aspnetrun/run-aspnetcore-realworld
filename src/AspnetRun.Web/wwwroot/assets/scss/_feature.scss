@@ -1,0 +1,179 @@
+/*---------------------------------------
+    14. Feature
+-----------------------------------------*/
+.feature-section {}
+
+/*-- Single Feature --*/
+.feature {
+    background-color: #f6f7f8;
+    padding: 30px;
+    position: relative;
+    
+    // Feature Wrap
+    & .feature-wrap {
+        text-align: center;
+        border: 1px solid #e8e8e8;
+        padding: 25px 15px 20px;
+        
+        // Icon
+        & .icon {
+            display: inline-block;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            height: 29px;
+            width: 42px;
+            & img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: all 0.3s ease 0s;
+            }
+        }
+        
+        // Title
+        & h4 {
+            display: block;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+            @media #{$tablet-device}{
+                font-size: 16px;
+            }
+            @media #{$small-mobile}{
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+        }
+        
+        // Sub Title
+        & p {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                font-size: 12px;
+            }
+            @media #{$tablet-device}{
+                font-size: 13px;
+            }
+            @media #{$small-mobile}{
+                font-size: 13px;
+            }
+        }
+    }
+    
+    // Hover
+    &:hover {
+    
+        // Feature Wrap
+        & .feature-wrap {
+
+            // Icon
+            & .icon {
+                & img {
+                    top: -29px;
+                }
+            }
+        }
+        
+    }
+    
+}
+
+/*-- Single Feature Two --*/
+.feature-two {
+    background-color: #f6f7f8;
+    position: relative;
+    text-align: center;
+    padding: 80px 20px 40px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    
+    // Feature Wrap
+    & .feature-wrap {
+        
+        // Icon
+        & .icon {
+            display: block;
+            background-color: $theme-color;
+            width: 80px;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+            padding: 22px 19px;
+            transition: all 0.3s ease 0s;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -40px;
+            & img {
+                display: block;
+            }
+        }
+        
+        // Title
+        & h4 {
+            display: block;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            margin-top: 30px;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+            @media #{$tablet-device}{
+                font-size: 16px;
+            }
+            @media #{$small-mobile}{
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+        }
+        
+        // Sub Title
+        & p {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+        
+            // Responsive
+            @media #{$desktop-device}{
+                font-size: 12px;
+            }
+            @media #{$tablet-device}{
+                font-size: 13px;
+            }
+            @media #{$small-mobile}{
+                font-size: 13px;
+            }
+        }
+    }
+    
+    // Hover
+    &:hover {
+    
+        // Feature Wrap
+        & .feature-wrap {
+
+            // Icon
+            & .icon {
+                padding-top: 32px;
+            }
+        }
+        
+    }
+    
+}

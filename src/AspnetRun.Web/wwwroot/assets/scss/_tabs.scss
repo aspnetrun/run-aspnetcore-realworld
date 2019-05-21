@@ -1,0 +1,438 @@
+/*--
+    -- Tab Style
+-----------------------------------------*/
+
+/*-- Tab One --*/
+.nav-tabs-one {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &.active, &:hover {
+                color: $heading-color;
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 50px !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+        
+        &:first-child {
+            border-radius: 50px 0 0 50px;
+            & a {
+                border-radius: 50px 0 0 50px;
+            }
+        }
+        &:last-child {
+            border-radius: 0 50px 50px 0;
+            & a {
+                border-radius: 0 50px 50px 0;
+            }
+        }
+    }
+}
+
+/*-- Tab Two --*/
+.nav-tabs-two {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                background-color: $theme-color;
+                border-color: $theme-color;
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 50px !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+        
+        &:first-child {
+            border-radius: 50px 0 0 50px;
+            & a {
+                border-radius: 50px 0 0 50px;
+            }
+        }
+        &:last-child {
+            border-radius: 0 50px 50px 0;
+            & a {
+                border-radius: 0 50px 50px 0;
+            }
+        }
+    }
+}
+
+/*-- Tab Three --*/
+.nav-tabs-three {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                background-color: $theme-color;
+                border-color: $theme-color;
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 5px !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+        
+        &:first-child {
+            border-radius: 5px 0 0 5px;
+            & a {
+                border-radius: 5px 0 0 5px;
+            }
+        }
+        &:last-child {
+            border-radius: 0 5px 5px 0;
+            & a {
+                border-radius: 0 5px 5px 0;
+            }
+        }
+    }
+}
+
+/*-- Tab Four --*/
+.nav-tabs-four {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                background-color: $theme-color;
+                border-color: $theme-color;
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+    }
+}
+
+/*-- Tab Five --*/
+.nav-tabs-five {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+    margin: 8px 0;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+        margin: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                background-color: $theme-color;
+                border-color: $theme-color;
+                padding-top: 18px;
+                padding-bottom: 18px;
+                margin-bottom: -8px;
+                margin-top: -8px;
+        
+                // Responsive
+                @media #{$large-mobile}{
+                    padding-top: 9px;
+                    padding-bottom: 9px;
+                    margin-bottom: -3px;
+                    margin-top: -3px;
+                }
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 0 !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+    }
+}
+
+/*-- Tab Six --*/
+.nav-tabs-six {
+    display: flex;
+    flex-wrap: wrap;
+    & li {
+        margin-right: 40px;
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            color: #606060;
+            border: 0px solid #d0d0d0;
+            
+            &.active, &:hover {
+                color: $heading-color;
+            }
+        }
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+/*-- Tab Seven --*/
+.nav-tabs-seven {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                border-bottom-color: transparent;
+        
+                // Responsive
+                @media #{$large-mobile}{
+                    border-color: #d0d0d0;
+                }
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 0 !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+    }
+}
+
+/*-- Tab Eight --*/
+.nav-tabs-eight {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5px;
+    margin-top: 5px;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        padding: 0;
+        margin-top: 0;
+    }
+    & li {
+        margin: 0 -0.5px;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            margin: 5px;
+        }
+        & a {
+            display: block;
+            font-size: 14px;
+            line-height: 23px;
+            font-weight: 600;
+            padding: 10px 40px;
+            color: #606060;
+            border: 1px solid #d0d0d0;
+            
+            &:hover {
+                color: $heading-color;
+            }
+            &.active {
+                color: $heading-color;
+                padding-top: 15px;
+                margin-top: -5px;
+        
+                // Responsive
+                @media #{$large-mobile}{
+                    padding-top: 10px;
+                    margin-top: 0;
+                }
+            }
+        
+            // Responsive
+            @media #{$tablet-device}{
+                padding: 10px 20px;
+            }
+            @media #{$large-mobile}{
+                padding: 6px 15px;
+                border-radius: 0 !important;
+            }
+            @media #{$small-mobile}{
+                padding: 6px 15px;
+            }
+        }
+    }
+}

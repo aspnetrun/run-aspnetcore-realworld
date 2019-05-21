@@ -1,0 +1,27 @@
+/*---------------------------------------
+    22. Store
+-----------------------------------------*/
+.single-store {
+    & h3 {
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: capitalize;
+        line-height: 28px;
+        margin-bottom: 20px;
+    }
+    & p {
+        max-width: 270px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+        margin-bottom: 4px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        & a {
+            &:hover {
+                color: $heading-color;
+            }
+        }
+    }
+}

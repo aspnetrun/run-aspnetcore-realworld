@@ -1,0 +1,166 @@
+/*---------------------------------------
+    12. Compare
+-----------------------------------------*/
+
+/*-- Compare Table --*/
+.compare-table {
+    & .table {
+        & tbody {
+            & tr {
+                    
+                &:first-child {
+                    border-top: 1px solid #eeeeee;
+                }
+                & td {
+                    text-align: center;
+                    border: none;
+                    padding: 25px 30px;
+                    vertical-align: middle;
+                    border-bottom: 1px solid #eeeeee;
+                    border-left: 1px solid #eeeeee;
+                    
+                    &:last-child {
+                        border-right: 1px solid #eeeeee;
+                    }
+                    
+                    &.first-column {
+                        min-width: 180px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: $heading-color;
+                        margin: 0;
+                        line-height: 1;
+                    }
+                    
+                    &.product-image-title {
+                        min-width: 310px;
+                        vertical-align: bottom;
+                        padding-top: 70px;
+                        
+                        & .image {
+                            clear: both;
+                            width: 100%;
+                            margin-bottom: 40px;
+                            & img {
+                                max-width: 100%;
+                            }
+                        }
+                        & .category {
+                            float: left;
+                            clear: both;
+                            font-size: 13px;
+                            line-height: 15px;
+                            color: $body-color;
+                            text-transform: capitalize;
+                            letter-spacing: 0.5px;
+                        }
+                        & .title {
+                            float: left;
+                            clear: both;
+                            font-size: 16px;
+                            font-weight: 600;
+                            color: $body-color;
+                            line-height: 20px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    
+                    &.pro-desc {
+                        & p {
+                            text-align: left;
+                            margin: 0;
+                        }
+                    }
+                    
+                    &.pro-price {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: $body-color;
+                    }
+                    
+                    &.pro-color {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: $body-color;
+                    }
+                    
+                    &.pro-stock {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: $body-color;
+                    }
+                    
+                    &.pro-addtocart {
+        
+                        // Add To Cart
+                        & .add-to-cart {
+                            position: relative;
+                            background-color: $theme-color;
+                            color: $heading-color;
+                            border-radius: 50px;
+                            display: inline-block;
+                            width: 170px;
+                            padding: 10px 25px 10px 56px;
+                            transition: all 0.7s cubic-bezier(.77,-1.5,.12,3) 0s;
+                            & i {
+                                width: 41px;
+                                height: 41px;
+                                background-color: $white;
+                                border-radius: 50px;
+                                display: block;
+                                float: left;
+                                font-size: 20px;
+                                text-align: center;
+                                line-height: 41px;
+                                box-shadow: 0 3px 7px rgba($black, 0.3);
+                                transition: all 0.3s ease 0s;
+                                position: absolute;
+                                left: 0;
+                                right: auto;
+                                top: 0;
+                            }
+                            & span {
+                                font-size: 13px;
+                                text-transform: uppercase;
+                                font-weight: 700;
+                                line-height: 21px;
+                                overflow: hidden;
+                                display: block;
+                                text-align: center;
+                            }
+
+                            // Added to Cart
+                            &.added {
+                                padding-left: 25px;
+                                padding-right: 56px;
+                                & i {
+                                    left: calc(100% - 41px);
+                                }
+                            }
+
+                        }
+                    }
+                    
+                    &.pro-remove {
+                        & button {
+                            border: none;
+                            background-color: transparent;
+                            padding: 0;
+                            & i {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    
+                    &.pro-ratting {
+                        & i {
+                            color: $body-color;
+                            font-size: 14px;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}

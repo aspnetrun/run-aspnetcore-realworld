@@ -1,0 +1,58 @@
+/*---------------------------------------
+    21. Track Order
+-----------------------------------------*/
+/*-- Track Order Title --*/
+.track-order-title {
+    & h2 {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        
+        // Responsive
+        @media #{$small-mobile}{
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    & p {
+        font-size: 16px;
+        line-height: 25px;
+        margin: auto;
+        max-width: 830px;
+    }
+}
+
+/*-- Track Order Form --*/
+.track-order-form {
+    & label {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        color: $heading-color;
+        display: block;
+        margin-bottom: 16px;
+    }
+    & input {
+        width: 100%;
+        border: 1px solid #999999;
+        border-radius: 50px;
+        font-size: 14px;
+        line-height: 23px;
+        padding: 10px 20px;
+        color: $body-color;
+        margin-bottom: 45px;
+        background-color: transparent;
+        &[type="submit"] {
+            border-color: $theme-color;
+            background-color: $theme-color;
+            color: $heading-color;
+            text-transform: uppercase;
+            width: 180px;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+}

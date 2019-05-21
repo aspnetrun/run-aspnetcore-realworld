@@ -1,0 +1,94 @@
+/*---------------------------------------
+    Section Title
+-----------------------------------------*/
+
+/*--
+    -- Seation Title One
+-----------------------------------------*/
+
+.section-title-one {
+    position: relative;
+    overflow: hidden;
+    
+    // Before & After Element
+    &::before {
+        font-size: 52px;
+        color: #cccccc;
+        line-height: 46px;
+        font-family: $oswald;
+        content: attr(data-title);
+        font-weight: 700;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        padding-left: 25px;
+        background-color: $white;
+    
+        // Responsive
+        @media #{$desktop-device}{
+            font-size: 46px;
+        }
+        @media #{$tablet-device}{
+            font-size: 40px;
+            line-height: 34px;
+        }
+        @media #{$large-mobile}{
+            font-size: 18px;
+            line-height: 18px;
+        }
+        @media #{$small-mobile}{
+            font-size: 30px;
+            line-height: 28px;
+            display: none;
+        }
+    }
+    &::after {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: #e8e8e8;
+        z-index: -1;
+    
+        // Responsive
+        @media #{$small-mobile}{
+            display: none;
+        }
+    }
+    
+    & h1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 30px;
+        background-color: $white;
+        padding: 10px 25px;
+        margin: 0;
+        margin-left: 40px;
+        float: left;
+        position: relative;
+        z-index: 3;
+    
+        // Responsive
+        @media #{$tablet-device}{
+            font-size: 20px;
+            margin-left: 20px;
+            padding: 4px 20px;
+        }
+        @media #{$large-mobile}{
+            font-size: 18px;
+            margin-left: 10px;
+            padding: 0 15px;
+            line-height: 1;
+        }
+        @media #{$small-mobile}{
+            font-size: 18px;
+            margin-left: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+    }
+}

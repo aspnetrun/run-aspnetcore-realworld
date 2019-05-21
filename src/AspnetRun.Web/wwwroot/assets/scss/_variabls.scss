@@ -1,0 +1,33 @@
+// Font Family
+$opensans: 'Open Sans', sans-serif;
+$oswald: 'Oswald', sans-serif;
+
+
+// Colors ---------------
+
+$white: #ffffff;
+$black: #000000;
+$grey: #f6f7f8;
+
+// Body Color
+$body-color: #444444;
+$body-color-dark: #cbcbcb;
+
+// Heading Color
+$heading-color: #202020;
+$heading-color-dark: #cccccc;
+
+// Theme Color
+$theme-color: #f5d730;
+$tc-extra-light: #fefcef;
+
+
+
+// Responsive Variables
+$extraBig-device : 'only screen and (min-width: 1600px)';
+$laptop-device : 'only screen and (min-width: 1200px) and (max-width: 1599px)';
+$desktop-device : 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$tablet-device:'only screen and (min-width: 768px) and (max-width: 991px)';
+$large-mobile:'only screen and (max-width: 767px)';
+$small-mobile: 'only screen and (max-width: 479px)';
+

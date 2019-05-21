@@ -1,0 +1,341 @@
+/*---------------------------------------
+    17. Login & Register
+-----------------------------------------*/
+
+/*-- Login --*/
+.ee-login {
+    & h3 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    
+    & p {
+        font-size: 14px;
+        line-height: 23px;
+        max-width: 500px;
+    }
+    
+    & form {
+        max-width: 450px;
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 60px;
+        clear: both;
+        float: left;
+        & input {
+            width: 100%;
+            border: 1px solid #999999;
+            line-height: 28px;
+            border-radius: 50px;
+            padding: 10px 30px;
+            color: $body-color;
+            font-size: 14px;
+            background-color: transparent;
+            
+            &[type="submit"] {
+                font-size: 16px;
+                line-height: 25px;
+                padding: 10px 15px;
+                width: 150px;
+                text-align: center;
+                background-color: $theme-color;
+                border: none;
+                color: $heading-color;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+            
+        }
+        & input[type="checkbox"] {
+            display: none;
+
+            & + label {
+                position: relative;
+                padding-left: 30px;
+                line-height: 20px;
+                font-size: 14px;
+                font-weight: 400;
+                color: $body-color;
+                margin: 0 0 15px;
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 20px;
+                    height: 20px;
+                    display: block;
+                    border: 2px solid #999999;
+                    content: "";
+                    transition: all 0.3s ease 0s;
+                }
+                &::after {
+                    position: absolute;
+                    left: 5px;
+                    top: 5px;
+                    display: block;
+                    content: "";
+                    opacity: 0;
+                    background-color: $heading-color;
+                    width: 10px;
+                    text-align: center;
+                    height: 10px;
+                    transition: all 0.3s ease 0s;
+                }
+            }
+
+            &:checked + label {
+                &::before {
+                    border: 2px solid $heading-color;
+                }
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+        & a {
+            float: right;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            color: $body-color;
+            display: inline-block;
+            margin-bottom: 15px;
+            &:hover {
+                color: $heading-color;
+            }
+        }
+    }
+    & h4 {
+        float: left;
+        font-size: 20px;
+        font-weight: 600;
+        color: $body-color;
+        margin-bottom: 0;
+        & a {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: $theme-color;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+/*-- Vertical Border --*/
+.login-reg-vertical-boder {
+    height: 340px;
+    width: 1px;
+    margin: auto;
+    background-color: $theme-color;
+    position: relative;
+        
+    // Responsive
+    @media #{$large-mobile}{
+        height: 100px;
+        margin: 40px auto;
+    }
+    
+    &::before, &::after {
+        position: absolute;
+        top: 25px;
+        bottom: 25px;
+        width: 1px;
+        content: "";
+        background-color: $theme-color;
+        
+        // Responsive
+        @media #{$large-mobile}{
+            top: 15px;
+            bottom: 15px;
+        }
+    }
+    &::before {
+        left: -15px;
+        right: auto;
+    }
+    &::after {
+        right: -15px;
+        left: auto;
+    }
+}
+
+/*-- Social Login --*/
+.ee-social-login {
+    margin: auto;
+    max-width: 310px;
+    & h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: $body-color;
+        margin-bottom: 45px;
+    }
+    & a {
+        width: 250px;
+        height: 50px;
+        padding: 10px 50px 10px 30px;
+        color: $white;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        line-height: 30px;
+        border-radius: 50px;
+        text-align: left;
+        position: relative;
+        margin-bottom: 30px;
+        & i {
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: $white;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            transition: all 0.3s ease 0s;
+        }
+        
+        &.facebook-login {
+            background-color: #3b5998;
+            & i {
+                color: #3b5998;
+            }
+        }
+        &.twitter-login {
+            background-color: #1dcaff;
+            & i {
+                color: #1dcaff;
+            }
+        }
+        &.google-plus-login {
+            background-color: #dd4b39;
+            & i {
+                color: #dd4b39;
+            }
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+        
+    }
+}
+
+/*-- Register --*/
+.ee-register {
+    & h3 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    
+    & p {
+        font-size: 14px;
+        line-height: 23px;
+        max-width: 500px;
+    }
+    
+    & form {
+        max-width: 450px;
+        width: 100%;
+        margin-top: 50px;
+        clear: both;
+        float: left;
+        & input {
+            width: 100%;
+            border: 1px solid #999999;
+            line-height: 28px;
+            border-radius: 50px;
+            padding: 10px 30px;
+            color: $body-color;
+            font-size: 14px;
+            background-color: transparent;
+            
+            &[type="submit"] {
+                font-size: 16px;
+                line-height: 25px;
+                padding: 10px 15px;
+                width: 150px;
+                text-align: center;
+                background-color: $theme-color;
+                border: none;
+                color: $heading-color;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+            
+        }
+    }
+}
+
+/*-- Account Image --*/
+.ee-account-image {
+    margin: auto;
+    text-align: center;
+    & h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: $body-color;
+        margin-bottom: 35px;
+    }
+    & .image-placeholder {
+        max-width: 100%;
+        margin-bottom: 35px;
+    }
+    & .account-image-upload {
+        margin-bottom: 10px;
+        & input {
+            display: none;
+            
+            & + label {
+                line-height: 28px;
+                padding: 10px 46px 10px 20px;
+                border: 1px solid #999999;
+                background-color: transparent;
+                border-radius: 50px;
+                font-size: 14px;
+                font-weight: 600;
+                color: $body-color;
+                width: 320px;
+                text-align: left;
+                position: relative;
+                margin: 0;
+        
+                // Responsive
+                @media #{$tablet-device}{
+                    width: 250px;
+                }
+                @media #{$small-mobile}{
+                    width: 250px;
+                }
+                
+                &::before {
+                    position: absolute;
+                    right: 4px;
+                    top: 3px;
+                    content: "\f07c";
+                    font-family: Fontawesome;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    background-color: $theme-color;
+                    color: $heading-color;
+                    text-align: center;
+                    line-height: 42px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+    & p {
+        font-size: 12px;
+        font-weight: 600;
+        color: $body-color;
+        text-transform: uppercase;
+        line-height: 16px;
+        
+    }
+}

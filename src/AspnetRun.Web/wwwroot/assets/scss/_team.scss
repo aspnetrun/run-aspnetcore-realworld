@@ -1,0 +1,108 @@
+/*---------------------------------------
+    18. Team
+-----------------------------------------*/
+
+/*-- Team One --*/
+.single-team {
+    box-shadow: 0 3px 15px rgba($black, 0.07);
+    & img {
+        width: 100%;
+    }
+    & .content {
+        position: relative;
+        text-align: center;
+        background-color: $white;
+        overflow: hidden;
+        & .name-title {
+            padding: 20px 15px;
+            transition: all 0.3s ease 0s;
+            & h5 {
+                font-size: 16px;
+                font-weight: 600;
+                color: $body-color;
+                line-height: 20px;
+                text-transform: capitalize;
+                margin-bottom: 6px;
+            }
+            & span {
+                display: block;
+                font-size: 13px;
+                color: $body-color;
+                line-height: 18px;
+                text-transform: capitalize;
+            }
+        }
+        & .social {
+            position: absolute;
+            transition: all 0.3s ease 0s;
+            z-index: 3;
+            left: 0;
+            top: 15px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            & a {
+                border: 1px solid #999999;
+                width: 34px;
+                height: 34px;
+                border-radius: 50px;
+                color: $body-color;
+                margin: 0 5px;
+                & i {
+                    font-size: 14px;
+                    display: block;
+                    line-height: 32px;
+                }
+                
+                &:hover {
+                    background-color: $heading-color;
+                    border-color: $heading-color;
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+    
+    &:hover {
+        & .content {
+            & .name-title {
+                opacity: 0;
+            }
+            & .social {
+                opacity: 1;
+                top: 0;
+            }
+        }
+    }
+}
+
+/*-- Team Two --*/
+.single-team-2 {
+    & img {
+        width: 100%;
+        border-bottom: 1px solid #eeeeee;
+    }
+    & .content {
+        margin-top: 20px;
+        text-align: center;
+        & h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: $body-color;
+            line-height: 24px;
+            text-transform: capitalize;
+            margin-bottom: 6px;
+        }
+        & span {
+            display: block;
+            font-size: 13px;
+            color: $body-color;
+            line-height: 18px;
+            text-transform: capitalize;
+        }
+    }
+}
