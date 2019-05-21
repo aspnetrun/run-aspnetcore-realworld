@@ -11,6 +11,6 @@ namespace AspnetRun.Application.Tests.Builders
         public int ProductId3 => 125;
         public string ProductName1 => "ProductX";
         public string ProductName2 => "ProductY";
-        public string ProductName3 => "ProductZ";
+        public string ProductName3 => "ProductZ";        
     }
 }

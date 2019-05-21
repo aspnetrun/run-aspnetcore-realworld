@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Core.Entities;
+using AspnetRun.Core.Specifications.Base;
 
 namespace AspnetRun.Core.Specifications
 {
@@ -10,7 +11,7 @@ namespace AspnetRun.Core.Specifications
             AddInclude(p => p.Category);
         }
 
-        public ProductWithCategorySpecification() : base(null)            
+        public ProductWithCategorySpecification() : base(null)
         {
             AddInclude(p => p.Category);
         }

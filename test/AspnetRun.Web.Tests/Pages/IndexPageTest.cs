@@ -23,6 +23,6 @@ namespace AspnetRun.Web.Tests.Pages
 
             // Assert
             Assert.Contains("AspnetRun", stringResponse);
-        }
+        }        
     }
 }

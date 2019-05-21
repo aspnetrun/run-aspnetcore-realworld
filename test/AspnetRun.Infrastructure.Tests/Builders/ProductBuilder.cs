@@ -12,8 +12,6 @@ namespace AspnetRun.Infrastructure.Tests.Builders
         public string TestProductName => "Test Product Name";
         public int TestCategoryId => 123;
 
-        public int TestBrandId => 124;
-        public int TestSupplierId => 125;
         public decimal TestUnitPrice => 1.23m;
         public short TestUnitInStock => 4;
         public short TestUnitsOnOrder => 4;
@@ -38,7 +36,7 @@ namespace AspnetRun.Infrastructure.Tests.Builders
 
         public Product WithAllValues()
         {
-            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestBrandId, TestSupplierId, TestUnitPrice, TestUnitInStock, TestUnitsOnOrder, ReOrderLevel, Discontinued);
+            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestUnitPrice, TestUnitInStock, TestUnitsOnOrder, ReOrderLevel, Discontinued);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
         {
             _output = output;
             var dbOptions = new DbContextOptionsBuilder<AspnetRunContext>()
-                .UseInMemoryDatabase(databaseName: "AspnetRunRealWorld")
+                .UseInMemoryDatabase(databaseName: "AspnetRun")
                 .Options;
             _aspnetRunContext = new AspnetRunContext(dbOptions);
             _productRepository = new ProductRepository(_aspnetRunContext);
@@ -31,7 +31,7 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
         public async Task Get_Existing_Product()
         {
             var existingProduct = ProductBuilder.WithDefaultValues();
-            _aspnetRunContext.Products.Add(existingProduct);
+            _aspnetRunContext.Products.Add(existingProduct);           
             _aspnetRunContext.SaveChanges();
 
             var productId = existingProduct.Id;
@@ -54,7 +54,7 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
             _aspnetRunContext.SaveChanges();
             var productName = existingProduct.ProductName;
             _output.WriteLine($"ProductName: {productName}");
-
+            
             var productListFromRepo = await _productRepository.GetProductByNameAsync(productName);
             Assert.Equal(ProductBuilder.TestProductName, productListFromRepo.ToList().First().ProductName);
         }

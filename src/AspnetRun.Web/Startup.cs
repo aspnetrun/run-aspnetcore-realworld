@@ -16,6 +16,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Repositories.Base;
+using AspnetRun.Core.Configuration;
+using AspnetRun.Infrastructure.Repository.Base;
 
 namespace AspnetRun.Web
 {
@@ -32,7 +36,7 @@ namespace AspnetRun.Web
         public void ConfigureServices(IServiceCollection services)
         {            
             // aspnetrun dependencies
-            ConfigureAspnetRunServices(services);
+            ConfigureAspnetRunServices(services);            
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -73,14 +77,14 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Add Application Layer
-            services.AddScoped<IProductAppService, ProductAppService>();
-            services.AddScoped<ICategoryAppService, CategoryAppService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper
@@ -96,15 +100,13 @@ namespace AspnetRun.Web
 
         public void ConfigureDatabases(IServiceCollection services)
         {
-            //// use in-memory database
-            //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseInMemoryDatabase("AspnetRunConnection")
-            //    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
-
-            // use real database
+            // use in-memory database
             services.AddDbContext<AspnetRunContext>(c =>
-                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"))
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                c.UseInMemoryDatabase("AspnetRunConnection"));
+
+            //// use real database
+            //services.AddDbContext<AspnetRunContext>(c =>
+            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
         }
     }
 }
