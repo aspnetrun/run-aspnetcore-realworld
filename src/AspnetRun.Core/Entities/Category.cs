@@ -1,37 +1,24 @@
 ﻿using AspnetRun.Core.Entities.Base;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspnetRun.Core.Entities
 {
     public class Category : Entity
     {
-        public Category()
-        {
-            Products = new HashSet<Product>();
-        }
-
-        public string CategoryName { get; set; }
-        public string Description { get; set; }        
-        public ICollection<Product> Products { get; private set; }
+        [Required, StringLength(80)]
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImageName { get; set; }
 
         public static Category Create(int categoryId, string name, string description = null)
         {
             var category = new Category
             {
                 Id = categoryId,
-                CategoryName = name,
+                Name = name,
                 Description = description
             };
             return category;
-        }
-
-        public void AddProduct(int productId, string productName)
-        {
-            if (!Products.Any(p => p.Id == productId))
-            {
-                Products.Add(Product.Create(productId, this.Id, productName));
-            }
         }
     }
 }

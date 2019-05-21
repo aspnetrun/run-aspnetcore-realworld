@@ -29,7 +29,7 @@ namespace AspnetRun.Infrastructure.Data
                .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
                .IsRequired();
 
-            builder.Property(cb => cb.ProductName)
+            builder.Property(cb => cb.Name)
                 .IsRequired()
                 .HasMaxLength(100);
         }
@@ -44,7 +44,7 @@ namespace AspnetRun.Infrastructure.Data
                .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
                .IsRequired();
 
-            builder.Property(cb => cb.CategoryName)
+            builder.Property(cb => cb.Name)
                 .IsRequired()
                 .HasMaxLength(100);
         }

@@ -32,8 +32,8 @@ namespace AspnetRun.Application.Tests.Services
             var product1 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
             var product2 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
 
-            category.AddProduct(product1.Id, It.IsAny<string>());
-            category.AddProduct(product2.Id, It.IsAny<string>());
+            //category.AddProduct(product1.Id, It.IsAny<string>());
+            //category.AddProduct(product2.Id, It.IsAny<string>());
 
             _mockCategoryRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(category);
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product1);
@@ -56,7 +56,7 @@ namespace AspnetRun.Application.Tests.Services
             _mockProductRepository.Setup(x => x.AddAsync(product)).ReturnsAsync(product);            
 
             var productService = new ProductService(_mockProductRepository.Object, _mockAppLogger.Object);
-            var createdProductDto = await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.ProductName });
+            var createdProductDto = await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.Name });
 
             _mockProductRepository.Verify(x => x.GetByIdAsync(It.IsAny<int>()), Times.Once);
             _mockProductRepository.Verify(x => x.AddAsync(product), Times.Once);
@@ -74,7 +74,7 @@ namespace AspnetRun.Application.Tests.Services
             var productService = new ProductService(_mockProductRepository.Object, _mockAppLogger.Object);
 
             await Assert.ThrowsAsync<ApplicationException>(async () =>
-                await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.ProductName }));
+                await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.Name }));
         }
     }
 }

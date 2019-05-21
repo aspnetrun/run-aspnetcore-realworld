@@ -52,11 +52,11 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
             _aspnetRunContext.Categories.Add(existingCategory);
 
             _aspnetRunContext.SaveChanges();
-            var productName = existingProduct.ProductName;
+            var productName = existingProduct.Name;
             _output.WriteLine($"ProductName: {productName}");
             
             var productListFromRepo = await _productRepository.GetProductByNameAsync(productName);
-            Assert.Equal(ProductBuilder.TestProductName, productListFromRepo.ToList().First().ProductName);
+            Assert.Equal(ProductBuilder.TestProductName, productListFromRepo.ToList().First().Name);
         }
 
         [Fact]

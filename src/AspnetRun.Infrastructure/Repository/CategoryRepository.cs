@@ -14,11 +14,11 @@ namespace AspnetRun.Infrastructure.Repository
         {            
         }
 
-        public async Task<Category> GetCategoryWithProductsAsync(int categoryId)
-        {            
-            var spec = new CategoryWithProductsSpecification(categoryId);
-            var category = (await GetAsync(spec)).FirstOrDefault();
-            return category;
-        }
+        //public async Task<Category> GetCategoryWithProductsAsync(int categoryId)
+        //{            
+        //    var spec = new CategoryWithProductsSpecification(categoryId);
+        //    var category = (await GetAsync(spec)).FirstOrDefault();
+        //    return category;
+        //}
     }
 }

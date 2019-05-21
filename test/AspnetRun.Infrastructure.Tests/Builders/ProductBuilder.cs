@@ -36,7 +36,7 @@ namespace AspnetRun.Infrastructure.Tests.Builders
 
         public Product WithAllValues()
         {
-            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestUnitPrice, TestUnitInStock, TestUnitsOnOrder, ReOrderLevel, Discontinued);
+            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestUnitPrice, TestUnitInStock);
         }
     }
 }

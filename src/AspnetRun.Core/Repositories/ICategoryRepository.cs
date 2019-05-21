@@ -6,6 +6,6 @@ namespace AspnetRun.Core.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<Category> GetCategoryWithProductsAsync(int categoryId);
+        //Task<Category> GetCategoryWithProductsAsync(int categoryId);
     }
 }
