@@ -77,7 +77,8 @@
 
                 </div>
             </div>
-        </div><!-- Header Top End -->
+        </div>
+        <!-- Header Top End -->
         <!-- Header Bottom Start -->
         <div class="header-bottom header-bottom-one header-sticky">
             <div class="container">
@@ -181,7 +182,8 @@
 
                 </div>
             </div>
-        </div><!-- Header Bottom End -->
+        </div>
+        <!-- Header Bottom End -->
         <!-- Header Category Start -->
         <div class="header-category-section">
             <div class="container">
@@ -200,12 +202,12 @@
                             <!-- Category Menu -->
                             <nav class="category-menu">
                                 <ul>
-                                    <li><a href="category-1.html">Tv & Audio System</a></li>
-                                    <li><a href="category-2.html">Computer & Laptop</a></li>
-                                    <li><a href="category-3.html">Phones & Tablets</a></li>
-                                    <li><a href="category-1.html">Home Appliances</a></li>
-                                    <li><a href="category-2.html">Kitchen appliances</a></li>
-                                    <li><a href="category-3.html">Accessories</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Tv & Audio System</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Computer & Laptop</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Phones & Tablets</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Home Appliances</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Kitchen appliances</a></li>
+                                    <li><a asp-area="" asp-page="/Products">Accessories</a></li>
                                 </ul>
                             </nav>
 
@@ -214,13 +216,65 @@
                     </div>
                 </div>
             </div>
-        </div><!-- Header Category End -->
+        </div>
+        <!-- Header Category End -->
 
     </div>
     <!-- Header Section End -->
 
     @RenderBody();
 
+    <!-- Brands Section Start -->
+    <div class="brands-section section mb-90">
+        <div class="container">
+            <div class="row">
+
+                <!-- Brand Slider Start -->
+                <div class="brand-slider col">
+                    <div class="brand-item col"><img src="assets/images/brands/brand-1.png" alt="Brands"></div>
+                    <div class="brand-item col"><img src="assets/images/brands/brand-2.png" alt="Brands"></div>
+                    <div class="brand-item col"><img src="assets/images/brands/brand-3.png" alt="Brands"></div>
+                    <div class="brand-item col"><img src="assets/images/brands/brand-4.png" alt="Brands"></div>
+                    <div class="brand-item col"><img src="assets/images/brands/brand-5.png" alt="Brands"></div>
+                </div><!-- Brand Slider End -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Brands Section End -->
+
+    <!-- Subscribe Section Start -->
+    <div class="subscribe-section section bg-gray pt-55 pb-55">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Mailchimp Subscribe Content Start -->
+                <div class="col-lg-6 col-12 mb-15 mt-15">
+                    <div class="subscribe-content">
+                        <h2>SUBSCRIBE <span>OUR NEWSLETTER</span></h2>
+                        <h2><span>TO GET LATEST</span> PRODUCT UPDATE</h2>
+                    </div>
+                </div><!-- Mailchimp Subscribe Content End -->
+                <!-- Mailchimp Subscribe Form Start -->
+                <div class="col-lg-6 col-12 mb-15 mt-15">
+
+                    <form class="subscribe-form" action="#">
+                        <input type="email" autocomplete="off" placeholder="Enter your email here" />
+                        <button>subscribe</button>
+                    </form>
+                    <!-- mailchimp-alerts Start -->
+                    <div class="mailchimp-alerts text-centre">
+                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                    </div><!-- mailchimp-alerts end -->
+
+                </div><!-- Mailchimp Subscribe Form End -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe Section End -->
     <!-- Footer Section Start -->
     <div class="footer-section section bg-ivory">
 

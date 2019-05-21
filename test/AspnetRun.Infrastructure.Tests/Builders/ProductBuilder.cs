@@ -1,7 +1,4 @@
 ﻿using AspnetRun.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AspnetRun.Infrastructure.Tests.Builders
 {
@@ -21,7 +18,6 @@ namespace AspnetRun.Infrastructure.Tests.Builders
         public ProductBuilder()
         {
             _product = WithDefaultValues();
-
         }
 
         public Product Build()
