@@ -37,6 +37,9 @@
 </div>
 <!-- Page Banner Section End -->
 
+
+
+
 <!-- Product Section Start -->
 <div class="product-section section mt-90 mb-90">
     <div class="container">
@@ -110,7 +113,10 @@
                                     <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
                                 </div>
 
-                                <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                                <form asp-page-handler="AddToCart" method="post" name="addToCartForm" id="add_cart_form">                                    
+                                    <a href="javascript:;" onclick="parentNode.submit();" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                                </form>
+                                    @*<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>*@
 
                             </div>
 

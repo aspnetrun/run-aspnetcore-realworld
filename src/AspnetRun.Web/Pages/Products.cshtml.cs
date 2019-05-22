@@ -13,5 +13,15 @@ namespace AspnetRun.Web.Pages
         {
 
         }
+
+        public void OnPost()
+        {
+
+        }
+
+        public void OnPostAddToCart()
+        {
+
+        }
     }
 }
