@@ -1,6 +1,5 @@
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
-using AspnetRun.Core;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Logging;
 using AspnetRun.Infrastructure.Data;
@@ -36,7 +35,7 @@ namespace AspnetRun.Web
         public void ConfigureServices(IServiceCollection services)
         {            
             // aspnetrun dependencies
-            ConfigureAspnetRunServices(services);            
+            ConfigureAspnetRunServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -47,7 +46,7 @@ namespace AspnetRun.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-        }        
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
