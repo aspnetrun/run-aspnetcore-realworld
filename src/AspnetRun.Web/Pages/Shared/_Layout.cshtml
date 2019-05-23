@@ -41,8 +41,8 @@
                     <div class="col mt-10 mb-10">
                         <!-- Header Links Start -->
                         <div class="header-links">
-                            <a href="track-order.html"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Track your order</span></a>
-                            <a href="store.html"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Locate Store</span></a>
+                            <a asp-page="TrackOrder"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Track your order</span></a>
+                            <a asp-page="Store"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Locate Store</span></a>
                         </div><!-- Header Links End -->
                     </div>
 
@@ -70,8 +70,8 @@
                     <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
                         <!-- Header Account Links Start -->
                         <div class="header-account-links">
-                            <a href="register.html"><i class="icofont icofont-user-alt-7"></i> <span>my account</span></a>
-                            <a href="login.html"><i class="icofont icofont-login d-none"></i> <span>Login</span></a>
+                            <a asp-page="Register"><i class="icofont icofont-user-alt-7"></i> <span>my account</span></a>
+                            <a asp-page="Login"><i class="icofont icofont-login d-none"></i> <span>Login</span></a>
                         </div><!-- Header Account Links End -->
                     </div>
 
@@ -87,7 +87,7 @@
                     <div class="col mt-15 mb-15">
                         <!-- Logo Start -->
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a asp-page="Index">
                                 <img src="~/assets/images/logo.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
                                 <img class="theme-dark" src="~/assets/images/logo-light.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
                             </a>
@@ -99,23 +99,9 @@
                         <div class="main-menu">
                             <nav>
                                 <ul>
-                                    <li class="active"><a href="index.html">HOME</a></li>
+                                    <li class="active"><a asp-page="Index">HOME</a></li>
                                     <li class="menu-item-has-children">
-                                        <a href="shop-grid.html">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="shop-grid.html">shop grid</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="shop-grid.html">shop grid</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="single-product.html">Single Product</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="single-product.html">Single Product 1</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <a asp-page="Products">Shop</a>                                       
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">PAGES</a>
@@ -123,41 +109,41 @@
                                             <li>
                                                 <a href="#">Column One</a>
                                                 <ul>
-                                                    <li><a href="about-us.html">About us</a></li>
-                                                    <li><a href="best-deals.html">Best Deals</a></li>
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a asp-page="AboutUs">About us</a></li>
+                                                    <li><a asp-page="BestDeals">Best Deals</a></li>
+                                                    <li><a asp-page="Cart">Cart</a></li>
+                                                    <li><a asp-page="CheckOut">Checkout</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">Column Two</a>
                                                 <ul>
-                                                    <li><a href="compare.html">Compare</a></li>
-                                                    <li><a href="faq.html">Faq</a></li>
-                                                    <li><a href="feature.html">Feature</a></li>
-                                                    <li><a href="login.html">Login</a></li>
-                                                    <li><a href="register.html">Register</a></li>
-                                                    <li><a href="store.html">Store</a></li>
+                                                    <li><a asp-page="Compare">Compare</a></li>
+                                                    <li><a asp-page="Faq">Faq</a></li>
+                                                    <li><a asp-page="Feature">Feature</a></li>
+                                                    <li><a asp-page="Login">Login</a></li>
+                                                    <li><a asp-page="Register">Register</a></li>
+                                                    <li><a asp-page="Store">Store</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">Column Three</a>
                                                 <ul>
-                                                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                                                    <li><a href="track-order.html">Track Order</a></li>
-                                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                                    <li><a asp-page="TermsConditions">Terms & Conditions</a></li>
+                                                    <li><a asp-page="TackOrder">Track Order</a></li>
+                                                    <li><a asp-page="Wishlist">Wishlist</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="blog-1-column-left-sidebar.html">BLOG</a>
+                                        <a asp-page="Blogs">BLOG</a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog-1-column-left-sidebar.html">Blog 1 Column Left Sidebar</a></li>
-                                            <li><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
+                                            <li><a asp-page="Blogs">Blog 1 Column Left Sidebar</a></li>
+                                            <li><a asp-page="BlogDetail">Single Blog Left Sidebar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">CONTACT</a></li>
+                                    <li><a asp-page="Contact">CONTACT</a></li>
                                 </ul>
                             </nav>
                         </div><!-- Main Menu End -->
@@ -168,11 +154,11 @@
                         <div class="header-shop-links">
 
                             <!-- Compare -->
-                            <a href="compare.html" class="header-compare"><i class="ti-control-shuffle"></i></a>
+                            <a asp-page="Compare" class="header-compare"><i class="ti-control-shuffle"></i></a>
                             <!-- Wishlist -->
-                            <a href="wishlist.html" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
+                            <a asp-page="Wishlist" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
                             <!-- Cart -->
-                            <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
+                            <a asp-page="Cart" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
 
                         </div><!-- Header Shop Links End -->
                     </div>
@@ -269,7 +255,7 @@
             <h4 class="sub-total">Total: <span>$1160</span></h4>
 
             <div class="button">
-                <a href="checkout.html">CHECK OUT</a>
+                <a asp-page="CheckOut">CHECK OUT</a>
             </div>
 
         </div>
