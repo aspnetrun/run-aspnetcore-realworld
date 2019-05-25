@@ -48,9 +48,12 @@ namespace AspnetRun.Infrastructure.Data
         private static IEnumerable<Category> GetPreconfiguredCategories()
         {
             return new List<Category>()
-            {
-                new Category() { Name = "Phone"},
-                new Category() { Name = "TV"}
+            {                
+                new Category() { Name = "Laptop"},
+                new Category() { Name = "DRONE"},
+                new Category() { Name = "TV & AUDIO"},
+                new Category() { Name = "PHONE & TABLET"},
+                new Category() { Name = "CAMERA & PRINTER"}
             };
         }
 
@@ -58,7 +61,7 @@ namespace AspnetRun.Infrastructure.Data
         {
             return new List<Product>()
             {
-                new Product() { Name = "IPhone", CategoryId = 1 , UnitPrice = 19.5M , UnitsInStock = 10 },
+                new Product() { Name = "Zeon Zen 4 Pro", CategoryId = 1 , UnitPrice = 295 , UnitsInStock = 10 },
                 new Product() { Name = "Samsung", CategoryId = 1 , UnitPrice = 33.5M , UnitsInStock = 10 },
                 new Product() { Name = "LG TV", CategoryId = 2 , UnitPrice = 33.5M , UnitsInStock = 10 }
             };

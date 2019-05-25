@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Core.Entities.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AspnetRun.Core.Entities
@@ -7,14 +8,18 @@ namespace AspnetRun.Core.Entities
     {
         [Required, StringLength(80)]
         public string Name { get; set; }
+        public string Slug { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
         public string ImageFile { get; set; }
         public decimal? UnitPrice { get; set; }
         public int? UnitsInStock { get; set; }
-        
+        public double Star { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<Specification> Specifications { get; set; } = new List<Specification>();
+        public List<Review> Reviews { get; set; } = new List<Review>();
+        public List<Tag> Tags { get; set; } = new List<Tag>();
 
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)
         {

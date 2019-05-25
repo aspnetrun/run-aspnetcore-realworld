@@ -1,30 +1,40 @@
 ﻿using AspnetRun.Core.Entities.Base;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
     public class Cart : Entity
-    {
-        public Cart()
-        {
-            Products = new HashSet<Product>();
-        }
+    {        
+        public string UserName { get; set; }
+        public List<CartItem> Items { get; set; } = new List<CartItem>();
 
-        [Required, StringLength(80)]
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ImageFile { get; set; }
-        public ICollection<Product> Products { get; private set; }
-
-        public void AddProduct(Product product)
+        public void AddItem(int productId, int quantity, string color)
         {
-            if (!Products.Any(p => p.Id == product.Id))
+            var existingItem = Items.FirstOrDefault(i => i.ProductId == productId);
+
+            if (existingItem != null)
             {
-                Products.Add(product);
+                existingItem.Quantity++;
+            }
+            else
+            {
+                Items.Add(
+                    new CartItem()
+                    {
+                        ProductId = productId,
+                        Quantity = quantity,
+                        Color = color
+                    });
+            }
+        }
+        public void RemoveItem(int productId)
+        {
+            var removedItem = Items.FirstOrDefault(x => x.ProductId == productId);
+            if (removedItem != null)
+            {
+                Items.Remove(removedItem);
             }
         }
     }
