@@ -6,7 +6,7 @@ using System.Linq;
 namespace AspnetRun.Core.Entities
 {
     public class List : Entity
-    {
+    {        
         [Required, StringLength(80)]
         public string Name { get; set; }        
         public string Description { get; set; }
