@@ -1,5 +1,4 @@
 ﻿using AspnetRun.Core.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -20,17 +19,26 @@ namespace AspnetRun.Infrastructure.Data
                 // aspnetrunContext.Database.Migrate();
                 // aspnetrunContext.Database.EnsureCreated();
 
-                if (!aspnetrunContext.Categories.Any())
-                {
-                    aspnetrunContext.Categories.AddRange(GetPreconfiguredCategories());
-                    await aspnetrunContext.SaveChangesAsync();
-                }
+                // categories - specifications - reviews - tags
+                await SeedCategoriesAsync(aspnetrunContext);
+                await SeedSpecificationsAsync(aspnetrunContext);
+                await SeedReviewsAsync(aspnetrunContext);
+                await SeedTagsAsync(aspnetrunContext);
 
-                if (!aspnetrunContext.Products.Any())
-                {
-                    aspnetrunContext.Products.AddRange(GetPreconfiguredProducts());
-                    await aspnetrunContext.SaveChangesAsync();
-                }
+                // products - related products - lists
+                await SeedProductsAsync(aspnetrunContext);
+                await SeedRelatedProductsAsync(aspnetrunContext);
+                await SeedListsAsync(aspnetrunContext);
+
+                // compares and wishlists
+                await SeedComparesAsync(aspnetrunContext);
+                await SeedWishlistsAsync(aspnetrunContext);
+
+                // cart and cart items - order and order items
+                await SeedCartAndItemsAsync(aspnetrunContext);
+                await SeedOrderAndItemsAsync(aspnetrunContext);
+
+                await SeedBlogsAsync(aspnetrunContext);                
             }
             catch (Exception exception)
             {
@@ -43,12 +51,15 @@ namespace AspnetRun.Infrastructure.Data
                 }
                 throw;
             }
-        }
+        }       
 
-        private static IEnumerable<Category> GetPreconfiguredCategories()
+        private static async Task SeedCategoriesAsync(AspnetRunContext aspnetrunContext)
         {
-            return new List<Category>()
-            {                
+            if (aspnetrunContext.Categories.Any())
+                return;
+
+            var categories = new List<Category>()
+            {
                 new Category() { Name = "Laptop"}, // 1
                 new Category() { Name = "Drone"}, // 2
                 new Category() { Name = "TV & Audio"}, // 3
@@ -57,15 +68,129 @@ namespace AspnetRun.Infrastructure.Data
                 new Category() { Name = "Games"}, // 6
                 new Category() { Name = "Accessories"}, // 7
                 new Category() { Name = "Watch"}, // 8
-                new Category() { Name = "Home & Kitchen Appliances"} // 9               
+                new Category() { Name = "Home & Kitchen Appliances"} // 9
             };
+
+            aspnetrunContext.Categories.AddRange(categories);
+            await aspnetrunContext.SaveChangesAsync();
+        }       
+
+        private static async Task SeedSpecificationsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Specifications.Any())
+                return;
+
+            var specifications = new List<Specification>()
+            {
+                new Specification
+                {
+                    Name = "Full HD Camcorder",
+                    Description = "Full HD Camcorder"
+                },
+                new Specification
+                {
+                    Name = "Dual Video Recording",
+                    Description = "Dual Video Recording"
+                },
+                new Specification
+                {
+                    Name = "X type battery operation",
+                    Description = "X type battery operation"
+                },
+                new Specification
+                {
+                    Name = "Full HD Camcorder",
+                    Description = "Full HD Camcorder"
+                },
+                new Specification
+                {
+                    Name = "Dual Video Recording",
+                    Description = "Dual Video Recording"
+                },
+                new Specification
+                {
+                    Name = "X type battery operation",
+                    Description = "X type battery operation"
+                }
+            };
+
+            aspnetrunContext.Specifications.AddRange(specifications);
+            await aspnetrunContext.SaveChangesAsync();
         }
 
-        private static IEnumerable<Product> GetPreconfiguredProducts()
+        private static async Task SeedReviewsAsync(AspnetRunContext aspnetrunContext)
         {
-            // TODO : you are here -> seed db as normal db
-            // note - list table for -> // Featured Items, Best Sellers sections etc..
-            return new List<Product>()
+            if (aspnetrunContext.Reviews.Any())
+                return;
+
+            var reviews = new List<Review>()
+            {
+                new Review
+                {
+                    Name = "Cristopher Lee",
+                    EMail = "cristopher@lee.com",
+                    Star = 4.3,
+                    Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
+                },
+                new Review
+                {
+                    Name = "Nirob Khan",
+                    EMail = "nirob@lee.com",
+                    Star = 4.3,
+                    Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
+                },
+                new Review
+                {
+                    Name = "MD.ZENAUL ISLAM",
+                    EMail = "zenaul@lee.com",
+                    Star = 4.3,
+                    Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
+                }
+            };
+
+            aspnetrunContext.Reviews.AddRange(reviews);
+            await aspnetrunContext.SaveChangesAsync();            
+        }
+
+        private static async Task SeedTagsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Tags.Any())
+                return;
+
+            var tags = new List<Tag>()
+            {
+                new Tag
+                {
+                    Name = "Electronic"
+                },
+                new Tag
+                {
+                    Name = "Smartphone"
+                },
+                new Tag
+                {
+                    Name = "Phone"
+                },
+                new Tag
+                {
+                    Name = "Charger"
+                },
+                new Tag
+                {
+                    Name = "Powerbank"
+                }
+            };
+
+            aspnetrunContext.Tags.AddRange(tags);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedProductsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Products.Any())
+                return;
+
+            var products = new List<Product>
             {
                 // Phone
                 new Product()
@@ -78,64 +203,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitPrice = 295,
                     UnitsInStock = 10,
                     Star = 4.3,
-                    CategoryId = 4,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Category = aspnetrunContext.Categories.FirstOrDefault(c => c.Name == "Phone & Tablet"),
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -148,63 +219,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 4,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -217,63 +234,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 4,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -286,65 +249,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 4,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
-                },                
-
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
+                },
                 // Camera                
                 new Product()
                 {
@@ -357,63 +265,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 5,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -426,63 +280,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 5,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -495,63 +295,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 5,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -564,65 +310,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 5,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Printer
                 new Product()
                 {
@@ -635,65 +326,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 5,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Game                
                 new Product()
                 {
@@ -706,63 +342,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 6,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -775,66 +357,11 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 6,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
-                // Laptop                
+                // Laptop      
                 new Product()
                 {
                     Name = "Zeon Zen 4 Pro",
@@ -846,65 +373,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 1,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Drone                
                 new Product()
                 {
@@ -917,65 +389,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 2,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Accessories
                 new Product()
                 {
@@ -988,65 +405,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 7,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Watch
                 new Product()
                 {
@@ -1059,63 +421,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 8,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1128,65 +436,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 8,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // TV & Audio
                 new Product()
                 {
@@ -1199,63 +452,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 3,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1268,63 +467,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 3,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1337,65 +482,10 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 3,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
-
                 // Home & Kitchen Appliances
                 new Product()
                 {
@@ -1408,63 +498,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1477,63 +513,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1546,63 +528,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1615,63 +543,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1684,63 +558,9 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
-                    {
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        }
-                    }
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
                 },
                 new Product()
                 {
@@ -1753,65 +573,209 @@ namespace AspnetRun.Infrastructure.Data
                     UnitsInStock = 10,
                     Star = 4.3,
                     CategoryId = 9,
-                    Specifications = new List<Specification>
+                    Specifications = aspnetrunContext.Specifications.ToList(),
+                    Reviews = aspnetrunContext.Reviews.ToList(),
+                    Tags = aspnetrunContext.Tags.ToList()
+                }
+            };
+
+            aspnetrunContext.Products.AddRange(products);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedRelatedProductsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Products.FirstOrDefault().RelatedProducts.Any())
+                return;
+
+            foreach (var product in aspnetrunContext.Products)
+            {
+                product.RelatedProducts.AddRange(aspnetrunContext.Products.TakeLast(5).ToList());
+            }
+
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedListsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Lists.Any())
+                return;
+
+            var lists = new List<List>()
+            {
+                new List
+                {
+                    Name = "FEATURED ITEMS",
+                    Description = "",
+                    ImageFile = "",
+                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Take(5).ToList()
+                },
+                new List
+                {
+                    Name = "BEST SELLERS",
+                    Description = "",
+                    ImageFile = "",
+                    Products = aspnetrunContext.Products.TakeLast(8).ToList()
+                },
+                new List
+                {
+                    Name = "BEST DEALS",
+                    Description = "",
+                    ImageFile = "",
+                    Products = aspnetrunContext.Products.Where(p => p.Name.Length > 15).Take(5).ToList()
+                },
+                new List
+                {
+                    Name = "NEW ARRIVAL",
+                    Description = "",
+                    ImageFile = "",
+                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 != 1).Take(5).ToList()
+                },
+            };
+
+            aspnetrunContext.Lists.AddRange(lists);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedCartAndItemsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Carts.Any())
+                return;
+
+            var carts = new List<Cart>()
+            {
+                new Cart
+                {
+                    UserName = "mehmetozkaya",
+                    Items = new List<CartItem>
                     {
-                        new Specification
+                        new CartItem
                         {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
+                            Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "uPhone X"),
+                            Quantity = 2,
+                            Color = "Black",
+                            UnitPrice = 295,
+                            TotalPrice = 590
                         },
-                        new Specification
+                        new CartItem
                         {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
+                            Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "Game Station X 22"),
+                            Quantity = 1,
+                            Color = "Red",
+                            UnitPrice = 295,
+                            TotalPrice = 295
                         },
-                        new Specification
+                        new CartItem
                         {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        },
-                        new Specification
-                        {
-                            Name = "Full HD Camcorder",
-                            Description = "Full HD Camcorder"
-                        },
-                        new Specification
-                        {
-                            Name = "Dual Video Recording",
-                            Description = "Dual Video Recording"
-                        },
-                        new Specification
-                        {
-                            Name = "X type battery operation",
-                            Description = "X type battery operation"
-                        }
-                    },
-                    Reviews = new List<Review>
-                    {
-                        new Review
-                        {
-                            Name = "Cristopher Lee",
-                            EMail = "cristopher@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "Nirob Khan",
-                            EMail = "nirob@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
-                        },
-                        new Review
-                        {
-                            Name = "MD.ZENAUL ISLAM",
-                            EMail = "zenaul@lee.com",
-                            Star = 4.3,
-                            Comment = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli"
+                            Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "Jackson Toster V 27"),
+                            Quantity = 1,
+                            Color = "Black",
+                            UnitPrice = 185,
+                            TotalPrice = 185
                         }
                     }
-                }                
+                }
             };
+
+            aspnetrunContext.Carts.AddRange(carts);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedOrderAndItemsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Orders.Any())
+                return;
+
+            var address = new Address
+            {
+                AddressLine = "Gungoren",
+                City = "Istanbul",
+                Country = "Turkey",
+                EmailAddress = "aspnetrun@outlook.com",
+                FirstName = "Mehmet",
+                LastName = "Ozkaya",
+                CompanyName = "AspnetRun",
+                PhoneNo = "05012222222",
+                State = "027",
+                ZipCode = "34056"
+            };
+
+            var orders = new List<Order>()
+            {
+                new Order
+                {
+                    UserName = "mehmetozkaya",
+                    BillingAddress = address,
+                    ShippingAddress = address,
+                    PaymentMethod = PaymentMethod.Cash,
+                    Status = OrderStatus.Progress,
+                    GrandTotal = 347,
+                    Items = new List<OrderItem>
+                    {
+                       new OrderItem
+                       {
+                           Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "uPhone X"),
+                            Quantity = 2,
+                            Color = "Black",
+                            UnitPrice = 295,
+                            TotalPrice = 590
+                       },
+                        new OrderItem
+                        {
+                            Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "Game Station X 22"),
+                            Quantity = 1,
+                            Color = "Red",
+                            UnitPrice = 295,
+                            TotalPrice = 295
+                        },
+                        new OrderItem
+                        {
+                            Product = aspnetrunContext.Products.FirstOrDefault(p => p.Name == "Jackson Toster V 27"),
+                            Quantity = 1,
+                            Color = "Black",
+                            UnitPrice = 185,
+                            TotalPrice = 185
+                        }
+                    }
+                }
+            };
+
+            aspnetrunContext.Orders.AddRange(orders);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+
+
+
+        private static IEnumerable<Blog> GetPreconfiguredBlogs()
+        {
+            return new List<Blog>()
+            {
+                new Blog
+                {
+                    Name = "Latest Drone for taking sky view image and 4K video",
+                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
+                    ImageFile = "blog-10.jpg"
+                },
+                new Blog
+                {
+                    Name = "Zeon Z 5 Pro Laptop makes your life easy and simple",
+                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",                    
+                },
+                new Blog
+                {
+                    Name = "Latest Play Station for plying exclusive games",
+                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
+                    ImageFile = "blog-11.jpg"
+                },
+                new Blog
+                {
+                    Name = "The most attractive Smart watch comming in this February",
+                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
+                    ImageFile = "blog-12.jpg"
+                }
+            };
+
         }
     }
 }
