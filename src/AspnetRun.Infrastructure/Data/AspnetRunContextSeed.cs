@@ -51,8 +51,8 @@ namespace AspnetRun.Infrastructure.Data
                 }
                 throw;
             }
-        }       
-
+        }
+                
         private static async Task SeedCategoriesAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Categories.Any())
@@ -637,6 +637,42 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
+        private static async Task SeedWishlistsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Wishlists.Any())
+                return;
+
+            var wishlists = new List<Wishlist>()
+            {
+                new Wishlist
+                {
+                    UserName = "mehmetozkaya",
+                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Take(4).ToList()
+                }
+            };
+
+            aspnetrunContext.Wishlists.AddRange(wishlists);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedComparesAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.Compares.Any())
+                return;
+
+            var compares = new List<Compare>()
+            {
+                new Compare
+                {
+                    UserName = "mehmetozkaya",
+                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 != 1).Take(3).ToList()
+                }
+            };
+
+            aspnetrunContext.Compares.AddRange(compares);
+            await aspnetrunContext.SaveChangesAsync();
+        }
+
         private static async Task SeedCartAndItemsAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Carts.Any())
@@ -744,12 +780,12 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
-
-
-
-        private static IEnumerable<Blog> GetPreconfiguredBlogs()
+        private static async Task SeedBlogsAsync(AspnetRunContext aspnetrunContext)
         {
-            return new List<Blog>()
+            if (aspnetrunContext.Blogs.Any())
+                return;
+
+            var blogs = new List<Blog>()
             {
                 new Blog
                 {
@@ -760,7 +796,7 @@ namespace AspnetRun.Infrastructure.Data
                 new Blog
                 {
                     Name = "Zeon Z 5 Pro Laptop makes your life easy and simple",
-                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",                    
+                    Description = "enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magniolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dorem ipsum quia dolor sit met, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
                 },
                 new Blog
                 {
@@ -776,6 +812,8 @@ namespace AspnetRun.Infrastructure.Data
                 }
             };
 
-        }
+            aspnetrunContext.Blogs.AddRange(blogs);
+            await aspnetrunContext.SaveChangesAsync();
+        }        
     }
 }
