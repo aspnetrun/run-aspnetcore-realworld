@@ -1,4 +1,5 @@
-﻿using AspnetRun.Core.Entities;
+﻿using System;
+using AspnetRun.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -28,26 +29,35 @@ namespace AspnetRun.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Product>(ConfigureProduct);            
+            builder.Entity<Blog>(ConfigureBlog);
+            builder.Entity<Cart>(ConfigureCart);
+            builder.Entity<CartItem>(ConfigureCartItem);
             builder.Entity<Category>(ConfigureCategory);
-
+            builder.Entity<Compare>(ConfigureCompare);
+            builder.Entity<Contact>(ConfigureContact);
+            builder.Entity<List>(ConfigureList);
             builder.Entity<Order>(ConfigureOrder);
-            // TODO : create builder methods
+            builder.Entity<OrderItem>(ConfigureOrderItem);
+            builder.Entity<Product>(ConfigureProduct);
+            builder.Entity<Review>(ConfigureReview);
+            builder.Entity<Specification>(ConfigureSpecification);
+            builder.Entity<Tag>(ConfigureTag);
+            builder.Entity<Wishlist>(ConfigureWishlist);                       
         }
 
-        private void ConfigureProduct(EntityTypeBuilder<Product> builder)
+        private void ConfigureBlog(EntityTypeBuilder<Blog> builder)
         {
-            builder.ToTable("Product");
+            
+        }
 
-            builder.HasKey(ci => ci.Id);
+        private void ConfigureCart(EntityTypeBuilder<Cart> builder)
+        {
 
-            builder.Property(ci => ci.Id)
-               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-               .IsRequired();
+        }
 
-            builder.Property(cb => cb.Name)
-                .IsRequired()
-                .HasMaxLength(100);
+        private void ConfigureCartItem(EntityTypeBuilder<CartItem> builder)
+        {
+
         }
 
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
@@ -65,6 +75,20 @@ namespace AspnetRun.Infrastructure.Data
                 .HasMaxLength(100);
         }
 
+        private void ConfigureCompare(EntityTypeBuilder<Compare> builder)
+        {
+
+        }
+
+        private void ConfigureContact(EntityTypeBuilder<Contact> builder)
+        {
+
+        }
+        private void ConfigureList(EntityTypeBuilder<List> builder)
+        {
+
+        }
+
         private void ConfigureOrder(EntityTypeBuilder<Order> builder)
         {
             var navigation = builder.Metadata.FindNavigation(nameof(Order.Items));
@@ -74,6 +98,46 @@ namespace AspnetRun.Infrastructure.Data
             // NOTE : This Owns methods provide to accept value object like Address
             builder.OwnsOne(o => o.ShippingAddress);
             builder.OwnsOne(o => o.BillingAddress);
+        }
+
+        private void ConfigureOrderItem(EntityTypeBuilder<OrderItem> builder)
+        {
+
+        }        
+
+        private void ConfigureProduct(EntityTypeBuilder<Product> builder)
+        {
+            builder.ToTable("Product");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+        }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> builder)
+        {
+
+        }
+
+        private void ConfigureSpecification(EntityTypeBuilder<Specification> builder)
+        {
+
+        }
+
+        private void ConfigureTag(EntityTypeBuilder<Tag> builder)
+        {
+
+        }
+
+        private void ConfigureWishlist(EntityTypeBuilder<Wishlist> builder)
+        {
+
         }
     }
 }
