@@ -27,7 +27,7 @@ namespace AspnetRun.Infrastructure.Data
 
                 // products - related products - lists
                 await SeedProductsAsync(aspnetrunContext);
-                //await SeedProductAndRelatedProductsAsync(aspnetrunContext);
+                await SeedProductAndRelatedProductsAsync(aspnetrunContext);
                 await SeedListAndProductsAsync(aspnetrunContext);
 
                 // compares and wishlists
@@ -584,28 +584,28 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
-        //private static async Task SeedProductAndRelatedProductsAsync(AspnetRunContext aspnetrunContext)
-        //{
-        //    if (aspnetrunContext.ProductRelatedProducts.Any())
-        //        return;
+        private static async Task SeedProductAndRelatedProductsAsync(AspnetRunContext aspnetrunContext)
+        {
+            if (aspnetrunContext.ProductRelatedProducts.Any())
+                return;
 
-        //    var newRelatedProductLists = new List<ProductRelatedProduct>
-        //    {
-        //        new ProductRelatedProduct
-        //        {
-        //            Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
-        //            RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault()
-        //        },
-        //        new ProductRelatedProduct
-        //        {
-        //            Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
-        //            RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(2).FirstOrDefault()
-        //        }
-        //    };
+            var newRelatedProductLists = new List<ProductRelatedProduct>
+            {
+                new ProductRelatedProduct
+                {
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+                    RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault()
+                },
+                new ProductRelatedProduct
+                {
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+                    RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(2).FirstOrDefault()
+                }
+            };
 
-        //    aspnetrunContext.ProductRelatedProducts.AddRange(newRelatedProductLists);
-        //    await aspnetrunContext.SaveChangesAsync();
-        //}
+            aspnetrunContext.ProductRelatedProducts.AddRange(newRelatedProductLists);
+            await aspnetrunContext.SaveChangesAsync();
+        }
 
         private static async Task SeedListAndProductsAsync(AspnetRunContext aspnetrunContext)
         {

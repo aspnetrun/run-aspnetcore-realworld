@@ -259,6 +259,19 @@ namespace AspnetRun.Infrastructure.Migrations
                     b.ToTable("ProductList");
                 });
 
+            modelBuilder.Entity("AspnetRun.Core.Entities.ProductRelatedProduct", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("RelatedProductId");
+
+                    b.HasKey("ProductId", "RelatedProductId");
+
+                    b.HasIndex("RelatedProductId");
+
+                    b.ToTable("ProductRelatedProduct");
+                });
+
             modelBuilder.Entity("AspnetRun.Core.Entities.ProductWishlist", b =>
                 {
                     b.Property<int>("ProductId");
@@ -472,6 +485,19 @@ namespace AspnetRun.Infrastructure.Migrations
                     b.HasOne("AspnetRun.Core.Entities.Product", "Product")
                         .WithMany("ProductLists")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AspnetRun.Core.Entities.ProductRelatedProduct", b =>
+                {
+                    b.HasOne("AspnetRun.Core.Entities.Product", "Product")
+                        .WithMany("ProductRelatedProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("AspnetRun.Core.Entities.Product", "RelatedProduct")
+                        .WithMany()
+                        .HasForeignKey("RelatedProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

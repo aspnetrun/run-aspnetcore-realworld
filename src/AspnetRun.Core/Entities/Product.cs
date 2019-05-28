@@ -29,7 +29,7 @@ namespace AspnetRun.Core.Entities
         public List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
         public List<ProductCompare> ProductCompares { get; set; } = new List<ProductCompare>();
         public List<ProductList> ProductLists { get; set; } = new List<ProductList>();
-        //public List<ProductRelatedProduct> RelatedProductLists { get; set; } = new List<ProductRelatedProduct>();
+        public List<ProductRelatedProduct> ProductRelatedProducts { get; set; } = new List<ProductRelatedProduct>();
 
 
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)

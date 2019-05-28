@@ -297,6 +297,30 @@ namespace AspnetRun.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductRelatedProduct",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false),
+                    RelatedProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductRelatedProduct", x => new { x.ProductId, x.RelatedProductId });
+                    table.ForeignKey(
+                        name: "FK_ProductRelatedProduct_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProductRelatedProduct_Product_RelatedProductId",
+                        column: x => x.RelatedProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductWishlist",
                 columns: table => new
                 {
@@ -420,6 +444,11 @@ namespace AspnetRun.Infrastructure.Migrations
                 column: "ListId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductRelatedProduct_RelatedProductId",
+                table: "ProductRelatedProduct",
+                column: "RelatedProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductWishlist_WishlistId",
                 table: "ProductWishlist",
                 column: "WishlistId");
@@ -462,6 +491,9 @@ namespace AspnetRun.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductList");
+
+            migrationBuilder.DropTable(
+                name: "ProductRelatedProduct");
 
             migrationBuilder.DropTable(
                 name: "ProductWishlist");

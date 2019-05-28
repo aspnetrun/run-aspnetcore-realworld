@@ -29,130 +29,63 @@ namespace AspnetRun.Infrastructure.Data
         public DbSet<ProductWishlist> ProductWishlists { get; set; }
         public DbSet<ProductCompare> ProductCompares { get; set; }
         public DbSet<ProductList> ProductLists { get; set; }
-        //public DbSet<ProductRelatedProduct> ProductRelatedProducts { get; set; }
+        public DbSet<ProductRelatedProduct> ProductRelatedProducts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
+        {
+            SetTableNamesAsSingle(builder);
+
+            //builder.Entity<Blog>(ConfigureBlog);
+            //builder.Entity<Cart>(ConfigureCart);
+            //builder.Entity<CartItem>(ConfigureCartItem);
+            //builder.Entity<Category>(ConfigureCategory);
+            //builder.Entity<Compare>(ConfigureCompare);
+            //builder.Entity<Contact>(ConfigureContact);
+            //builder.Entity<List>(ConfigureList);
+            builder.Entity<Order>(ConfigureOrder);
+            //builder.Entity<OrderItem>(ConfigureOrderItem);
+            builder.Entity<Product>(ConfigureProduct);
+            //builder.Entity<Review>(ConfigureReview);
+            //builder.Entity<Specification>(ConfigureSpecification);
+            //builder.Entity<Tag>(ConfigureTag);
+
+            builder.Entity<ProductWishlist>(ConfigureProductWishlist);
+            builder.Entity<ProductCompare>(ConfigureProductCompare);
+            builder.Entity<ProductList>(ConfigureProductList);
+            builder.Entity<ProductRelatedProduct>(ConfigureProductRelatedProduct);
+        }
+
+        private static void SetTableNamesAsSingle(ModelBuilder builder)
         {
             // Use the entity name instead of the Context.DbSet<T> name
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 builder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
             }
-
-            builder.Entity<Blog>(ConfigureBlog);
-            builder.Entity<Cart>(ConfigureCart);
-            builder.Entity<CartItem>(ConfigureCartItem);
-            builder.Entity<Category>(ConfigureCategory);
-            builder.Entity<Compare>(ConfigureCompare);
-            builder.Entity<Contact>(ConfigureContact);
-            builder.Entity<List>(ConfigureList);
-            builder.Entity<Order>(ConfigureOrder);
-            builder.Entity<OrderItem>(ConfigureOrderItem);
-            builder.Entity<Product>(ConfigureProduct);
-            builder.Entity<Review>(ConfigureReview);
-            builder.Entity<Specification>(ConfigureSpecification);
-            builder.Entity<Tag>(ConfigureTag);
-
-            builder.Entity<ProductWishlist>(ConfigureProductWishlist);
-            builder.Entity<ProductCompare>(ConfigureProductCompare);
-            builder.Entity<ProductList>(ConfigureProductList);
-            //builder.Entity<ProductRelatedProduct>(ConfigureProductRelatedProduct);
-        }
-
-        
-
-        private void ConfigureBlog(EntityTypeBuilder<Blog> builder)
-        {
-            
-        }
-
-        private void ConfigureCart(EntityTypeBuilder<Cart> builder)
-        {
-            var navigation = builder.Metadata.FindNavigation(nameof(Cart.Items));
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-        }
-
-        private void ConfigureCartItem(EntityTypeBuilder<CartItem> builder)
-        {
-
-        }
-
-        private void ConfigureCategory(EntityTypeBuilder<Category> builder)
-        {
-            //builder.ToTable("Category");
-
-            //builder.HasKey(ci => ci.Id);
-
-            //builder.Property(ci => ci.Id)
-            //   .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-            //   .IsRequired();
-
-            //builder.Property(cb => cb.Name)
-            //    .IsRequired()
-            //    .HasMaxLength(100);
-        }
-
-        private void ConfigureCompare(EntityTypeBuilder<Compare> builder)
-        {
-
-        }
-
-        private void ConfigureContact(EntityTypeBuilder<Contact> builder)
-        {
-
-        }
-        private void ConfigureList(EntityTypeBuilder<List> builder)
-        {
-
         }
 
         private void ConfigureOrder(EntityTypeBuilder<Order> builder)
         {
-            var navigation = builder.Metadata.FindNavigation(nameof(Order.Items));
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-
             // NOTE : This Owns methods provide to accept value object like Address
             builder.OwnsOne(o => o.ShippingAddress);
             builder.OwnsOne(o => o.BillingAddress);
         }
 
-        private void ConfigureOrderItem(EntityTypeBuilder<OrderItem> builder)
-        {
-
-        }
-
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
         {
-            //builder.ToTable("Product");
+            // add self reference table configuration
+            // https://github.com/aspnet/EntityFrameworkCore/issues/10698 
+            // https://stackoverflow.com/questions/27613117/introducing-foreign-key-constraint-may-cause-cycles-or-multiple-cascade-paths-s
 
-            //builder.HasKey(ci => ci.Id);
-
-            //builder.Property(ci => ci.Id)
-            //   .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-            //   .IsRequired();
-
-            //builder.Property(cb => cb.Name)
-            //    .IsRequired()
-            //    .HasMaxLength(100);
+            builder
+                .HasMany(p => p.ProductRelatedProducts)
+                .WithOne(pr => pr.Product)
+                .HasForeignKey(pr => pr.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
-
-        private void ConfigureReview(EntityTypeBuilder<Review> builder)
-        {
-
-        }
-
-        private void ConfigureSpecification(EntityTypeBuilder<Specification> builder)
-        {
-
-        }
-
-        private void ConfigureTag(EntityTypeBuilder<Tag> builder)
-        {
-
-        }
-
-        // NOTE : We have to set keys for n-n tables otherwise EF.Core gives primary key error
+        
+        // N&N RELATIONSHIP CONFIGRATION - NOTE : We have to set keys for n-n tables otherwise EF.Core gives primary key error
         private void ConfigureProductWishlist(EntityTypeBuilder<ProductWishlist> builder)
         {
             builder.HasKey(pw => new { pw.ProductId, pw.WishlistId });
@@ -167,14 +100,10 @@ namespace AspnetRun.Infrastructure.Data
         {
             builder.HasKey(pw => new { pw.ProductId, pw.ListId });
         }
-        
 
-        //private void ConfigureProductRelatedProduct(EntityTypeBuilder<ProductRelatedProduct> builder)
-        //{
-        //    var navigation = builder.Metadata.FindNavigation(nameof(ProductRelatedProduct.RelatedProduct));
-        //    navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-
-        //    builder.HasKey(pw => new { pw.ProductId, pw.RelatedProductId });
-        //}
+        private void ConfigureProductRelatedProduct(EntityTypeBuilder<ProductRelatedProduct> builder)
+        {
+            builder.HasKey(pw => new { pw.ProductId, pw.RelatedProductId });
+        }
     }
 }
