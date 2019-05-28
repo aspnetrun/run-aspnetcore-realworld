@@ -22,6 +22,10 @@ namespace AspnetRun.Core.Entities
         public List<Tag> Tags { get; set; } = new List<Tag>();
         public List<Product> RelatedProducts { get; set; } = new List<Product>();
 
+        // many to many relationship
+        public List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
+
+
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)
         {
             var product = new Product

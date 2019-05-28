@@ -9,7 +9,7 @@ namespace AspnetRun.Infrastructure.Data
     {
         public AspnetRunContext(DbContextOptions options) : base(options)
         {
-        }        
+        }
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Cart> Carts { get; set; }
@@ -26,6 +26,8 @@ namespace AspnetRun.Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
 
+        public DbSet<ProductWishlist> ProductWishlists { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,8 +43,9 @@ namespace AspnetRun.Infrastructure.Data
             builder.Entity<Product>(ConfigureProduct);
             builder.Entity<Review>(ConfigureReview);
             builder.Entity<Specification>(ConfigureSpecification);
-            builder.Entity<Tag>(ConfigureTag);
-            builder.Entity<Wishlist>(ConfigureWishlist);                       
+            builder.Entity<Tag>(ConfigureTag);            
+
+            builder.Entity<ProductWishlist>(ConfigureProductWishlist);
         }
 
         private void ConfigureBlog(EntityTypeBuilder<Blog> builder)
@@ -52,7 +55,8 @@ namespace AspnetRun.Infrastructure.Data
 
         private void ConfigureCart(EntityTypeBuilder<Cart> builder)
         {
-
+            var navigation = builder.Metadata.FindNavigation(nameof(Cart.Items));
+            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
 
         private void ConfigureCartItem(EntityTypeBuilder<CartItem> builder)
@@ -92,7 +96,6 @@ namespace AspnetRun.Infrastructure.Data
         private void ConfigureOrder(EntityTypeBuilder<Order> builder)
         {
             var navigation = builder.Metadata.FindNavigation(nameof(Order.Items));
-
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             // NOTE : This Owns methods provide to accept value object like Address
@@ -103,7 +106,7 @@ namespace AspnetRun.Infrastructure.Data
         private void ConfigureOrderItem(EntityTypeBuilder<OrderItem> builder)
         {
 
-        }        
+        }
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
         {
@@ -135,9 +138,9 @@ namespace AspnetRun.Infrastructure.Data
 
         }
 
-        private void ConfigureWishlist(EntityTypeBuilder<Wishlist> builder)
+        private void ConfigureProductWishlist(EntityTypeBuilder<ProductWishlist> builder)
         {
-
+            builder.HasKey(pw => new { pw.ProductId, pw.WishlistId });
         }
     }
 }

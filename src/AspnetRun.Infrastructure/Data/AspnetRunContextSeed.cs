@@ -32,7 +32,8 @@ namespace AspnetRun.Infrastructure.Data
 
                 // compares and wishlists
                 await SeedComparesAsync(aspnetrunContext);
-                await SeedWishlistsAsync(aspnetrunContext);
+
+                await SeedWishlistAndProductsAsync(aspnetrunContext);
 
                 // cart and cart items - order and order items
                 await SeedCartAndItemsAsync(aspnetrunContext);
@@ -591,7 +592,7 @@ namespace AspnetRun.Infrastructure.Data
 
             foreach (var product in aspnetrunContext.Products)
             {
-                product.RelatedProducts.AddRange(aspnetrunContext.Products.TakeLast(5).ToList());
+                product.RelatedProducts = aspnetrunContext.Products.Take(5).ToList();
             }
 
             await aspnetrunContext.SaveChangesAsync();
@@ -616,7 +617,7 @@ namespace AspnetRun.Infrastructure.Data
                     Name = "BEST SELLERS",
                     Description = "",
                     ImageFile = "",
-                    Products = aspnetrunContext.Products.TakeLast(8).ToList()
+                    Products = aspnetrunContext.Products.Take(8).ToList()
                 },
                 new List
                 {
@@ -638,7 +639,7 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
-        private static async Task SeedWishlistsAsync(AspnetRunContext aspnetrunContext)
+        private static async Task SeedWishlistAndProductsAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Wishlists.Any())
                 return;
@@ -647,12 +648,22 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Wishlist
                 {
-                    UserName = "mehmetozkaya",
-                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Take(4).ToList()
+                    UserName = "mehmetozkaya"
+                }
+            };
+
+            var newProductWishlists = new List<ProductWishlist>()
+            {
+                new ProductWishlist
+                {
+                    Product = aspnetrunContext.Products.FirstOrDefault(),
+                    Wishlist = wishlists.FirstOrDefault()
                 }
             };
 
             aspnetrunContext.Wishlists.AddRange(wishlists);
+            aspnetrunContext.ProductWishlists.AddRange(newProductWishlists);
+            
             await aspnetrunContext.SaveChangesAsync();
         }
 
@@ -737,13 +748,27 @@ namespace AspnetRun.Infrastructure.Data
                 ZipCode = "34056"
             };
 
+            var addressShipping = new Address
+            {
+                AddressLine = "Gungoren",
+                City = "Istanbul",
+                Country = "Turkey",
+                EmailAddress = "aspnetrun@outlook.com",
+                FirstName = "Mehmet",
+                LastName = "Ozkaya",
+                CompanyName = "AspnetRun",
+                PhoneNo = "05012222222",
+                State = "027",
+                ZipCode = "34056"
+            };
+
             var orders = new List<Order>()
             {
                 new Order
                 {
                     UserName = "mehmetozkaya",
                     BillingAddress = address,
-                    ShippingAddress = address,
+                    ShippingAddress = addressShipping,
                     PaymentMethod = PaymentMethod.Cash,
                     Status = OrderStatus.Progress,
                     GrandTotal = 347,

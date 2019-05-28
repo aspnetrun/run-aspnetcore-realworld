@@ -76,6 +76,7 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -99,13 +100,13 @@ namespace AspnetRun.Web
 
         public void ConfigureDatabases(IServiceCollection services)
         {
-            // use in-memory database
-            services.AddDbContext<AspnetRunContext>(c =>
-                c.UseInMemoryDatabase("AspnetRunConnection"));
-
-            //// use real database
+            //// use in-memory database
             //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+            //    c.UseInMemoryDatabase("AspnetRunConnection"));
+
+            // use real database
+            services.AddDbContext<AspnetRunContext>(c =>
+                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
         }
     }
 }
