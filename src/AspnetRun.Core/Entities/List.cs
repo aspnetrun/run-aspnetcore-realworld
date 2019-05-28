@@ -11,14 +11,6 @@ namespace AspnetRun.Core.Entities
         public string Name { get; set; }        
         public string Description { get; set; }
         public string ImageFile { get; set; }
-        public List<Product> Products { get; set; } = new List<Product>();
-
-        public void AddProduct(Product product)
-        {
-            if (!Products.Any(p => p.Id == product.Id))
-            {
-                Products.Add(product);
-            }
-        }
+        public List<ProductList> ProductLists { get; set; } = new List<ProductList>();
     }
 }

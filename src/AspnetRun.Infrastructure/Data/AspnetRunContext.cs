@@ -27,10 +27,19 @@ namespace AspnetRun.Infrastructure.Data
         public DbSet<Wishlist> Wishlists { get; set; }
 
         public DbSet<ProductWishlist> ProductWishlists { get; set; }
+        public DbSet<ProductCompare> ProductCompares { get; set; }
+        public DbSet<ProductList> ProductLists { get; set; }
+        //public DbSet<ProductRelatedProduct> ProductRelatedProducts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // Use the entity name instead of the Context.DbSet<T> name
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                builder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
+            }
+
             builder.Entity<Blog>(ConfigureBlog);
             builder.Entity<Cart>(ConfigureCart);
             builder.Entity<CartItem>(ConfigureCartItem);
@@ -43,10 +52,15 @@ namespace AspnetRun.Infrastructure.Data
             builder.Entity<Product>(ConfigureProduct);
             builder.Entity<Review>(ConfigureReview);
             builder.Entity<Specification>(ConfigureSpecification);
-            builder.Entity<Tag>(ConfigureTag);            
+            builder.Entity<Tag>(ConfigureTag);
 
             builder.Entity<ProductWishlist>(ConfigureProductWishlist);
+            builder.Entity<ProductCompare>(ConfigureProductCompare);
+            builder.Entity<ProductList>(ConfigureProductList);
+            //builder.Entity<ProductRelatedProduct>(ConfigureProductRelatedProduct);
         }
+
+        
 
         private void ConfigureBlog(EntityTypeBuilder<Blog> builder)
         {
@@ -66,17 +80,17 @@ namespace AspnetRun.Infrastructure.Data
 
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("Category");
+            //builder.ToTable("Category");
 
-            builder.HasKey(ci => ci.Id);
+            //builder.HasKey(ci => ci.Id);
 
-            builder.Property(ci => ci.Id)
-               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-               .IsRequired();
+            //builder.Property(ci => ci.Id)
+            //   .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+            //   .IsRequired();
 
-            builder.Property(cb => cb.Name)
-                .IsRequired()
-                .HasMaxLength(100);
+            //builder.Property(cb => cb.Name)
+            //    .IsRequired()
+            //    .HasMaxLength(100);
         }
 
         private void ConfigureCompare(EntityTypeBuilder<Compare> builder)
@@ -110,17 +124,17 @@ namespace AspnetRun.Infrastructure.Data
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Product");
+            //builder.ToTable("Product");
 
-            builder.HasKey(ci => ci.Id);
+            //builder.HasKey(ci => ci.Id);
 
-            builder.Property(ci => ci.Id)
-               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-               .IsRequired();
+            //builder.Property(ci => ci.Id)
+            //   .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+            //   .IsRequired();
 
-            builder.Property(cb => cb.Name)
-                .IsRequired()
-                .HasMaxLength(100);
+            //builder.Property(cb => cb.Name)
+            //    .IsRequired()
+            //    .HasMaxLength(100);
         }
 
         private void ConfigureReview(EntityTypeBuilder<Review> builder)
@@ -138,9 +152,29 @@ namespace AspnetRun.Infrastructure.Data
 
         }
 
+        // NOTE : We have to set keys for n-n tables otherwise EF.Core gives primary key error
         private void ConfigureProductWishlist(EntityTypeBuilder<ProductWishlist> builder)
         {
             builder.HasKey(pw => new { pw.ProductId, pw.WishlistId });
         }
+
+        private void ConfigureProductCompare(EntityTypeBuilder<ProductCompare> builder)
+        {
+            builder.HasKey(pw => new { pw.ProductId, pw.CompareId });
+        }
+
+        private void ConfigureProductList(EntityTypeBuilder<ProductList> builder)
+        {
+            builder.HasKey(pw => new { pw.ProductId, pw.ListId });
+        }
+        
+
+        //private void ConfigureProductRelatedProduct(EntityTypeBuilder<ProductRelatedProduct> builder)
+        //{
+        //    var navigation = builder.Metadata.FindNavigation(nameof(ProductRelatedProduct.RelatedProduct));
+        //    navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+        //    builder.HasKey(pw => new { pw.ProductId, pw.RelatedProductId });
+        //}
     }
 }

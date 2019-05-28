@@ -15,15 +15,21 @@ namespace AspnetRun.Core.Entities
         public decimal? UnitPrice { get; set; }
         public int? UnitsInStock { get; set; }
         public double Star { get; set; }
+
+        // n-1 relationships
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        // 1-n relationships
         public List<Specification> Specifications { get; set; } = new List<Specification>();
         public List<Review> Reviews { get; set; } = new List<Review>();
         public List<Tag> Tags { get; set; } = new List<Tag>();
-        public List<Product> RelatedProducts { get; set; } = new List<Product>();
 
-        // many to many relationship
+        // n-n relationships
         public List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
+        public List<ProductCompare> ProductCompares { get; set; } = new List<ProductCompare>();
+        public List<ProductList> ProductLists { get; set; } = new List<ProductList>();
+        //public List<ProductRelatedProduct> RelatedProductLists { get; set; } = new List<ProductRelatedProduct>();
 
 
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)

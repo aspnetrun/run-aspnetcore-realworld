@@ -7,15 +7,7 @@ namespace AspnetRun.Core.Entities
 {
     public class Compare : Entity
     {        
-        public string UserName { get; set; }        
-        public List<Product> Products { get; set; } = new List<Product>();
-
-        public void AddProduct(Product product)
-        {
-            if (!Products.Any(p => p.Id == product.Id))
-            {
-                Products.Add(product);
-            }
-        }
+        public string UserName { get; set; }
+        public List<ProductCompare> ProductCompares { get; set; } = new List<ProductCompare>();
     }
 }

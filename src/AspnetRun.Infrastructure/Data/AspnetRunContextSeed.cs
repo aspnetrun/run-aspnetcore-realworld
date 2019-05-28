@@ -27,12 +27,11 @@ namespace AspnetRun.Infrastructure.Data
 
                 // products - related products - lists
                 await SeedProductsAsync(aspnetrunContext);
-                await SeedRelatedProductsAsync(aspnetrunContext);
-                await SeedListsAsync(aspnetrunContext);
+                //await SeedProductAndRelatedProductsAsync(aspnetrunContext);
+                await SeedListAndProductsAsync(aspnetrunContext);
 
                 // compares and wishlists
-                await SeedComparesAsync(aspnetrunContext);
-
+                await SeedCompareAndProductsAsync(aspnetrunContext);
                 await SeedWishlistAndProductsAsync(aspnetrunContext);
 
                 // cart and cart items - order and order items
@@ -190,7 +189,7 @@ namespace AspnetRun.Infrastructure.Data
         private static async Task SeedProductsAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Products.Any())
-                return;
+                return;           
 
             var products = new List<Product>
             {
@@ -585,20 +584,30 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
-        private static async Task SeedRelatedProductsAsync(AspnetRunContext aspnetrunContext)
-        {
-            if (aspnetrunContext.Products.FirstOrDefault().RelatedProducts.Any())
-                return;
+        //private static async Task SeedProductAndRelatedProductsAsync(AspnetRunContext aspnetrunContext)
+        //{
+        //    if (aspnetrunContext.ProductRelatedProducts.Any())
+        //        return;
 
-            foreach (var product in aspnetrunContext.Products)
-            {
-                product.RelatedProducts = aspnetrunContext.Products.Take(5).ToList();
-            }
+        //    var newRelatedProductLists = new List<ProductRelatedProduct>
+        //    {
+        //        new ProductRelatedProduct
+        //        {
+        //            Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+        //            RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault()
+        //        },
+        //        new ProductRelatedProduct
+        //        {
+        //            Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+        //            RelatedProduct = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(2).FirstOrDefault()
+        //        }
+        //    };
 
-            await aspnetrunContext.SaveChangesAsync();
-        }
+        //    aspnetrunContext.ProductRelatedProducts.AddRange(newRelatedProductLists);
+        //    await aspnetrunContext.SaveChangesAsync();
+        //}
 
-        private static async Task SeedListsAsync(AspnetRunContext aspnetrunContext)
+        private static async Task SeedListAndProductsAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Lists.Any())
                 return;
@@ -610,32 +619,52 @@ namespace AspnetRun.Infrastructure.Data
                     Name = "FEATURED ITEMS",
                     Description = "",
                     ImageFile = "",
-                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Take(5).ToList()
+                    //Products = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Take(5).ToList()
                 },
                 new List
                 {
                     Name = "BEST SELLERS",
                     Description = "",
                     ImageFile = "",
-                    Products = aspnetrunContext.Products.Take(8).ToList()
+                    //Products = aspnetrunContext.Products.Take(8).ToList()
                 },
                 new List
                 {
                     Name = "BEST DEALS",
                     Description = "",
                     ImageFile = "",
-                    Products = aspnetrunContext.Products.Where(p => p.Name.Length > 15).Take(5).ToList()
+                    //Products = aspnetrunContext.Products.Where(p => p.Name.Length > 15).Take(5).ToList()
                 },
                 new List
                 {
                     Name = "NEW ARRIVAL",
                     Description = "",
                     ImageFile = "",
-                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 != 1).Take(5).ToList()
+                    //Products = aspnetrunContext.Products.Where(x => x.Id % 2 != 1).Take(5).ToList()
                 },
             };
 
+            var newProductLists = new List<ProductList>
+            {
+                new ProductList
+                {
+                    List = lists.FirstOrDefault(l => l.Name == "FEATURED ITEMS"),
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault()
+                },
+                new ProductList
+                {
+                    List = lists.FirstOrDefault(l => l.Name == "FEATURED ITEMS"),
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault()
+                },
+                new ProductList
+                {
+                    List = lists.FirstOrDefault(l => l.Name == "BEST SELLERS"),
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(2).FirstOrDefault()
+                }
+            };
+
             aspnetrunContext.Lists.AddRange(lists);
+            aspnetrunContext.ProductLists.AddRange(newProductLists);
             await aspnetrunContext.SaveChangesAsync();
         }
 
@@ -667,7 +696,7 @@ namespace AspnetRun.Infrastructure.Data
             await aspnetrunContext.SaveChangesAsync();
         }
 
-        private static async Task SeedComparesAsync(AspnetRunContext aspnetrunContext)
+        private static async Task SeedCompareAndProductsAsync(AspnetRunContext aspnetrunContext)
         {
             if (aspnetrunContext.Compares.Any())
                 return;
@@ -676,12 +705,21 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Compare
                 {
-                    UserName = "mehmetozkaya",
-                    Products = aspnetrunContext.Products.Where(x => x.Id % 2 != 1).Take(3).ToList()
+                    UserName = "mehmetozkaya"                    
+                }
+            };
+
+            var newProductCompares = new List<ProductCompare>()
+            {
+                new ProductCompare
+                {
+                    Product = aspnetrunContext.Products.FirstOrDefault(),
+                    Compare = compares.FirstOrDefault()
                 }
             };
 
             aspnetrunContext.Compares.AddRange(compares);
+            aspnetrunContext.ProductCompares.AddRange(newProductCompares);
             await aspnetrunContext.SaveChangesAsync();
         }
 
