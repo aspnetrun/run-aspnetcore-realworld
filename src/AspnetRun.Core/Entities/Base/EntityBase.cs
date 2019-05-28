@@ -43,17 +43,17 @@
                 return base.GetHashCode();
         }
 
-        public static bool operator ==(EntityBase<TId> left, EntityBase<TId> right)
-        {
-            if (Equals(left, null))
-                return Equals(right, null) ? true : false;
-            else
-                return left.Equals(right);
-        }
+        //public static bool operator ==(EntityBase<TId> left, EntityBase<TId> right)
+        //{
+        //    if (Equals(left, null))
+        //        return Equals(right, null) ? true : false;
+        //    else
+        //        return left.Equals(right);
+        //}
 
-        public static bool operator !=(EntityBase<TId> left, EntityBase<TId> right)
-        {
-            return !(left == right);
-        }
+        //public static bool operator !=(EntityBase<TId> left, EntityBase<TId> right)
+        //{
+        //    return !(left == right);
+        //}
     }
 }

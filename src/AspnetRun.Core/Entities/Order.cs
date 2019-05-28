@@ -15,6 +15,7 @@ namespace AspnetRun.Core.Entities
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
     }
 
+    // Value Object    
     public class Address
     {
         public string FirstName { get; set; }

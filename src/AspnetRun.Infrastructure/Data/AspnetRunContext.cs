@@ -28,8 +28,11 @@ namespace AspnetRun.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Product>(ConfigureProduct);
+            builder.Entity<Product>(ConfigureProduct);            
             builder.Entity<Category>(ConfigureCategory);
+
+            builder.Entity<Order>(ConfigureOrder);
+            // TODO : create builder methods
         }
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
@@ -60,6 +63,17 @@ namespace AspnetRun.Infrastructure.Data
             builder.Property(cb => cb.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+        }
+
+        private void ConfigureOrder(EntityTypeBuilder<Order> builder)
+        {
+            var navigation = builder.Metadata.FindNavigation(nameof(Order.Items));
+
+            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+            // NOTE : This Owns methods provide to accept value object like Address
+            builder.OwnsOne(o => o.ShippingAddress);
+            builder.OwnsOne(o => o.BillingAddress);
         }
     }
 }

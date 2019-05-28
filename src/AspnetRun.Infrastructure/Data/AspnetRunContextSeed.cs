@@ -38,6 +38,7 @@ namespace AspnetRun.Infrastructure.Data
                 await SeedCartAndItemsAsync(aspnetrunContext);
                 await SeedOrderAndItemsAsync(aspnetrunContext);
 
+                // blog
                 await SeedBlogsAsync(aspnetrunContext);                
             }
             catch (Exception exception)
