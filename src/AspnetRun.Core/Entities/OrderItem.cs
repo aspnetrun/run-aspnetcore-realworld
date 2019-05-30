@@ -1,7 +1,4 @@
 ﻿using AspnetRun.Core.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
