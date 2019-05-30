@@ -74,6 +74,9 @@ namespace AspnetRun.Infrastructure.Data
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
         {
+            // check for conventions - http://www.entityframeworktutorial.net/efcore/configure-many-to-many-relationship-in-ef-core.aspx
+
+
             // add self reference table configuration
             // https://github.com/aspnet/EntityFrameworkCore/issues/10698 
             // https://stackoverflow.com/questions/27613117/introducing-foreign-key-constraint-may-cause-cycles-or-multiple-cascade-paths-s
