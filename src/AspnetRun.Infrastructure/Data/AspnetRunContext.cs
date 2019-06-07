@@ -26,6 +26,7 @@ namespace AspnetRun.Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
 
+        // aggregate
         public DbSet<ProductWishlist> ProductWishlists { get; set; }
         public DbSet<ProductCompare> ProductCompares { get; set; }
         public DbSet<ProductList> ProductLists { get; set; }

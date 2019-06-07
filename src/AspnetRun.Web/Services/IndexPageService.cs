@@ -10,7 +10,7 @@ namespace AspnetRun.Web.Services
 {
     public class IndexPageService : IIndexPageService
     {
-        private readonly IProductService _productAppService;        
+        private readonly IProductService _productAppService;
         private readonly IMapper _mapper;
 
         public IndexPageService(IProductService productAppService, IMapper mapper)

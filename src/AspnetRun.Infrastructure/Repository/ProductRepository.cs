@@ -4,10 +4,8 @@ using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository.Base;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
