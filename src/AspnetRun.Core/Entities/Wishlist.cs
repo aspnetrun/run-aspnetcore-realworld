@@ -9,21 +9,5 @@ namespace AspnetRun.Core.Entities
     {        
         public string UserName { get; set; }
         public List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
-
-        public void AddWishList(Wishlist wishlist)
-        {
-            if (true)
-            {
-
-            }
-        }
-
-        //public void AddProduct(Product product)
-        //{
-        //    if (!Products.Any(p => p.Id == product.Id))
-        //    {
-        //        Products.Add(product);
-        //    }
-        //}
     }
 }
