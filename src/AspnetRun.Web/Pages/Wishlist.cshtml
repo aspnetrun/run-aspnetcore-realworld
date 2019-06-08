@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="#">
+               
                     <div class="cart-table table-responsive">
                         <table class="table">
                             <thead>
@@ -32,8 +32,8 @@
                                         <td class="pro-addtocart"><button>add to cart</button></td>
                                         <td class="pro-remove">
 
-                                            <form asp-page-handler="RemoveFromWishlist" method="post">
-                                                <button class="remove"><i class="fa fa-trash-o"></i></button>
+                                            <form asp-page-handler="removefromwishlist" method="post">
+                                                <button><i class="fa fa-trash-o"></i></button>
                                                 <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
                                                 <input type="hidden" asp-for="@item.Id" name="productId" />
                                             </form>
@@ -46,7 +46,7 @@
                         </table>
                     </div>
 
-                </form>
+     
 
             </div>
         </div>

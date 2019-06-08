@@ -20,6 +20,8 @@ namespace AspnetRun.Web.Pages
 
         public async Task OnGet(string userName)
         {
+            // TODO : remove this
+            userName = "mehmetozkaya";
             WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
 

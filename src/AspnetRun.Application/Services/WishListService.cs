@@ -3,6 +3,7 @@ using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace AspnetRun.Application.Services
 
             var wishlistModel = new WishlistModel
             {
+                Id = wishlist.Id,
                 UserName = wishlist.UserName,
                 Items = new List<ProductModel>()
             };
@@ -45,11 +47,10 @@ namespace AspnetRun.Application.Services
 
         public async Task RemoveItem(int wishlistId, int productId)
         {
-            var wishlist = (await _wishlistRepository.GetAsync(x => x.Id == wishlistId)).FirstOrDefault();
-
+            var spec = new WishlistWithItemsSpecification(wishlistId);
+            var wishlist = (await _wishlistRepository.GetAsync(spec)).FirstOrDefault();
             wishlist.RemoveItem(productId);
-
-            await _wishlistRepository.UpdateAsync(wishlist);            
+            await _wishlistRepository.UpdateAsync(wishlist);
         }
     }
 }

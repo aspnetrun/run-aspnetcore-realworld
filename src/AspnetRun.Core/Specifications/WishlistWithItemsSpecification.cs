@@ -10,5 +10,11 @@ namespace AspnetRun.Core.Specifications
         {
             AddInclude(p => p.ProductWishlists);
         }
+
+        public WishlistWithItemsSpecification(int wishlistId)
+            : base(p => p.Id == wishlistId)
+        {
+            AddInclude(p => p.ProductWishlists);
+        }
     }
 }
