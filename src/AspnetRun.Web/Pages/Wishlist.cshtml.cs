@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AspnetRun.Web.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using AspnetRun.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspnetRun.Web.Pages
@@ -20,10 +18,9 @@ namespace AspnetRun.Web.Pages
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
 
 
-        public async Task OnGet()
-        {
-            var wishlistId = GetWishlistId(slug);
-            WishlistViewModel = await _wishlistService.GetWishlist(wishlistId);
+        public async Task OnGet(string userName)
+        {            
+            WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
     }
 }
