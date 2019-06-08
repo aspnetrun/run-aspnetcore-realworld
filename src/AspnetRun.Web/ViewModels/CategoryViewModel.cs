@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspnetRun.Web.ViewModels.Base;
 
 namespace AspnetRun.Web.ViewModels
 {
