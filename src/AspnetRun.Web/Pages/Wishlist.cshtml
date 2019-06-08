@@ -21,50 +21,27 @@
                                     <th class="pro-remove">Remove</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>                                
                                 @foreach (var item in Model.WishlistViewModel.Items)
                                 {
                                     <tr>
-                                        <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-1.png" alt="Product"></a></td>
+                                        <td class="pro-thumbnail"><a asp-page="ProductDetail" asp-route-slug="@item.Slug"><img src="assets/images/product/@item.ImageFile" alt="Product"></a></td>
                                         <td class="pro-title"><a href="#">@item.Name</a></td>
                                         <td class="pro-price"><span>$@item.UnitPrice</span></td>
                                         <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
                                         <td class="pro-addtocart"><button>add to cart</button></td>
-                                        <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="pro-remove">
+
+                                            <form asp-page-handler="RemoveFromWishlist" method="post">
+                                                <button class="remove"><i class="fa fa-trash-o"></i></button>
+                                                <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
+                                                <input type="hidden" asp-for="@item.Id" name="productId" />
+                                            </form>
+
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </td>
                                     </tr>
-                                }
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-1.png" alt="Product"></a></td>
-                                    <td class="pro-title"><a href="#">Zeon Zen 4 Pro</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
-                                    <td class="pro-addtocart"><button>add to cart</button></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-2.png" alt="Product"></a></td>
-                                    <td class="pro-title"><a href="#">Aquet Drone D 420</a></td>
-                                    <td class="pro-price"><span>$275.00</span></td>
-                                    <td class="pro-quantity"><div class="pro-qty"><input type="text" value="2"></div></td>
-                                    <td class="pro-addtocart"><button>add to cart</button></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-3.png" alt="Product"></a></td>
-                                    <td class="pro-title"><a href="#">Game Station X 22</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
-                                    <td class="pro-addtocart"><button>add to cart</button></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-4.png" alt="Product"></a></td>
-                                    <td class="pro-title"><a href="#">Roxxe Headphone Z 75 </a></td>
-                                    <td class="pro-price"><span>$110.00</span></td>
-                                    <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
-                                    <td class="pro-addtocart"><button>add to cart</button></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
+                                }                            
                             </tbody>
                         </table>
                     </div>

@@ -17,8 +17,7 @@ namespace AspnetRun.Infrastructure.Repository
         public async Task<Wishlist> GetByUserNameAsync(string userName)
         {
             var spec = new WishlistWithItemsSpecification(userName);
-            var wishList = await GetAsync(spec);
-            return wishList.FirstOrDefault();
+            return (await GetAsync(spec)).FirstOrDefault();
         }
     }
 }

@@ -6,5 +6,6 @@ namespace AspnetRun.Application.Interfaces
     public interface IWishListService
     {
         Task<WishlistModel> GetProductByUserName(string userName);
+        Task RemoveItem(int wishlistId, int productId);
     }
 }

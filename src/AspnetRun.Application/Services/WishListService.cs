@@ -5,6 +5,7 @@ using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
@@ -40,6 +41,15 @@ namespace AspnetRun.Application.Services
             }
 
             return wishlistModel;
+        }
+
+        public async Task RemoveItem(int wishlistId, int productId)
+        {
+            var wishlist = (await _wishlistRepository.GetAsync(x => x.Id == wishlistId)).FirstOrDefault();
+
+            wishlist.RemoveItem(productId);
+
+            await _wishlistRepository.UpdateAsync(wishlist);            
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspnetRun.Web.Pages
@@ -21,5 +22,13 @@ namespace AspnetRun.Web.Pages
         {
             WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
+
+        public async Task<IActionResult> OnPostRemoveFromWishlist(int wishlistId, int productId)
+        {
+            await _wishlistService.RemoveItem(wishlistId, productId);
+            return RedirectToPage();
+        }
+
+
     }
 }

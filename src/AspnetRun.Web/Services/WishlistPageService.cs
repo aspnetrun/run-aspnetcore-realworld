@@ -27,5 +27,10 @@ namespace AspnetRun.Web.Services
             var mapped = _mapper.Map<WishlistViewModel>(wishlist);
             return mapped;
         }
+
+        public async Task RemoveItem(int wishlistId, int productId)
+        {
+            await _wishListAppService.RemoveItem(wishlistId, productId);            
+        }
     }
 }
