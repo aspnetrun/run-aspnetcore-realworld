@@ -17,9 +17,8 @@ namespace AspnetRun.Web.Pages
 
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
 
-
         public async Task OnGet(string userName)
-        {            
+        {
             WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
     }

@@ -14,7 +14,7 @@ namespace AspnetRun.Core.Specifications
         public WishlistWithItemsSpecification(string userName)
             : base(p => p.UserName.ToLower().Contains(userName.ToLower()))
         {
-            AddInclude(p => p.ProductWishlists);
+            AddInclude(p => p.ProductWishlists);            
         }
     }
 }

@@ -77,20 +77,24 @@ namespace AspnetRun.Web
             // Add Infrastructure Layer
             ConfigureDatabases(services);
 
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            services.AddScoped<IWishlistRepository, WishlistRepository>();
+            
 
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IWishListService, WishListService>();
 
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
+            services.AddScoped<IWishlistPageService, WishlistPageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();
