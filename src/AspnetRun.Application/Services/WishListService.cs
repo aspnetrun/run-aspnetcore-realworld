@@ -29,14 +29,14 @@ namespace AspnetRun.Application.Services
             var wishlistModel = new WishlistModel
             {
                 UserName = wishlist.UserName,
-                WishlistItems = new List<ProductModel>()
+                Items = new List<ProductModel>()
             };
 
             foreach (var item in wishlist.ProductWishlists)
             {
                 var product = await _productRepository.GetByIdAsync(item.ProductId);
                 var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
-                wishlistModel.WishlistItems.Add(productModel);
+                wishlistModel.Items.Add(productModel);
             }
 
             return wishlistModel;

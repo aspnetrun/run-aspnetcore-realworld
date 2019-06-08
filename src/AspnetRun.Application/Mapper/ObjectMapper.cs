@@ -24,7 +24,7 @@ namespace AspnetRun.Application.Mapper
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Product, ProductModel>()
-                    .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Name)).ReverseMap();
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name)).ReverseMap();
                 cfg.CreateMap<Category, CategoryModel>().ReverseMap();
             });
         }

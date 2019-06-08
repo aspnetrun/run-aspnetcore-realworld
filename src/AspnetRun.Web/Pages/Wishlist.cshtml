@@ -22,6 +22,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.WishlistViewModel.Items)
+                                {
+                                    <tr>
+                                        <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-1.png" alt="Product"></a></td>
+                                        <td class="pro-title"><a href="#">@item.Name</a></td>
+                                        <td class="pro-price"><span>$@item.UnitPrice</span></td>
+                                        <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
+                                        <td class="pro-addtocart"><button>add to cart</button></td>
+                                        <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                    </tr>
+                                }
                                 <tr>
                                     <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-1.png" alt="Product"></a></td>
                                     <td class="pro-title"><a href="#">Zeon Zen 4 Pro</a></td>

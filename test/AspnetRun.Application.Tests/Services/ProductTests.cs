@@ -56,7 +56,7 @@ namespace AspnetRun.Application.Tests.Services
             _mockProductRepository.Setup(x => x.AddAsync(product)).ReturnsAsync(product);            
 
             var productService = new ProductService(_mockProductRepository.Object, _mockAppLogger.Object);
-            var createdProductDto = await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.Name });
+            var createdProductDto = await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, Name = product.Name });
 
             _mockProductRepository.Verify(x => x.GetByIdAsync(It.IsAny<int>()), Times.Once);
             _mockProductRepository.Verify(x => x.AddAsync(product), Times.Once);
@@ -74,7 +74,7 @@ namespace AspnetRun.Application.Tests.Services
             var productService = new ProductService(_mockProductRepository.Object, _mockAppLogger.Object);
 
             await Assert.ThrowsAsync<ApplicationException>(async () =>
-                await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.Name }));
+                await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, Name = product.Name }));
         }
     }
 }

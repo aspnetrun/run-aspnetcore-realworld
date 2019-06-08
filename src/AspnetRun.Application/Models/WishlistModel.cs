@@ -6,6 +6,6 @@ namespace AspnetRun.Application.Models
     public class WishlistModel : BaseModel
     {
         public string UserName { get; set; }
-        public List<ProductModel> WishlistItems { get; set; } = new List<ProductModel>();
+        public List<ProductModel> Items { get; set; } = new List<ProductModel>();
     }
 }
