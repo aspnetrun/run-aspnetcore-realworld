@@ -12,8 +12,18 @@ namespace AspnetRun.Web.Pages
     {
         private readonly IWishlistPageService _wishlistService;
 
-        public void OnGet()
+        public WishlistModel(IWishlistPageService wishlistService)
         {
+            _wishlistService = wishlistService ?? throw new ArgumentNullException(nameof(wishlistService));
+        }
+
+        public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
+
+
+        public async Task OnGet()
+        {
+            var wishlistId = GetWishlistId(slug);
+            WishlistViewModel = await _wishlistService.GetWishlist(wishlistId);
         }
     }
 }
