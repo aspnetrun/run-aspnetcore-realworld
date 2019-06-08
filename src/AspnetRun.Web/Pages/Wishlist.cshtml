@@ -29,16 +29,21 @@
                                         <td class="pro-title"><a href="#">@item.Name</a></td>
                                         <td class="pro-price"><span>$@item.UnitPrice</span></td>
                                         <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
-                                        <td class="pro-addtocart"><button>add to cart</button></td>
+                                        
+                                        <td class="pro-addtocart">                                            
+                                            <form asp-page-handler="addtocart" method="post">
+                                                <button>add to cart</button>
+                                                <input type="hidden" asp-for="@Model.WishlistViewModel.UserName" name="userName" />
+                                                <input type="hidden" asp-for="@item.Id" name="productId" />
+                                            </form>
+                                        </td>
+                                        
                                         <td class="pro-remove">
-
                                             <form asp-page-handler="removefromwishlist" method="post">
                                                 <button><i class="fa fa-trash-o"></i></button>
                                                 <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
                                                 <input type="hidden" asp-for="@item.Id" name="productId" />
                                             </form>
-
-                                            <a href="#"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 }                            

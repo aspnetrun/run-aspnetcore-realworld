@@ -31,6 +31,10 @@ namespace AspnetRun.Web.Pages
             return RedirectToPage();
         }
 
-
+        public async Task<IActionResult> OnPostAddToCart(string userName, int productId)
+        {
+            await _wishlistService.AddToCart(userName, productId);
+            return RedirectToPage();
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace AspnetRun.Web.Services
             _wishListAppService = wishListAppService ?? throw new ArgumentNullException(nameof(wishListAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        }       
 
         public async Task<WishlistViewModel> GetWishlist(string userName)
         {
@@ -31,6 +31,12 @@ namespace AspnetRun.Web.Services
         public async Task RemoveItem(int wishlistId, int productId)
         {
             await _wishListAppService.RemoveItem(wishlistId, productId);            
+        }
+
+        public Task AddToCart(string userName, int productId)
+        {
+            // TODO : Implement this
+            throw new NotImplementedException();
         }
     }
 }

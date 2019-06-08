@@ -10,5 +10,6 @@ namespace AspnetRun.Web.Interfaces
     {
         Task<WishlistViewModel> GetWishlist(string userName);
         Task RemoveItem(int wishlistId, int productId);
+        Task AddToCart(string userName, int productId);
     }
 }
