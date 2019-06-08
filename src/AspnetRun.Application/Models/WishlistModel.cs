@@ -1,0 +1,11 @@
+﻿using AspnetRun.Application.Models.Base;
+using System.Collections.Generic;
+
+namespace AspnetRun.Application.Models
+{
+    public class WishlistModel : BaseModel
+    {
+        public string UserName { get; set; }
+        public List<ProductModel> WishlistItems { get; set; } = new List<ProductModel>();
+    }
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AspnetRun.Application.Interfaces;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
@@ -22,8 +23,8 @@ namespace AspnetRun.Web.Services
 
         public async Task<WishlistViewModel> GetWishlist(string userName)
         {
-            var product = await _wishListAppService.GetProductByUserName(userName);
-            var mapped = _mapper.Map<WishlistViewModel>(product);
+            var wishlist = await _wishListAppService.GetProductByUserName(userName);
+            var mapped = _mapper.Map<WishlistViewModel>(wishlist);
             return mapped;
         }
     }
