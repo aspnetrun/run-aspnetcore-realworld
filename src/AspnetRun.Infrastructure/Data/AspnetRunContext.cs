@@ -39,6 +39,8 @@ namespace AspnetRun.Infrastructure.Data
         {
             SetTableNamesAsSingle(builder);
 
+            base.OnModelCreating(builder);
+
             //builder.Entity<Blog>(ConfigureBlog);
             //builder.Entity<Cart>(ConfigureCart);
             //builder.Entity<CartItem>(ConfigureCartItem);

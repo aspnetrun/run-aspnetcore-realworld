@@ -113,7 +113,7 @@ namespace AspnetRun.Web
 
             // use real database
             services.AddDbContext<AspnetRunContext>(c =>
-                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"), x => x.MigrationsAssembly("AspnetRun.Web")));
         }
 
         public void ConfigureIdentity(IServiceCollection services)
