@@ -2,10 +2,12 @@
 using AspnetRun.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AspnetRun.Infrastructure.Data
 {
-    public class AspnetRunContext : DbContext
+    public class AspnetRunContext : IdentityDbContext<IdentityUser>
     {
         public AspnetRunContext(DbContextOptions options) : base(options)
         {
