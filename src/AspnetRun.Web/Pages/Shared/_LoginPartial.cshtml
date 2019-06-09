@@ -10,7 +10,7 @@
         {
             <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index"><span>@UserManager.GetUserName(User).Split('@').FirstOrDefault()</span></a>            
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button id="logout" type="submit" class="nav-link btn btn-small btn-link">Logout</button>                
             </form>
         }
         else

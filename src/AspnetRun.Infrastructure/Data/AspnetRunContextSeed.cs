@@ -677,7 +677,7 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Wishlist
                 {
-                    UserName = "mehmetozkaya"
+                    UserName = "mehmetozkaya@gmail.com"
                 }
             };
 
@@ -705,7 +705,7 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Compare
                 {
-                    UserName = "mehmetozkaya"                    
+                    UserName = "mehmetozkaya@gmail.com"                    
                 }
             };
 
@@ -732,7 +732,7 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Cart
                 {
-                    UserName = "mehmetozkaya",
+                    UserName = "mehmetozkaya@gmail.com",
                     Items = new List<CartItem>
                     {
                         new CartItem
@@ -804,7 +804,7 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Order
                 {
-                    UserName = "mehmetozkaya",
+                    UserName = "mehmetozkaya@gmail.com",
                     BillingAddress = address,
                     ShippingAddress = addressShipping,
                     PaymentMethod = PaymentMethod.Cash,

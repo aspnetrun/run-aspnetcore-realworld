@@ -20,10 +20,9 @@ namespace AspnetRun.Web.Pages
 
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
 
-        public async Task OnGet(string userName)
-        {
-            // TODO : remove this
-            userName = "mehmetozkaya";
+        public async Task OnGet()
+        {            
+            var userName = this.User.Identity.Name;
             WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
 

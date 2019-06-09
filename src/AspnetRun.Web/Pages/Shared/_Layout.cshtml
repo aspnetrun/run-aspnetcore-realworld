@@ -41,8 +41,8 @@
                     <div class="col mt-10 mb-10">
                         <!-- Header Links Start -->
                         <div class="header-links">
-                            <a asp-page="TrackOrder"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Track your order</span></a>
-                            <a asp-page="Store"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Locate Store</span></a>
+                            <a asp-area="" asp-page="/TrackOrder"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Track your order</span></a>
+                            <a asp-area="" asp-page="/Store"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Locate Store</span></a>
                         </div><!-- Header Links End -->
                     </div>
 
@@ -105,7 +105,7 @@
                                 <ul>
                                     <li class="active"><a asp-area="" asp-page="/Index">HOME</a></li>
                                     <li>
-                                        <a asp-page="Products">Shop</a>                                       
+                                        <a asp-area="" asp-page="/Products">Shop</a>                                       
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">PAGES</a>
@@ -113,41 +113,41 @@
                                             <li>
                                                 <a href="#">Column One</a>
                                                 <ul>
-                                                    <li><a asp-page="AboutUs">About us</a></li>
-                                                    <li><a asp-page="BestDeals">Best Deals</a></li>
-                                                    <li><a asp-page="Cart">Cart</a></li>
-                                                    <li><a asp-page="CheckOut">Checkout</a></li>
+                                                    <li><a asp-area="" asp-page="/AboutUs">About us</a></li>
+                                                    <li><a asp-area="" asp-page="/BestDeals">Best Deals</a></li>
+                                                    <li><a asp-area="" asp-page="/Cart">Cart</a></li>
+                                                    <li><a asp-area="" asp-page="/CheckOut">Checkout</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">Column Two</a>
                                                 <ul>
-                                                    <li><a asp-page="Compare">Compare</a></li>
-                                                    <li><a asp-page="Faq">Faq</a></li>
-                                                    <li><a asp-page="Feature">Feature</a></li>
-                                                    <li><a asp-page="Login">Login</a></li>
-                                                    <li><a asp-page="Register">Register</a></li>
-                                                    <li><a asp-page="Store">Store</a></li>
+                                                    <li><a asp-area="" asp-page="/Compare">Compare</a></li>
+                                                    <li><a asp-area="" asp-page="/Faq">Faq</a></li>
+                                                    <li><a asp-area="" asp-page="/Feature">Feature</a></li>
+                                                    <li><a asp-area="" asp-page="/Login">Login</a></li>
+                                                    <li><a asp-area="" asp-page="/Register">Register</a></li>
+                                                    <li><a asp-area="" asp-page="/Store">Store</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">Column Three</a>
                                                 <ul>
-                                                    <li><a asp-page="TermsConditions">Terms & Conditions</a></li>
-                                                    <li><a asp-page="TackOrder">Track Order</a></li>
-                                                    <li><a asp-page="Wishlist">Wishlist</a></li>
+                                                    <li><a asp-area="" asp-page="/TermsConditions">Terms & Conditions</a></li>
+                                                    <li><a asp-area="" asp-page="/TackOrder">Track Order</a></li>
+                                                    <li><a asp-area="" asp-page="/Wishlist">Wishlist</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a asp-page="Blogs">BLOG</a>
+                                        <a asp-area="" asp-page="/Blogs">BLOG</a>
                                         <ul class="sub-menu">
-                                            <li><a asp-page="Blogs">Blog 1 Column Left Sidebar</a></li>
-                                            <li><a asp-page="BlogDetail">Single Blog Left Sidebar</a></li>
+                                            <li><a asp-area="" asp-page="/Blogs">Blog 1 Column Left Sidebar</a></li>
+                                            <li><a asp-area="" asp-page="/BlogDetail">Single Blog Left Sidebar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a asp-page="Contact">CONTACT</a></li>
+                                    <li><a asp-area="" asp-page="/Contact">CONTACT</a></li>
                                 </ul>
                             </nav>
                         </div><!-- Main Menu End -->
@@ -158,11 +158,11 @@
                         <div class="header-shop-links">
 
                             <!-- Compare -->
-                            <a asp-page="Compare" class="header-compare"><i class="ti-control-shuffle"></i></a>
+                            <a asp-area="" asp-page="/Compare" class="header-compare"><i class="ti-control-shuffle"></i></a>
                             <!-- Wishlist -->
-                            <a asp-page="Wishlist" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
+                            <a asp-area="" asp-page="/Wishlist" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
                             <!-- Cart -->
-                            <a asp-page="Cart" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
+                            <a asp-area="" asp-page="/Cart" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
 
                         </div><!-- Header Shop Links End -->
                     </div>

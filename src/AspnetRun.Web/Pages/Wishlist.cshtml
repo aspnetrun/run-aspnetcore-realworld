@@ -32,8 +32,7 @@
                                         
                                         <td class="pro-addtocart">                                            
                                             <form asp-page-handler="addtocart" method="post">
-                                                <button>add to cart</button>
-                                                <input type="hidden" asp-for="@Model.WishlistViewModel.UserName" name="userName" />
+                                                <button>add to cart</button>                                                
                                                 <input type="hidden" asp-for="@item.Id" name="productId" />
                                             </form>
                                         </td>
