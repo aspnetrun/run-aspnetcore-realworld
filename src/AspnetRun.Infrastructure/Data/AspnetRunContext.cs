@@ -1,5 +1,4 @@
-﻿using System;
-using AspnetRun.Core.Entities;
+﻿using AspnetRun.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +38,7 @@ namespace AspnetRun.Infrastructure.Data
         {
             SetTableNamesAsSingle(builder);
 
-            base.OnModelCreating(builder);
+            base.OnModelCreating(builder); // if we put this at top, it changes also identity table names so dont put this at top.
 
             //builder.Entity<Blog>(ConfigureBlog);
             //builder.Entity<Cart>(ConfigureCart);
