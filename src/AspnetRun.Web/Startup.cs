@@ -19,6 +19,8 @@ using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Repositories.Base;
 using AspnetRun.Core.Configuration;
 using AspnetRun.Infrastructure.Repository.Base;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 namespace AspnetRun.Web
 {
@@ -76,6 +78,7 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
+            ConfigureIdentity(services);
 
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -111,6 +114,24 @@ namespace AspnetRun.Web
             // use real database
             services.AddDbContext<AspnetRunContext>(c =>
                 c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+        }
+
+        public void ConfigureIdentity(IServiceCollection services)
+        {
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<AspnetRunContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
         }
     }
 }
