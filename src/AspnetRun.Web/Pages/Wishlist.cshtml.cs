@@ -4,9 +4,11 @@ using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspnetRun.Web.Pages
 {
+    [Authorize]
     public class WishlistModel : PageModel
     {
         private readonly IWishlistPageService _wishlistService;
