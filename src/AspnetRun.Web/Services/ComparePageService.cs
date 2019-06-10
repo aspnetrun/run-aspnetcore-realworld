@@ -1,4 +1,5 @@
-﻿using AspnetRun.Web.Interfaces;
+﻿using AspnetRun.Application.Interfaces;
+using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
 using Microsoft.Extensions.Logging;

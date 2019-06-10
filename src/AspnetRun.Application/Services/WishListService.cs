@@ -15,9 +15,9 @@ namespace AspnetRun.Application.Services
     {
         private readonly IWishlistRepository _wishlistRepository;
         private readonly IProductRepository _productRepository;
-        private readonly IAppLogger<ProductService> _logger;
+        private readonly IAppLogger<WishListService> _logger;
 
-        public WishListService(IWishlistRepository wishlistRepository, IProductRepository productRepository, IAppLogger<ProductService> logger)
+        public WishListService(IWishlistRepository wishlistRepository, IProductRepository productRepository, IAppLogger<WishListService> logger)
         {
             _wishlistRepository = wishlistRepository ?? throw new ArgumentNullException(nameof(wishlistRepository));
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
