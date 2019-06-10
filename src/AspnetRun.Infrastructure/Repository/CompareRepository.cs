@@ -2,9 +2,6 @@
 using AspnetRun.Core.Repositories;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
