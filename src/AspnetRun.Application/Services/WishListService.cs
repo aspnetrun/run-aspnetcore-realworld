@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Specifications;
@@ -28,16 +29,23 @@ namespace AspnetRun.Application.Services
         {
             var wishlist = await _wishlistRepository.GetByUserNameAsync(userName);
 
-            var wishlistModel = new WishlistModel
+            if (wishlist == null) // if it is first attempt create new
             {
-                Id = wishlist.Id,
-                UserName = wishlist.UserName,
-                Items = new List<ProductModel>()
-            };
+                var newWishlist = new Wishlist
+                {
+                    UserName = userName
+                };
+
+                await _wishlistRepository.AddAsync(newWishlist);
+                var mapped = ObjectMapper.Mapper.Map<WishlistModel>(newWishlist);
+                return mapped;
+            }
+
+            var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);
 
             foreach (var item in wishlist.ProductWishlists)
             {
-                var product = await _productRepository.GetByIdAsync(item.ProductId);
+                var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
                 var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
                 wishlistModel.Items.Add(productModel);
             }
