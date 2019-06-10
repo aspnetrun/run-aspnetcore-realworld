@@ -19,7 +19,7 @@ namespace AspnetRun.Web.Services
             _compareAppService = compareAppService ?? throw new ArgumentNullException(nameof(compareAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }       
+        }
 
         public async Task<CompareViewModel> GetCompare(string userName)
         {

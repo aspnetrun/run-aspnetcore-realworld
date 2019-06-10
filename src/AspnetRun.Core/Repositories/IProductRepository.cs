@@ -9,6 +9,7 @@ namespace AspnetRun.Core.Repositories
     {
         Task<IEnumerable<Product>> GetProductListAsync();
         Task<IEnumerable<Product>> GetProductByNameAsync(string productName);
+        Task<Product> GetProductByIdWithCategoryAsync(int productId);
         Task<IEnumerable<Product>> GetProductByCategoryAsync(int categoryId);
     }
 }

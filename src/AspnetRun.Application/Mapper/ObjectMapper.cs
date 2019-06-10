@@ -26,6 +26,7 @@ namespace AspnetRun.Application.Mapper
                 cfg.CreateMap<Product, ProductModel>()
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name)).ReverseMap();
                 cfg.CreateMap<Category, CategoryModel>().ReverseMap();
+                cfg.CreateMap<Compare, CompareModel>().ReverseMap();
             });
         }
     }

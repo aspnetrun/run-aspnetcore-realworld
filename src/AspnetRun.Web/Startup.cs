@@ -93,7 +93,7 @@ namespace AspnetRun.Web
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IWishListService, WishListService>();
-            services.AddScoped<CompareService, CompareService>();
+            services.AddScoped<ICompareService, CompareService>();
 
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper

@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Specifications;
@@ -28,21 +29,28 @@ namespace AspnetRun.Application.Services
         {
             var compare = await _compareRepository.GetByUserNameAsync(userName);
 
-            var CompareModel = new CompareModel
+            if (compare == null) // if it is first attempt create new
             {
-                Id = compare.Id,
-                UserName = compare.UserName,
-                Items = new List<ProductModel>()
-            };
+                var newCompare = new Compare
+                {
+                    UserName = userName
+                };
+
+                await _compareRepository.AddAsync(newCompare);
+                var mapped = ObjectMapper.Mapper.Map<CompareModel>(newCompare);
+                return mapped;
+            }
+            
+            var compareModel = ObjectMapper.Mapper.Map<CompareModel>(compare);
 
             foreach (var item in compare.ProductCompares)
             {
-                var product = await _productRepository.GetByIdAsync(item.ProductId);
+                var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
                 var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
-                CompareModel.Items.Add(productModel);
+                compareModel.Items.Add(productModel);
             }
 
-            return CompareModel;
+            return compareModel;
         }
 
         public async Task RemoveItem(int CompareId, int productId)

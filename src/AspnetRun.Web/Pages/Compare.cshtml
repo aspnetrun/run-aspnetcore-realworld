@@ -95,8 +95,12 @@
 
                                     @foreach (var item in Model.CompareViewModel.Items)
                                     {
-                                        <td class="pro-addtocart"><a href="#" class="add-to-cart" tabindex="0"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a></td>
-
+                                        <td class="pro-addtocart">
+                                            <form asp-page-handler="addtocart" method="post">
+                                                <button>add to cart</button>
+                                                <input type="hidden" asp-for="@item.Id" name="productId" />
+                                            </form>
+                                        </td>
                                     }
 
                                     <td class="pro-addtocart"><a href="#" class="add-to-cart" tabindex="0"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a></td>
@@ -105,12 +109,37 @@
                                 </tr>
                                 <tr>
                                     <td class="first-column">Delete</td>
+
+                                    @foreach (var item in Model.CompareViewModel.Items)
+                                    {
+                                        <td class="pro-remove">
+                                            <form asp-page-handler="removefromcompare" method="post">
+                                                <button><i class="fa fa-trash-o"></i></button>
+                                                <input type="hidden" asp-for="@Model.CompareViewModel.Id" name="compareId" />
+                                                <input type="hidden" asp-for="@item.Id" name="productId" />
+                                            </form>
+                                        </td>
+                                    }
+
+
                                     <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
                                     <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
                                     <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td class="first-column">Rating</td>
+
+                                    @foreach (var item in Model.CompareViewModel.Items)
+                                    {
+                                        <td class="pro-ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </td>
+                                    }
+
                                     <td class="pro-ratting">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

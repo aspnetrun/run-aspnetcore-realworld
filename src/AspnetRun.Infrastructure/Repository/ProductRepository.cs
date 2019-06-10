@@ -39,6 +39,12 @@ namespace AspnetRun.Infrastructure.Repository
             //    .ToListAsync();
         }
 
+        public async Task<Product> GetProductByIdWithCategoryAsync(int productId)
+        {
+            var spec = new ProductWithCategorySpecification(productId);
+            return (await GetAsync(spec)).FirstOrDefault();
+        }
+
         public async Task<IEnumerable<Product>> GetProductByCategoryAsync(int categoryId)
         {
             return await _dbContext.Products
