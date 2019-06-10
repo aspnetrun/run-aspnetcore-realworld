@@ -25,46 +25,25 @@
                                             <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="title">@item.Name</a>
                                         </td>
                                     }
-
-                                    <td class="product-image-title">
-                                        <a href="#" class="image"><img src="assets/images/compare/compare-1.png" alt="Compare Product"></a>
-                                        <a href="#" class="category">Laptop</a>
-                                        <a href="#" class="title">Zeon Zen 4 Pro</a>
-                                    </td>
-                                    <td class="product-image-title">
-                                        <a href="#" class="image"><img src="assets/images/compare/compare-2.png" alt="Compare Product"></a>
-                                        <a href="#" class="category">Doren</a>
-                                        <a href="#" class="title">Aquet Doren D 420</a>
-                                    </td>
-                                    <td class="product-image-title">
-                                        <a href="#" class="image"><img src="assets/images/compare/compare-3.png" alt="Compare Product"></a>
-                                        <a href="#" class="category">Games</a>
-                                        <a href="#" class="title">Game Station X 22</a>
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Description</td>
 
                                     @foreach (var item in Model.CompareViewModel.Items)
                                     {
-                                        <td class="pro-desc"><p>@item.Description</p></td>
+                                        <td class="pro-desc"><p>@item.Summary</p></td>
                                     }
-
-                                    <td class="pro-desc"><p>Samsome Note Book Pro 5 is the best Laptop on this budget. You can satisfy after usign this laptop. It’s performance is awesome. Designer’s love it.</p></td>
-                                    <td class="pro-desc"><p>Samsome Note Book Pro 5 is the best Laptop on this budget. You can satisfy after usign this laptop. It’s performance is awesome. Designer’s love it.</p></td>
-                                    <td class="pro-desc"><p>Samsome Note Book Pro 5 is the best Laptop on this budget. You can satisfy after usign this laptop. It’s performance is awesome. Designer’s love it.</p></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Price</td>
 
                                     @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-desc"><p>@item.UnitPrice</p></td>
+                                    {                                        
+                                        <td class="pro-price">$@item.UnitPrice</td>
                                     }
-
-                                    <td class="pro-price">$295</td>
-                                    <td class="pro-price">$275</td>
-                                    <td class="pro-price">$395</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Color</td>
@@ -73,22 +52,25 @@
                                     {
                                         <td class="pro-color">Black</td>
                                     }
-
-                                    <td class="pro-color">Black</td>
-                                    <td class="pro-color">Black</td>
-                                    <td class="pro-color">Black</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Stock</td>
 
                                     @foreach (var item in Model.CompareViewModel.Items)
                                     {
-                                        <td class="pro-desc"><p>@item.UnitsInStock</p></td>
+                                        <td class="pro-stock">
+                                            @if (item.UnitsInStock > 0)
+                                            {
+                                                @: In Stock
+                                            }
+                                            else
+                                            {
+                                                @: Not Available
+                                            }
+                                        </td>
                                     }
-
-                                    <td class="pro-stock">In Stock</td>
-                                    <td class="pro-stock">In Stock</td>
-                                    <td class="pro-stock">In Stock</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Add to cart</td>
@@ -96,16 +78,13 @@
                                     @foreach (var item in Model.CompareViewModel.Items)
                                     {
                                         <td class="pro-addtocart">
-                                            <form asp-page-handler="addtocart" method="post">
-                                                <button>add to cart</button>
+                                            <form asp-page-handler="AddToCart" method="post">
+                                                <a href="javascript:;" onclick="parentNode.submit();" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
                                                 <input type="hidden" asp-for="@item.Id" name="productId" />
                                             </form>
                                         </td>
-                                    }
-
-                                    <td class="pro-addtocart"><a href="#" class="add-to-cart" tabindex="0"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a></td>
-                                    <td class="pro-addtocart"><a href="#" class="add-to-cart" tabindex="0"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a></td>
-                                    <td class="pro-addtocart"><a href="#" class="add-to-cart" tabindex="0"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a></td>
+                                    }                                    
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Delete</td>
@@ -120,11 +99,7 @@
                                             </form>
                                         </td>
                                     }
-
-
-                                    <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
-                                    <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
-                                    <td class="pro-remove"><button><i class="fa fa-trash-o"></i></button></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="first-column">Rating</td>
@@ -139,28 +114,7 @@
                                             <i class="fa fa-star-o"></i>
                                         </td>
                                     }
-
-                                    <td class="pro-ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </td>
-                                    <td class="pro-ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </td>
-                                    <td class="pro-ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </td>
+                                    
                                 </tr>
                             </tbody>
                         </table>

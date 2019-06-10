@@ -682,10 +682,15 @@ namespace AspnetRun.Infrastructure.Data
             };
 
             var newProductWishlists = new List<ProductWishlist>()
-            {
+            {                
                 new ProductWishlist
                 {
-                    Product = aspnetrunContext.Products.FirstOrDefault(),
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+                    Wishlist = wishlists.FirstOrDefault()
+                },
+                new ProductWishlist
+                {
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault(),
                     Wishlist = wishlists.FirstOrDefault()
                 }
             };
@@ -713,7 +718,12 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new ProductCompare
                 {
-                    Product = aspnetrunContext.Products.FirstOrDefault(),
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).FirstOrDefault(),
+                    Compare = compares.FirstOrDefault()
+                },
+                new ProductCompare
+                {
+                    Product = aspnetrunContext.Products.Where(x => x.Id % 2 == 1).Skip(1).FirstOrDefault(),
                     Compare = compares.FirstOrDefault()
                 }
             };

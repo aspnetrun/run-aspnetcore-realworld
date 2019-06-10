@@ -6,7 +6,6 @@ using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Specifications;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
