@@ -30,7 +30,7 @@ namespace AspnetRun.Web.Services
 
         public async Task RemoveItem(int wishlistId, int productId)
         {
-            await _wishListAppService.RemoveItem(wishlistId, productId);            
+            await _wishListAppService.RemoveItem(wishlistId, productId);
         }
 
         public Task AddToCart(string userName, int productId)

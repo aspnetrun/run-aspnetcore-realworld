@@ -3,8 +3,6 @@ using AspnetRun.Web.ViewModels;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
@@ -22,18 +20,21 @@ namespace AspnetRun.Web.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }       
 
-        public Task<CompareViewModel> GetCompare(string userName)
+        public async Task<CompareViewModel> GetCompare(string userName)
         {
-            throw new NotImplementedException();
+            var compare = await _compareAppService.GetProductByUserName(userName);
+            var mapped = _mapper.Map<CompareViewModel>(compare);
+            return mapped;
         }
 
-        public Task RemoveItem(int compareId, int productId)
+        public async Task RemoveItem(int compareId, int productId)
         {
-            throw new NotImplementedException();
+            await _compareAppService.RemoveItem(compareId, productId);
         }
 
-        public Task AddToCart(string userName, int productId)
+        public async Task AddToCart(string userName, int productId)
         {
+            // TODO : Implement this
             throw new NotImplementedException();
         }
     }
