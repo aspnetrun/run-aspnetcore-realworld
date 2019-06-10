@@ -3,8 +3,10 @@ using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Specifications;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
@@ -46,9 +48,9 @@ namespace AspnetRun.Application.Services
         public async Task RemoveItem(int CompareId, int productId)
         {
             var spec = new CompareWithItemsSpecification(CompareId);
-            var Compare = (await _compareRepository.GetAsync(spec)).FirstOrDefault();
-            Compare.RemoveItem(productId);
-            await _compareRepository.UpdateAsync(Compare);
+            var compare = (await _compareRepository.GetAsync(spec)).FirstOrDefault();
+            compare.RemoveItem(productId);
+            await _compareRepository.UpdateAsync(compare);
         }
 
     }
