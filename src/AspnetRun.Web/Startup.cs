@@ -86,12 +86,14 @@ namespace AspnetRun.Web
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
+            services.AddScoped<ICompareRepository, CompareRepository>();
             
 
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IWishListService, WishListService>();
+            services.AddScoped<CompareService, CompareService>();
 
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper
@@ -99,6 +101,7 @@ namespace AspnetRun.Web
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
             services.AddScoped<IWishlistPageService, WishlistPageService>();
+            services.AddScoped<IComparePageService, ComparePageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();
