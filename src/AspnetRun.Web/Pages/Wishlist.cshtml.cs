@@ -20,19 +20,19 @@ namespace AspnetRun.Web.Pages
 
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {            
             var userName = this.User.Identity.Name;
             WishlistViewModel = await _wishlistService.GetWishlist(userName);
         }
 
-        public async Task<IActionResult> OnPostRemoveFromWishlist(int wishlistId, int productId)
+        public async Task<IActionResult> OnPostRemoveFromWishlistAsync(int wishlistId, int productId)
         {
             await _wishlistService.RemoveItem(wishlistId, productId);
             return RedirectToPage();
         }
 
-        public async Task<IActionResult> OnPostAddToCart(string userName, int productId)
+        public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {
             await _wishlistService.AddToCart(userName, productId);
             return RedirectToPage();

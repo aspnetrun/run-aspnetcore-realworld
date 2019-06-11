@@ -710,7 +710,7 @@ namespace AspnetRun.Infrastructure.Data
             {
                 new Compare
                 {
-                    UserName = "mehmetozkaya@gmail.com"                    
+                    UserName = "mehmetozkaya@gmail.com"
                 }
             };
 
