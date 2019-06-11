@@ -27,6 +27,18 @@ Here is implementation of aspnetrun-core template on real-world basic e-commerce
 
 AspnetRunRealWorld is an implementation of **e-commerce domain** with **Northwind database**.This managed with **layered architecture** for building modern web applications with latest ASP.NET Core & Web API & EF Core technologies. 
 
+## Whats Including In This Repository
+We have implemented below **features over the run-aspnetcore-basic boilerplate template**. You can change **real-world features** as your business requirements;
+* E&E e-commerce theme implementation
+* full development of e-commerce use cases of northwind database
+* business rule check, domain policy apply and validations
+* authentication, identity module and identity configuration
+* authorization for Products Page
+* asp.net core built-in dependency injection
+* aspnet core razor tools - View Components, partial Views, Tag Helpers, Model Bindings and Validations, Razor Sections etc.. 
+* configuration management
+* custom paging implementation
+
 ## Give a Star! :star:
 If you liked the project or if AspnetRun helped you, please **give a star**. And also please **fork** this repository and send us **pull-requests**. If you find any problem please open **issue**.
 
@@ -347,17 +359,3 @@ See also the list of [contributors](https://github.com/aspnetrun/run-core/contri
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 
-
-# run-core-sample
-This repository is ***under development***. It is **not finished yet**.
-It will include eCommerce Real world example of run-core based application.
-
-* paging
-* full use case of northwind
-* identity
-* authentication
-* authorization
-* business rule check, domain policy apply
-* validation
-* configuration
-* theme
