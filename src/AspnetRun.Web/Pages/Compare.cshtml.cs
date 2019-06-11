@@ -20,19 +20,19 @@ namespace AspnetRun.Web.Pages
 
         public CompareViewModel CompareViewModel { get; set; } = new CompareViewModel();
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             var userName = this.User.Identity.Name;
             CompareViewModel = await _compareService.GetCompare(userName);
         }
 
-        public async Task<IActionResult> OnPostRemoveFromCompare(int compareId, int productId)
+        public async Task<IActionResult> OnPostRemoveFromCompareAsync(int compareId, int productId)
         {
             await _compareService.RemoveItem(compareId, productId);
             return RedirectToPage();
         }
 
-        public async Task<IActionResult> OnPostAddToCart(string userName, int productId)
+        public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {
             await _compareService.AddToCart(userName, productId);
             return RedirectToPage();

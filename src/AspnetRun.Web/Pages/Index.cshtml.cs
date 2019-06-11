@@ -20,13 +20,12 @@ namespace AspnetRun.Web.Pages
         public IEnumerable<ProductViewModel> ProductList { get; set; } = new List<ProductViewModel>();
         public CategoryViewModel CategoryModel { get; set; } = new CategoryViewModel();
 
-        public async Task<IActionResult> OnGet()
+        public async Task OnGetAsync()
         {
             ProductList = await _indexPageService.GetProducts();
 
             //CategoryModel = await _indexPageService.GetCategoryWithProducts(1);
-            //ProductModel = await _indexPageService.GetProducts();
-            return Page();
+            //ProductModel = await _indexPageService.GetProducts();            
         }
     }
 }
