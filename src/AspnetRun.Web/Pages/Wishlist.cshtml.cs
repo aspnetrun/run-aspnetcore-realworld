@@ -11,11 +11,11 @@ namespace AspnetRun.Web.Pages
     [Authorize]
     public class WishlistModel : PageModel
     {
-        private readonly IWishlistPageService _wishlistService;
+        private readonly IWishlistPageService _wishlistPageService;
 
         public WishlistModel(IWishlistPageService wishlistService)
         {
-            _wishlistService = wishlistService ?? throw new ArgumentNullException(nameof(wishlistService));
+            _wishlistPageService = wishlistService ?? throw new ArgumentNullException(nameof(wishlistService));
         }
 
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
@@ -23,18 +23,18 @@ namespace AspnetRun.Web.Pages
         public async Task OnGetAsync()
         {            
             var userName = this.User.Identity.Name;
-            WishlistViewModel = await _wishlistService.GetWishlist(userName);
+            WishlistViewModel = await _wishlistPageService.GetWishlist(userName);
         }
 
         public async Task<IActionResult> OnPostRemoveFromWishlistAsync(int wishlistId, int productId)
         {
-            await _wishlistService.RemoveItem(wishlistId, productId);
+            await _wishlistPageService.RemoveItem(wishlistId, productId);
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {
-            await _wishlistService.AddToCart(userName, productId);
+            await _wishlistPageService.AddToCart(userName, productId);
             return RedirectToPage();
         }
     }

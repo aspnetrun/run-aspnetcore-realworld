@@ -11,11 +11,11 @@ namespace AspnetRun.Web.Pages
     [Authorize]
     public class CompareModel : PageModel
     {
-        private readonly IComparePageService _compareService;
+        private readonly IComparePageService _comparePageService;
 
         public CompareModel(IComparePageService CompareService)
         {
-            _compareService = CompareService ?? throw new ArgumentNullException(nameof(CompareService));
+            _comparePageService = CompareService ?? throw new ArgumentNullException(nameof(CompareService));
         }
 
         public CompareViewModel CompareViewModel { get; set; } = new CompareViewModel();
@@ -23,18 +23,18 @@ namespace AspnetRun.Web.Pages
         public async Task OnGetAsync()
         {
             var userName = this.User.Identity.Name;
-            CompareViewModel = await _compareService.GetCompare(userName);
+            CompareViewModel = await _comparePageService.GetCompare(userName);
         }
 
         public async Task<IActionResult> OnPostRemoveFromCompareAsync(int compareId, int productId)
         {
-            await _compareService.RemoveItem(compareId, productId);
+            await _comparePageService.RemoveItem(compareId, productId);
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {
-            await _compareService.AddToCart(userName, productId);
+            await _comparePageService.AddToCart(userName, productId);
             return RedirectToPage();
         }
     }

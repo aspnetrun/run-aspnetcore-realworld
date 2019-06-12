@@ -26,29 +26,16 @@ namespace AspnetRun.Application.Services
 
         public async Task<CompareModel> GetProductByUserName(string userName)
         {
-            var compare = await _compareRepository.GetByUserNameAsync(userName);
-
-            if (compare == null) // if it is first attempt create new
-            {
-                var newCompare = new Compare
-                {
-                    UserName = userName
-                };
-
-                await _compareRepository.AddAsync(newCompare);
-                var mapped = ObjectMapper.Mapper.Map<CompareModel>(newCompare);
-                return mapped;
-            }
+            var compare = await GetExistingOrCreateNewCompare(userName);
             
             var compareModel = ObjectMapper.Mapper.Map<CompareModel>(compare);
-
+            
             foreach (var item in compare.ProductCompares)
             {
                 var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
                 var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
                 compareModel.Items.Add(productModel);
             }
-
             return compareModel;
         }
 
@@ -58,6 +45,22 @@ namespace AspnetRun.Application.Services
             var compare = (await _compareRepository.GetAsync(spec)).FirstOrDefault();
             compare.RemoveItem(productId);
             await _compareRepository.UpdateAsync(compare);
+        }
+
+        private async Task<Compare> GetExistingOrCreateNewCompare(string userName)
+        {
+            var compare = await _compareRepository.GetByUserNameAsync(userName);
+            if (compare != null)
+                return compare;
+
+            // if it is first attempt create new
+            var newCompare = new Compare
+            {
+                UserName = userName
+            };
+
+            await _compareRepository.AddAsync(newCompare);
+            return newCompare;
         }
 
     }
