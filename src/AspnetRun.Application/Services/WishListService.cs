@@ -54,6 +54,7 @@ namespace AspnetRun.Application.Services
 
         public Task AddItem(string userName, int productId)
         {
+            // TODO : Implement this
             throw new NotImplementedException();
         }
 
@@ -63,6 +64,22 @@ namespace AspnetRun.Application.Services
             var wishlist = (await _wishlistRepository.GetAsync(spec)).FirstOrDefault();
             wishlist.RemoveItem(productId);
             await _wishlistRepository.UpdateAsync(wishlist);
+        }
+
+        private async Task<Wishlist> GetExistingOrCreateNewWishlist(string userName)
+        {
+            var wishlist = await _wishlistRepository.GetByUserNameAsync(userName);
+            if (wishlist != null)
+                return wishlist;
+
+            // if it is first attempt create new
+            var newWishlist = new Wishlist
+            {
+                UserName = userName
+            };
+
+            await _wishlistRepository.AddAsync(newWishlist);
+            return newWishlist;
         }
     }
 }
