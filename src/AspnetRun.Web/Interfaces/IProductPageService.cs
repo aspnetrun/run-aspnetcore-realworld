@@ -13,5 +13,10 @@ namespace AspnetRun.Web.Interfaces
         Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel);
         Task UpdateProduct(ProductViewModel productViewModel);
         Task DeleteProduct(ProductViewModel productViewModel);
+
+
+        Task AddToCart(string userName, int productId);
+        Task AddToWishlist(string userName, int productId);
+        Task AddToCompare(string userName, int productId);
     }
 }

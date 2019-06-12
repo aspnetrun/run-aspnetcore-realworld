@@ -28,23 +28,20 @@ namespace AspnetRun.Web.Pages
         }
         
         public async Task<IActionResult> OnPostAddToCartAsync(int productId)
-        {
-            var userName = this.User.Identity.Name;
-            //await _productPageService.AddToCart(userName, productId);
+        {            
+            await _productPageService.AddToCart(User.Identity.Name, productId);
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAddToWishlistAsync(int productId)
-        {
-            var userName = this.User.Identity.Name;
-            //await _productPageService.AddToWishlist(userName, productId);
+        {            
+            await _productPageService.AddToWishlist(User.Identity.Name, productId);
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAddToCompareAsync(int productId)
-        {
-            var userName = this.User.Identity.Name;
-            //await _productPageService.AddToCompare(userName, productId);
+        {            
+            await _productPageService.AddToCompare(User.Identity.Name, productId);
             return RedirectToPage();
         }
     }
