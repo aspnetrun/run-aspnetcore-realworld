@@ -10,11 +10,11 @@ namespace AspnetRun.Web.Services
 {
     public class WishlistPageService : IWishlistPageService
     {
-        private readonly IWishListService _wishListAppService;
+        private readonly IWishlistService _wishListAppService;
         private readonly IMapper _mapper;
         private readonly ILogger<WishlistPageService> _logger;
 
-        public WishlistPageService(IWishListService wishListAppService, IMapper mapper, ILogger<WishlistPageService> logger)
+        public WishlistPageService(IWishlistService wishListAppService, IMapper mapper, ILogger<WishlistPageService> logger)
         {
             _wishListAppService = wishListAppService ?? throw new ArgumentNullException(nameof(wishListAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

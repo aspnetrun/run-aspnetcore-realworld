@@ -10,10 +10,6 @@ namespace AspnetRun.Web.Interfaces
         Task<ProductViewModel> GetProductById(int productId);
         Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId);
         Task<IEnumerable<CategoryViewModel>> GetCategories();
-        Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel);
-        Task UpdateProduct(ProductViewModel productViewModel);
-        Task DeleteProduct(ProductViewModel productViewModel);
-
 
         Task AddToCart(string userName, int productId);
         Task AddToWishlist(string userName, int productId);

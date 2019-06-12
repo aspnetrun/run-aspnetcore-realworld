@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class WishListService : IWishListService
+    public class WishListService : IWishlistService
     {
         private readonly IWishlistRepository _wishlistRepository;
         private readonly IProductRepository _productRepository;
@@ -22,7 +22,7 @@ namespace AspnetRun.Application.Services
             _wishlistRepository = wishlistRepository ?? throw new ArgumentNullException(nameof(wishlistRepository));
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        }       
 
         public async Task<WishlistModel> GetProductByUserName(string userName)
         {
@@ -50,6 +50,11 @@ namespace AspnetRun.Application.Services
             }
 
             return wishlistModel;
+        }
+
+        public Task AddItem(string userName, int productId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task RemoveItem(int wishlistId, int productId)

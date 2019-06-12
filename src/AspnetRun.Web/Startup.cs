@@ -92,7 +92,7 @@ namespace AspnetRun.Web
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IWishListService, WishListService>();
+            services.AddScoped<IWishlistService, WishListService>();
             services.AddScoped<ICompareService, CompareService>();
 
             // Add Web Layer

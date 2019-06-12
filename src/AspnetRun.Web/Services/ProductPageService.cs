@@ -14,13 +14,18 @@ namespace AspnetRun.Web.Services
     {
         private readonly IProductService _productAppService;
         private readonly ICategoryService _categoryAppService;
+        private readonly IWishlistService _wishlistAppService;
+        private readonly ICompareService  _compareAppService;        
+
         private readonly IMapper _mapper;
         private readonly ILogger<ProductPageService> _logger;
 
-        public ProductPageService(IProductService productAppService, ICategoryService categoryAppService, IMapper mapper, ILogger<ProductPageService> logger)
+        public ProductPageService(IProductService productAppService, ICategoryService categoryAppService, IWishlistService wishlistAppService, ICompareService compareAppService, IMapper mapper, ILogger<ProductPageService> logger)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
+            _wishlistAppService = wishlistAppService ?? throw new ArgumentNullException(nameof(wishlistAppService));
+            _compareAppService = compareAppService ?? throw new ArgumentNullException(nameof(compareAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -60,37 +65,20 @@ namespace AspnetRun.Web.Services
             return mapped;
         }
 
-        public async Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)
+        public async Task AddToCart(string userName, int productId)
         {
-            var mapped = _mapper.Map<ProductModel>(productViewModel);
-            if (mapped == null)
-                throw new Exception($"Entity could not be mapped.");
-
-            var entityDto = await _productAppService.Create(mapped);
-            _logger.LogInformation($"Entity successfully added - IndexPageService");
-
-            var mappedViewModel = _mapper.Map<ProductViewModel>(entityDto);
-            return mappedViewModel;
+            throw new NotImplementedException();
         }
 
-        public async Task UpdateProduct(ProductViewModel productViewModel)
-        {
-            var mapped = _mapper.Map<ProductModel>(productViewModel);
-            if (mapped == null)
-                throw new Exception($"Entity could not be mapped.");
-
-            await _productAppService.Update(mapped);
-            _logger.LogInformation($"Entity successfully added - IndexPageService");
+        public async Task AddToWishlist(string userName, int productId)
+        {            
+            await _wishlistAppService.AddItem(userName, productId);
         }
 
-        public async Task DeleteProduct(ProductViewModel productViewModel)
+        public async Task AddToCompare(string userName, int productId)
         {
-            var mapped = _mapper.Map<ProductModel>(productViewModel);
-            if (mapped == null)
-                throw new Exception($"Entity could not be mapped.");
-
-            await _productAppService.Delete(mapped);
-            _logger.LogInformation($"Entity successfully added - IndexPageService");
+            throw new NotImplementedException();
         }
+
     }
 }
