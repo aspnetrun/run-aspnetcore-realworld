@@ -20,7 +20,7 @@ namespace AspnetRun.Web.Pages
         public IEnumerable<ProductViewModel> ProductList { get; set; } = new List<ProductViewModel>();
 
         [BindProperty(SupportsGet = true)]
-        public string SearchTerm { get; set; }
+        public string SearchTerm { get; set; } = string.Empty;
 
         public async Task OnGetAsync()
         {

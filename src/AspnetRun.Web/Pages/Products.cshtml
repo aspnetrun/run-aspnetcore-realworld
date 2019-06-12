@@ -87,14 +87,148 @@
                                 <p>Pages 1 of 25</p>
                             </div>
 
-                        </div><!-- Shop Top Bar End -->
+                        </div>
+                        <!-- Shop Top Bar End -->
 
                     </div>
                 </div>
 
-                
+
                 <!-- Shop Product Wrap Start -->
                 <div class="shop-product-wrap grid row">
+
+                    <!-- ASPNETRUN PRODUCTS -->
+                    @if (Model.ProductList.Any())
+                    {
+                        foreach (var item in Model.ProductList)
+                        {
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
+
+                                <!-- Product Start -->
+                                <div class="ee-product">
+
+                                    <!-- Image -->
+                                    <div class="image">
+                                        
+                                        <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="img"><img src="assets/images/product/@item.ImageFile" alt="Product Product"></a>
+
+                                        <div class="wishlist-compare">
+                                            <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+                                            <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+                                        </div>
+
+                                        <form asp-page-handler="AddToCart" method="post" name="addToCartForm" id="add_cart_form">
+                                            <a href="javascript:;" onclick="parentNode.submit();" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                                        </form>
+                                        @*<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>*@
+
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div class="content">
+
+                                        <!-- Category & Title -->
+                                        <div class="category-title">
+
+                                            <a href="#" class="cat">Laptop</a>
+                                            <h5 class="title"><a href="single-product.html">Zeon Zen 4 Pro</a></h5>
+
+                                        </div>
+
+                                        <!-- Price & Ratting -->
+                                        <div class="price-ratting">
+
+                                            <h5 class="price">$295.00</h5>
+                                            <div class="ratting">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- Product End -->
+                                <!-- Product List Start -->
+                                <div class="ee-product-list">
+
+                                    <!-- Image -->
+                                    <div class="image">
+
+                                        <a href="single-product.html" class="img"><img src="assets/images/product/product-1.png" alt="Product Image"></a>
+
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div class="content">
+
+                                        <!-- Category & Title -->
+                                        <div class="head-content">
+
+                                            <div class="category-title">
+                                                <a href="#" class="cat">Laptop</a>
+                                                <h5 class="title"><a href="single-product.html">Zeon Zen 4 Pro</a></h5>
+                                            </div>
+
+                                            <h5 class="price">$295.00</h5>
+
+                                        </div>
+
+                                        <div class="left-content">
+
+                                            <div class="ratting">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni res eos qui ratione voluptatem sequi nesciunt</p>
+                                            </div>
+
+                                            <div class="actions">
+
+                                                <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+
+                                                <div class="wishlist-compare">
+                                                    <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+                                                    <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="right-content">
+                                            <div class="specification">
+                                                <h5>Specifications</h5>
+                                                <ul>
+                                                    <li>Intel Core i7 Processor</li>
+                                                    <li>Zeon Z 170 Pro Motherboad</li>
+                                                    <li>16 GB RAM</li>
+                                                </ul>
+                                            </div>
+                                            <span class="availability">Availability: <span>In Stock</span></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- Product List End -->
+
+                            </div>
+                        }
+                    }
+
+
+                    <!-- ASPNETRUN PRODUCTS -->
+
 
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
 
@@ -145,7 +279,8 @@
 
                             </div>
 
-                        </div><!-- Product End -->
+                        </div>
+                        <!-- Product End -->
                         <!-- Product List Start -->
                         <div class="ee-product-list">
 
@@ -212,7 +347,8 @@
 
                             </div>
 
-                        </div><!-- Product List End -->
+                        </div>
+                        <!-- Product List End -->
 
                     </div>
 
@@ -1497,8 +1633,9 @@
                         </div><!-- Product List End -->
                     </div>
 
-                </div><!-- Shop Product Wrap End -->
-                
+                </div>
+                <!-- Shop Product Wrap End -->
+
                 <!-- Pagination -->
                 <div class="row mt-30">
                     <div class="col">
@@ -1517,7 +1654,7 @@
 
                     </div>
                 </div>
-
+                <!-- Pagination End -->
             </div>
 
         </div>
