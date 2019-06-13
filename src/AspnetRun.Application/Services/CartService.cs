@@ -29,9 +29,13 @@ namespace AspnetRun.Application.Services
 
             foreach (var item in cart.Items)
             {
+                var cartItemModel = ObjectMapper.Mapper.Map<CartItemModel>(item);
+
                 var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
                 var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
-                cartModel.Items.Add(productModel);
+                cartItemModel.Product = productModel;
+
+                cartModel.Items.Add(cartItemModel);
             }
             return cartModel;
         }
@@ -43,10 +47,10 @@ namespace AspnetRun.Application.Services
             await _cartRepository.UpdateAsync(cart);
         }
 
-        public async Task RemoveItem(int compareId, int productId)
+        public async Task RemoveItem(int cartId, int productId)
         {
-            var spec = new CartWithItemsSpecification(CartId);
-            var cart = (await _compareRepository.GetAsync(spec)).FirstOrDefault();
+            var spec = new CartWithItemsSpecification(cartId);
+            var cart = (await _cartRepository.GetAsync(spec)).FirstOrDefault();
             cart.RemoveItem(productId);
             await _cartRepository.UpdateAsync(cart);
         }
