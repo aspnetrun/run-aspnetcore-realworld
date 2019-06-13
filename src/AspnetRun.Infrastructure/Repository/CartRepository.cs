@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository.Base;
 
