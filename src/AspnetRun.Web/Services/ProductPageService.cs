@@ -14,6 +14,7 @@ namespace AspnetRun.Web.Services
     {
         private readonly IProductService _productAppService;
         private readonly ICategoryService _categoryAppService;
+        private readonly ICartService _cartAppService;
         private readonly IWishlistService _wishlistAppService;
         private readonly ICompareService  _compareAppService;        
 
