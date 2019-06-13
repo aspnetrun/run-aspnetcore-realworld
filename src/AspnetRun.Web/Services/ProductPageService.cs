@@ -68,7 +68,7 @@ namespace AspnetRun.Web.Services
 
         public async Task AddToCart(string userName, int productId)
         {
-            throw new NotImplementedException();
+            await _cartAppService.AddItem(userName, productId);            
         }
 
         public async Task AddToWishlist(string userName, int productId)

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
 
@@ -20,19 +22,49 @@ namespace AspnetRun.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task AddItem(string userName, int productId)
+        public async Task<CartModel> GetCartByUserName(string userName)
         {
-            throw new System.NotImplementedException();
+            var cart = await GetExistingOrCreateNewCart(userName);
+            var cartModel = ObjectMapper.Mapper.Map<CartModel>(cart);
+
+            foreach (var item in cart.Items)
+            {
+                var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
+                var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
+                cartModel.Items.Add(productModel);
+            }
+            return cartModel;
         }
 
-        public Task<CartModel> GetProductByUserName(string userName)
+        public async Task AddItem(string userName, int productId)
         {
-            throw new System.NotImplementedException();
+            var cart = await GetExistingOrCreateNewCart(userName);
+            cart.AddItem(productId);
+            await _cartRepository.UpdateAsync(cart);
         }
 
-        public Task RemoveItem(int compareId, int productId)
+        public async Task RemoveItem(int compareId, int productId)
         {
-            throw new System.NotImplementedException();
+            var spec = new CartWithItemsSpecification(CartId);
+            var cart = (await _compareRepository.GetAsync(spec)).FirstOrDefault();
+            cart.RemoveItem(productId);
+            await _cartRepository.UpdateAsync(cart);
+        }
+
+        private async Task<Cart> GetExistingOrCreateNewCart(string userName)
+        {
+            var cart = await _cartRepository.GetByUserNameAsync(userName);
+            if (cart != null)
+                return cart;
+
+            // if it is first attempt create new
+            var newCart = new Cart
+            {
+                UserName = userName
+            };
+
+            await _cartRepository.AddAsync(newCart);
+            return newCart;
         }
     }
 }
