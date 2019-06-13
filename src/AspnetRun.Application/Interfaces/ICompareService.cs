@@ -6,6 +6,7 @@ namespace AspnetRun.Application.Interfaces
     public interface ICompareService
     {
         Task<CompareModel> GetProductByUserName(string userName);
-        Task RemoveItem(int compareId, int productId);
+        Task AddItem(string userName, int productId);
+        Task RemoveItem(int compareId, int productId);        
     }
 }

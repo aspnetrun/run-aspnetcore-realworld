@@ -27,7 +27,7 @@ namespace AspnetRun.Application.Services
         public async Task<WishlistModel> GetProductByUserName(string userName)
         {
             var wishlist = await GetExistingOrCreateNewWishlist(userName);
-            var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);            
+            var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);
 
             foreach (var item in wishlist.ProductWishlists)
             {
@@ -39,10 +39,11 @@ namespace AspnetRun.Application.Services
             return wishlistModel;
         }
 
-        public Task AddItem(string userName, int productId)
+        public async Task AddItem(string userName, int productId)
         {
-            // TODO : Implement this
-            throw new NotImplementedException();
+            var wishlist = await GetExistingOrCreateNewWishlist(userName);
+            wishlist.AddItem(productId);
+            await _wishlistRepository.UpdateAsync(wishlist);            
         }
 
         public async Task RemoveItem(int wishlistId, int productId)

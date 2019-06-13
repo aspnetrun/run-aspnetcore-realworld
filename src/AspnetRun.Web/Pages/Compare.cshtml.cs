@@ -26,15 +26,15 @@ namespace AspnetRun.Web.Pages
             CompareViewModel = await _comparePageService.GetCompare(userName);
         }
 
-        public async Task<IActionResult> OnPostRemoveFromCompareAsync(int compareId, int productId)
-        {
-            await _comparePageService.RemoveItem(compareId, productId);
-            return RedirectToPage();
-        }
-
         public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {
             await _comparePageService.AddToCart(userName, productId);
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostRemoveFromCompareAsync(int compareId, int productId)
+        {
+            await _comparePageService.RemoveItem(compareId, productId);
             return RedirectToPage();
         }
     }

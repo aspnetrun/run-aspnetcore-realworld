@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Core.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,19 @@ namespace AspnetRun.Core.Entities
         public string UserName { get; set; }
         public List<ProductCompare> ProductCompares { get; set; } = new List<ProductCompare>();
 
+        public void AddItem(int productId)
+        {
+            var existingItem = ProductCompares.FirstOrDefault(x => x.ProductId == productId);
+            if (existingItem != null)
+                return;
+
+            ProductCompares.Add(new ProductCompare
+            {
+                ProductId = productId,
+                CompareId = this.Id
+            });
+        }
+
         public void RemoveItem(int productId)
         {
             var removedItem = ProductCompares.FirstOrDefault(x => x.ProductId == productId);
@@ -17,6 +31,6 @@ namespace AspnetRun.Core.Entities
             {
                 ProductCompares.Remove(removedItem);
             }
-        }
+        }       
     }
 }

@@ -76,8 +76,8 @@ namespace AspnetRun.Web.Services
         }
 
         public async Task AddToCompare(string userName, int productId)
-        {
-            throw new NotImplementedException();
+        {            
+            await _compareAppService.AddItem(userName, productId);            
         }
 
     }

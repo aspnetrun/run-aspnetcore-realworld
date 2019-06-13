@@ -22,7 +22,7 @@ namespace AspnetRun.Application.Services
             _compareRepository = compareRepository ?? throw new ArgumentNullException(nameof(compareRepository));
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        }        
 
         public async Task<CompareModel> GetProductByUserName(string userName)
         {
@@ -36,6 +36,13 @@ namespace AspnetRun.Application.Services
                 compareModel.Items.Add(productModel);
             }
             return compareModel;
+        }
+
+        public async Task AddItem(string userName, int productId)
+        {
+            var compare = await GetExistingOrCreateNewCompare(userName);
+            compare.AddItem(productId);
+            await _compareRepository.UpdateAsync(compare);            
         }
 
         public async Task RemoveItem(int CompareId, int productId)

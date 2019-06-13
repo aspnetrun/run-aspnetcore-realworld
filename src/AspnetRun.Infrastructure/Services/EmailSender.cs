@@ -11,7 +11,7 @@ namespace AspnetRun.Infrastructure.Services
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            // TODO: Wire this up to actual email sending logic via SendGrid, local SMTP, etc.
+            // Wire this up to actual email sending logic via SendGrid, local SMTP, etc.
             return Task.CompletedTask;
         }
     }

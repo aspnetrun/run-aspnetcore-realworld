@@ -10,7 +10,7 @@ using AspnetRun.Application.Interfaces;
 
 namespace AspnetRun.Application.Services
 {
-    // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+    // NOTE : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;

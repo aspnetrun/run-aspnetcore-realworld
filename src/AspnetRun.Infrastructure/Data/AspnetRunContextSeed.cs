@@ -15,7 +15,7 @@ namespace AspnetRun.Infrastructure.Data
 
             try
             {
-                // TODO: Only run this if using a real database
+                // NOTE : Only run this if using a real database
                 // aspnetrunContext.Database.Migrate();
                 // aspnetrunContext.Database.EnsureCreated();
 
