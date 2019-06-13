@@ -24,7 +24,7 @@ namespace AspnetRun.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }       
 
-        public async Task<WishlistModel> GetProductByUserName(string userName)
+        public async Task<WishlistModel> GetWishlistByUserName(string userName)
         {
             var wishlist = await GetExistingOrCreateNewWishlist(userName);
             var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);

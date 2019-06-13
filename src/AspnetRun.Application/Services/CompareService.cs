@@ -24,9 +24,9 @@ namespace AspnetRun.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }        
 
-        public async Task<CompareModel> GetProductByUserName(string userName)
+        public async Task<CompareModel> GetCompareByUserName(string userName)
         {
-            var compare = await GetExistingOrCreateNewCompare(userName);            
+            var compare = await GetExistingOrCreateNewCompare(userName);
             var compareModel = ObjectMapper.Mapper.Map<CompareModel>(compare);
             
             foreach (var item in compare.ProductCompares)

@@ -21,10 +21,10 @@ namespace AspnetRun.Web.Pages
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
 
         public async Task OnGetAsync()
-        {            
+        {
             var userName = this.User.Identity.Name;
             WishlistViewModel = await _wishlistPageService.GetWishlist(userName);
-        }        
+        }
 
         public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
         {

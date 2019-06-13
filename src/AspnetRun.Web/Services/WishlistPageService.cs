@@ -23,7 +23,7 @@ namespace AspnetRun.Web.Services
 
         public async Task<WishlistViewModel> GetWishlist(string userName)
         {
-            var wishlist = await _wishListAppService.GetProductByUserName(userName);
+            var wishlist = await _wishListAppService.GetWishlistByUserName(userName);
             var mapped = _mapper.Map<WishlistViewModel>(wishlist);
             return mapped;
         }

@@ -23,7 +23,7 @@ namespace AspnetRun.Web.Services
 
         public async Task<CompareViewModel> GetCompare(string userName)
         {
-            var compare = await _compareAppService.GetProductByUserName(userName);
+            var compare = await _compareAppService.GetCompareByUserName(userName);
             var mapped = _mapper.Map<CompareViewModel>(compare);
             return mapped;
         }
