@@ -26,21 +26,8 @@ namespace AspnetRun.Application.Services
 
         public async Task<WishlistModel> GetProductByUserName(string userName)
         {
-            var wishlist = await _wishlistRepository.GetByUserNameAsync(userName);
-
-            if (wishlist == null) // if it is first attempt create new
-            {
-                var newWishlist = new Wishlist
-                {
-                    UserName = userName
-                };
-
-                await _wishlistRepository.AddAsync(newWishlist);
-                var mapped = ObjectMapper.Mapper.Map<WishlistModel>(newWishlist);
-                return mapped;
-            }
-
-            var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);
+            var wishlist = await GetExistingOrCreateNewWishlist(userName);
+            var wishlistModel = ObjectMapper.Mapper.Map<WishlistModel>(wishlist);            
 
             foreach (var item in wishlist.ProductWishlists)
             {

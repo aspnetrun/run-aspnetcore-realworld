@@ -26,8 +26,7 @@ namespace AspnetRun.Application.Services
 
         public async Task<CompareModel> GetProductByUserName(string userName)
         {
-            var compare = await GetExistingOrCreateNewCompare(userName);
-            
+            var compare = await GetExistingOrCreateNewCompare(userName);            
             var compareModel = ObjectMapper.Mapper.Map<CompareModel>(compare);
             
             foreach (var item in compare.ProductCompares)
