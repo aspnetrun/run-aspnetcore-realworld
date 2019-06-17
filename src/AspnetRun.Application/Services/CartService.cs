@@ -45,6 +45,10 @@ namespace AspnetRun.Application.Services
         public async Task AddItem(string userName, int productId)
         {
             var cart = await GetExistingOrCreateNewCart(userName);
+
+            var product = await _productRepository.GetByIdAsync(productId);
+            // product.UnitPrice
+
             cart.AddItem(productId);
             await _cartRepository.UpdateAsync(cart);
         }

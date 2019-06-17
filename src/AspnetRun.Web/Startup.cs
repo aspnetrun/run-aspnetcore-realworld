@@ -85,6 +85,7 @@ namespace AspnetRun.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
             services.AddScoped<ICompareRepository, CompareRepository>();
             
@@ -92,6 +93,7 @@ namespace AspnetRun.Web
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICartService, CartService>();
             services.AddScoped<IWishlistService, WishListService>();
             services.AddScoped<ICompareService, CompareService>();
 
@@ -100,6 +102,7 @@ namespace AspnetRun.Web
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
+            // services.AddScoped<ICartPageService, CartPageService>();
             services.AddScoped<IWishlistPageService, WishlistPageService>();
             services.AddScoped<IComparePageService, ComparePageService>();
 

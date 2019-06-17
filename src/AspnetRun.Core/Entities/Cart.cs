@@ -10,7 +10,7 @@ namespace AspnetRun.Core.Entities
         public string UserName { get; set; }
         public List<CartItem> Items { get; set; } = new List<CartItem>();
 
-        public void AddItem(int productId, int quantity = 1, string color = "black")
+        public void AddItem(int productId, int quantity = 1, string color = "Black")
         {
             var existingItem = Items.FirstOrDefault(i => i.ProductId == productId);
 
@@ -25,7 +25,8 @@ namespace AspnetRun.Core.Entities
                     {
                         ProductId = productId,
                         Quantity = quantity,
-                        Color = color
+                        Color = color,
+                        // UnitPrice -- todo : you are here
                     });
             }
         }

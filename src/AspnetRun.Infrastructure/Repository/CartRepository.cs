@@ -12,7 +12,7 @@ namespace AspnetRun.Infrastructure.Repository
     {
         public CartRepository(AspnetRunContext dbContext) : base(dbContext)
         {
-        }        
+        }
 
         public async Task<Cart> GetByUserNameAsync(string userName)
         {

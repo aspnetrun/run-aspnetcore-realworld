@@ -21,10 +21,11 @@ namespace AspnetRun.Web.Services
         private readonly IMapper _mapper;
         private readonly ILogger<ProductPageService> _logger;
 
-        public ProductPageService(IProductService productAppService, ICategoryService categoryAppService, IWishlistService wishlistAppService, ICompareService compareAppService, IMapper mapper, ILogger<ProductPageService> logger)
+        public ProductPageService(IProductService productAppService, ICategoryService categoryAppService, ICartService cartAppService, IWishlistService wishlistAppService, ICompareService compareAppService, IMapper mapper, ILogger<ProductPageService> logger)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
+            _cartAppService = cartAppService ?? throw new ArgumentNullException(nameof(cartAppService));
             _wishlistAppService = wishlistAppService ?? throw new ArgumentNullException(nameof(wishlistAppService));
             _compareAppService = compareAppService ?? throw new ArgumentNullException(nameof(compareAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
