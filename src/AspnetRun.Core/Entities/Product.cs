@@ -32,7 +32,7 @@ namespace AspnetRun.Core.Entities
         public List<ProductRelatedProduct> ProductRelatedProducts { get; set; } = new List<ProductRelatedProduct>();
 
 
-        public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)
+        public static Product Create(int productId, int categoryId, string name, decimal unitPrice = 0, short? unitsInStock = null)
         {
             var product = new Product
             {
