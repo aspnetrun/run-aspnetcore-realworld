@@ -17,6 +17,7 @@ namespace AspnetRun.Core.Entities
             if (existingItem != null)
             {
                 existingItem.Quantity++;
+                existingItem.TotalPrice = existingItem.Quantity * existingItem.UnitPrice;
             }
             else
             {
@@ -26,7 +27,8 @@ namespace AspnetRun.Core.Entities
                         ProductId = productId,
                         Quantity = quantity,
                         Color = color,
-                        UnitPrice = unitPrice
+                        UnitPrice = unitPrice,
+                        TotalPrice = quantity * unitPrice
                     });
             }
         }

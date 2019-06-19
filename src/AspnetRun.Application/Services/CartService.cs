@@ -47,9 +47,7 @@ namespace AspnetRun.Application.Services
             var cart = await GetExistingOrCreateNewCart(userName);
 
             var product = await _productRepository.GetByIdAsync(productId);
-            // product.UnitPrice
-
-            cart.AddItem(productId);
+            cart.AddItem(productId, unitPrice:product.UnitPrice);
             await _cartRepository.UpdateAsync(cart);
         }
 
