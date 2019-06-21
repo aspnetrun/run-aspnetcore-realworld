@@ -21,19 +21,21 @@ namespace AspnetRun.Web.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task AddItem(string userName, int productId)
+        public async Task<CartViewModel> GetCart(string userName)
         {
-            throw new NotImplementedException();
+            var cart = await _cartAppService.GetCartByUserName(userName);
+            var mapped = _mapper.Map<CartViewModel>(cart);
+            return mapped;
         }
 
-        public Task<CartViewModel> GetCart(string userName)
+        public async Task AddItem(string userName, int productId)
         {
-            throw new NotImplementedException();
-        }
+            await _cartAppService.AddItem(userName, productId);
+        }        
 
-        public Task RemoveItem(int cartId, int productId)
+        public async Task RemoveItem(int cartId, int productId)
         {
-            throw new NotImplementedException();
+            await _cartAppService.RemoveItem(cartId, productId);
         }
     }
 }

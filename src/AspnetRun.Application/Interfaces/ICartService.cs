@@ -7,6 +7,6 @@ namespace AspnetRun.Application.Interfaces
     {
         Task<CartModel> GetCartByUserName(string userName);
         Task AddItem(string userName, int productId);
-        Task RemoveItem(int compareId, int productId);
+        Task RemoveItem(int cartId, int productId);
     }
 }
