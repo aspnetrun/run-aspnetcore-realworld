@@ -1,8 +1,6 @@
-﻿using AspnetRun.Web.ViewModels;
+﻿using AspnetRun.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Pages.Components.ShoppingCart
@@ -18,9 +16,8 @@ namespace AspnetRun.Web.Pages.Components.ShoppingCart
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var vm = new CartViewModel();
-            //vm = await GetCompareViewModelAsync();
-            return View(vm);
+            var cartViewModel = await _cartPageService.GetCart(User.Identity.Name);
+            return View(cartViewModel);
         }
 
 
