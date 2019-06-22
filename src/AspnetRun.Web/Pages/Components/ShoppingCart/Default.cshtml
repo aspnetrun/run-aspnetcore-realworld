@@ -16,7 +16,32 @@
 
     <!-- Mini Cart Products -->
     <ul class="mini-cart-products">
-        <li>
+
+        @if (Model.Items.Any())
+        {
+            @foreach (var item in Model.Items)
+            {
+                <li>
+                    <a asp-page="ProductDetail" asp-route-slug="@item.Product.Slug" class="image"><img src="assets/images/product/@item.Product.ImageFile" alt="Product Image"></a>
+                    <div class="content">
+                        <a asp-page="ProductDetail" asp-route-slug="@item.Product.Slug" class="title">@item.Product.Name</a>
+                        <span class="price">Price: @item.UnitPrice</span>
+                        <span class="qty">Qty: @item.Quantity</span>
+                    </div>
+
+                    <form asp-page-handler="removetocart" method="post">
+                        <button class="remove"><i class="fa fa-trash-o"></i></button>
+                        <input type="hidden" asp-for="@Model.Id" name="cartId" />
+                        <input type="hidden" asp-for="@item.Id" name="cartItemId" />
+                    </form>
+
+                </li>
+            }
+        }
+
+
+
+        @*<li>
             <a class="image"><img src="assets/images/product/product-1.png" alt="Product"></a>
             <div class="content">
                 <a href="single-product.html" class="title">Waxon Note Book Pro 5</a>
@@ -42,7 +67,7 @@
                 <span class="qty">Qty: 01</span>
             </div>
             <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
+        </li>*@
     </ul>
 
     <!-- Mini Cart Bottom -->
