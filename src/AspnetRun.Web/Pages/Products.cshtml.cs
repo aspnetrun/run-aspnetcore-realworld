@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspnetRun.Web.Pages
-{
+{    
     public class ProductsModel : PageModel
     {
         private readonly IProductPageService _productPageService;
@@ -29,6 +30,9 @@ namespace AspnetRun.Web.Pages
         
         public async Task<IActionResult> OnPostAddToCartAsync(int productId)
         {
+            if(!User.Identity.IsAuthenticated)
+                return RedirectToPage("/Login", new { area = "Identity" });
+
             await _productPageService.AddToCart(User.Identity.Name, productId);
             return RedirectToPage();
         }
