@@ -1,11 +1,10 @@
 ﻿using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace AspnetRun.Web.Pages.Shared.Components.ShoppingCart
+namespace AspnetRun.Web.Pages.Components.ShoppingCart
 {
     public class ShoppingCart : ViewComponent
     {
