@@ -11,15 +11,17 @@ namespace AspnetRun.Web.Services
     public class WishlistPageService : IWishlistPageService
     {
         private readonly IWishlistService _wishListAppService;
+        private readonly ICartService _cartAppService;
         private readonly IMapper _mapper;
         private readonly ILogger<WishlistPageService> _logger;
 
-        public WishlistPageService(IWishlistService wishListAppService, IMapper mapper, ILogger<WishlistPageService> logger)
+        public WishlistPageService(IWishlistService wishListAppService, ICartService cartAppService, IMapper mapper, ILogger<WishlistPageService> logger)
         {
             _wishListAppService = wishListAppService ?? throw new ArgumentNullException(nameof(wishListAppService));
+            _cartAppService = cartAppService ?? throw new ArgumentNullException(nameof(cartAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }       
+        }
 
         public async Task<WishlistViewModel> GetWishlist(string userName)
         {
@@ -33,10 +35,9 @@ namespace AspnetRun.Web.Services
             await _wishListAppService.RemoveItem(wishlistId, productId);
         }
 
-        public Task AddToCart(string userName, int productId)
+        public async Task AddToCart(string userName, int productId)
         {
-            // TODO : Implement this
-            throw new NotImplementedException();
+            await _cartAppService.AddItem(userName, productId);
         }
     }
 }

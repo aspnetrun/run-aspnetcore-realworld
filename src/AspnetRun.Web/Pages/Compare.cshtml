@@ -10,120 +10,125 @@
         <div class="row">
             <div class="col-12">
 
-                    <!-- Compare Table -->
-                    <div class="compare-table table-responsive">
-                        <table class="table mb-0">
-                            <tbody>
-                                <tr>
-                                    <td class="first-column">Product</td>
+                <!-- Compare Table -->
+                <div class="compare-table table-responsive">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="first-column">Product</td>
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="product-image-title">
-                                            <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="image"><img src="assets/images/product/@item.ImageFile" alt="Compare Product"></a>
-                                            <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="category">@item.Category.Name</a>
-                                            <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="title">@item.Name</a>
-                                        </td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Description</td>
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="product-image-title">
+                                        <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="image"><img src="assets/images/product/@item.ImageFile" alt="Compare Product"></a>
+                                        <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="category">@item.Category.Name</a>
+                                        <a asp-page="ProductDetail" asp-route-slug="@item.Slug" class="title">@item.Name</a>
+                                    </td>
+                                }
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-desc"><p>@item.Summary</p></td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Price</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Description</td>
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {                                        
-                                        <td class="pro-price">$@item.UnitPrice</td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Color</td>
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-desc"><p>@item.Summary</p></td>
+                                }
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-color">Black</td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Stock</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Price</td>
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-stock">
-                                            @if (item.UnitsInStock > 0)
-                                            {
-                                                @: In Stock
-                                            }
-                                            else
-                                            {
-                                                @: Not Available
-                                            }
-                                        </td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Add to cart</td>
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-price">$@item.UnitPrice</td>
+                                }
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-addtocart">
-                                            <form asp-page-handler="AddToCart" method="post">
-                                                <a href="javascript:;" onclick="parentNode.submit();" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-                                                <input type="hidden" asp-for="@item.Id" name="productId" />
-                                            </form>
-                                        </td>
-                                    }                                    
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Delete</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Color</td>
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-remove">
-                                            <form asp-page-handler="removefromcompare" method="post">
-                                                <button><i class="fa fa-trash-o"></i></button>
-                                                <input type="hidden" asp-for="@Model.CompareViewModel.Id" name="compareId" />
-                                                <input type="hidden" asp-for="@item.Id" name="productId" />
-                                            </form>
-                                        </td>
-                                    }
-                                    
-                                </tr>
-                                <tr>
-                                    <td class="first-column">Rating</td>
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-color">Black</td>
+                                }
 
-                                    @foreach (var item in Model.CompareViewModel.Items)
-                                    {
-                                        <td class="pro-ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </td>
-                                    }
-                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Stock</td>
 
-                
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-stock">
+                                        @if (item.UnitsInStock > 0)
+                                        {
+                                            @: In Stock
+                                        }
+                                        else
+                                        {
+                                            @: Not Available
+                                        }
+                                    </td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td class="first-column">Add to cart</td>
+
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-addtocart">
+                                        <form asp-page-handler="AddToCart" method="post">
+                                            <a href="javascript:;" onclick="parentNode.submit();" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                                            <input type="hidden" asp-for="@item.Id" name="productId" />
+                                        </form>
+                                    </td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td class="first-column">Delete</td>
+
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-remove">
+                                        <form asp-page-handler="removefromcompare" method="post">
+                                            <button><i class="fa fa-trash-o"></i></button>
+                                            <input type="hidden" asp-for="@Model.CompareViewModel.Id" name="compareId" />
+                                            <input type="hidden" asp-for="@item.Id" name="productId" />
+                                        </form>
+                                    </td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td class="first-column">Rating</td>
+
+                                @foreach (var item in Model.CompareViewModel.Items)
+                                {
+                                    <td class="pro-ratting">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </td>
+                                }
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
 
             </div>
         </div>
     </div>
 </div>
-<!-- Compare Page End --> 
+<!-- Compare Page End -->
+
+
+@section CartNotRequired {
+    <!-- Not need to render Shopping Cart in Cart Page -->
+}

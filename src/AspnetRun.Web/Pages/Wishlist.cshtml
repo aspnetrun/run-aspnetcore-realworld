@@ -9,52 +9,56 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-               
-                    <div class="cart-table table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="pro-thumbnail">Image</th>
-                                    <th class="pro-title">Product</th>
-                                    <th class="pro-price">Price</th>
-                                    <th class="pro-quantity">Quantity</th>
-                                    <th class="pro-subtotal">Total</th>
-                                    <th class="pro-remove">Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody>                                
-                                @foreach (var item in Model.WishlistViewModel.Items)
-                                {
-                                    <tr>
-                                        <td class="pro-thumbnail"><a asp-page="ProductDetail" asp-route-slug="@item.Slug"><img src="assets/images/product/@item.ImageFile" alt="Product"></a></td>
-                                        <td class="pro-title"><a href="#">@item.Name</a></td>
-                                        <td class="pro-price"><span>$@item.UnitPrice</span></td>
-                                        <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
-                                        
-                                        <td class="pro-addtocart">                                            
-                                            <form asp-page-handler="addtocart" method="post">
-                                                <button>add to cart</button>                                                
-                                                <input type="hidden" asp-for="@item.Id" name="productId" />
-                                            </form>
-                                        </td>
-                                        
-                                        <td class="pro-remove">
-                                            <form asp-page-handler="removefromwishlist" method="post">
-                                                <button><i class="fa fa-trash-o"></i></button>
-                                                <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
-                                                <input type="hidden" asp-for="@item.Id" name="productId" />
-                                            </form>
-                                        </td>
-                                    </tr>
-                                }                            
-                            </tbody>
-                        </table>
-                    </div>
 
-     
+                <div class="cart-table table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="pro-thumbnail">Image</th>
+                                <th class="pro-title">Product</th>
+                                <th class="pro-price">Price</th>
+                                <th class="pro-quantity">Quantity</th>
+                                <th class="pro-subtotal">Total</th>
+                                <th class="pro-remove">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.WishlistViewModel.Items)
+                            {
+                                <tr>
+                                    <td class="pro-thumbnail"><a asp-page="ProductDetail" asp-route-slug="@item.Slug"><img src="assets/images/product/@item.ImageFile" alt="Product"></a></td>
+                                    <td class="pro-title"><a href="#">@item.Name</a></td>
+                                    <td class="pro-price"><span>$@item.UnitPrice</span></td>
+                                    <td class="pro-quantity"><div class="pro-qty"><input type="text" value="1"></div></td>
+
+                                    <td class="pro-addtocart">
+                                        <form asp-page-handler="addtocart" method="post">
+                                            <button>add to cart</button>
+                                            <input type="hidden" asp-for="@item.Id" name="productId" />
+                                        </form>
+                                    </td>
+
+                                    <td class="pro-remove">
+                                        <form asp-page-handler="removefromwishlist" method="post">
+                                            <button><i class="fa fa-trash-o"></i></button>
+                                            <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
+                                            <input type="hidden" asp-for="@item.Id" name="productId" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
 
             </div>
         </div>
     </div>
 </div>
-<!-- Cart Page End --> 
+<!-- Cart Page End -->
+
+@section CartNotRequired {
+    <!-- Not need to render Shopping Cart in Cart Page -->
+}
