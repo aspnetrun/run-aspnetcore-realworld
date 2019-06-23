@@ -11,12 +11,14 @@ namespace AspnetRun.Web.Services
     public class ComparePageService : IComparePageService
     {
         private readonly ICompareService _compareAppService;
+        private readonly ICartService _cartAppService;
         private readonly IMapper _mapper;
         private readonly ILogger<ComparePageService> _logger;
 
-        public ComparePageService(ICompareService compareAppService, IMapper mapper, ILogger<ComparePageService> logger)
+        public ComparePageService(ICompareService compareAppService, ICartService cartAppService, IMapper mapper, ILogger<ComparePageService> logger)
         {
             _compareAppService = compareAppService ?? throw new ArgumentNullException(nameof(compareAppService));
+            _cartAppService = cartAppService ?? throw new ArgumentNullException(nameof(cartAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -35,8 +37,7 @@ namespace AspnetRun.Web.Services
 
         public async Task AddToCart(string userName, int productId)
         {
-            // TODO : Implement this
-            throw new NotImplementedException();
+            await _cartAppService.AddItem(userName, productId);
         }
     }
 }
