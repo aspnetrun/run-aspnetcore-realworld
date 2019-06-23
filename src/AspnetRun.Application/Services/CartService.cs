@@ -28,17 +28,6 @@ namespace AspnetRun.Application.Services
         {
             var cart = await GetExistingOrCreateNewCart(userName);
             var cartModel = ObjectMapper.Mapper.Map<CartModel>(cart);
-
-            foreach (var item in cart.Items)
-            {
-                var cartItemModel = ObjectMapper.Mapper.Map<CartItemModel>(item);
-
-                var product = await _productRepository.GetProductByIdWithCategoryAsync(item.ProductId);
-                var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
-                cartItemModel.Product = productModel;
-
-                cartModel.Items.Add(cartItemModel);
-            }
             return cartModel;
         }
 
