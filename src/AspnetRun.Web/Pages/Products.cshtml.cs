@@ -31,7 +31,7 @@ namespace AspnetRun.Web.Pages
         public async Task<IActionResult> OnPostAddToCartAsync(int productId)
         {
             if(!User.Identity.IsAuthenticated)
-                return RedirectToPage("/Login", new { area = "Identity" });
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
 
             await _productPageService.AddToCart(User.Identity.Name, productId);
             return RedirectToPage();
@@ -39,12 +39,18 @@ namespace AspnetRun.Web.Pages
 
         public async Task<IActionResult> OnPostAddToWishlistAsync(int productId)
         {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
+
             await _productPageService.AddToWishlist(User.Identity.Name, productId);
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAddToCompareAsync(int productId)
         {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
+
             await _productPageService.AddToCompare(User.Identity.Name, productId);
             return RedirectToPage();
         }
