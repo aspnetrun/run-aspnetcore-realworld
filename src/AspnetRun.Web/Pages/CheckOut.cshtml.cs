@@ -20,6 +20,9 @@ namespace AspnetRun.Web.Pages
 
         public CartViewModel CartViewModel { get; set; } = new CartViewModel();
 
+        [BindProperty]
+        public OrderViewModel Order { get; set; }
+
         public async Task OnGetAsync()
         {
             CartViewModel = await _checkOutPageService.GetCart(User.Identity.Name);
@@ -27,11 +30,13 @@ namespace AspnetRun.Web.Pages
 
         public async Task<IActionResult> OnPostCheckOutAsync()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //    return RedirectToPage("./Account/Login", new { area = "Identity" });
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            //await _productPageService.AddToCart(User.Identity.Name, productId);
-            return RedirectToPage();
+            // Order = await _checkOutPageService.CreateOrder(Order);
+            return RedirectToPage("./Index");
         }
     }
 }
