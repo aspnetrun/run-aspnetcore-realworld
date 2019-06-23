@@ -19,20 +19,20 @@
 
         @if (Model.Items.Any())
         {
-            @foreach (var item in Model.Items)
+            @foreach (var cartItem in Model.Items)
             {
                 <li>
-                    <a asp-page="ProductDetail" asp-route-slug="@item.Product.Slug" class="image"><img src="assets/images/product/@item.Product.ImageFile" alt="Product Image"></a>
+                    <a asp-page="ProductDetail" asp-route-slug="@cartItem.Product.Slug" class="image"><img src="assets/images/product/@cartItem.Product.ImageFile" alt="Product Image"></a>
                     <div class="content">
-                        <a asp-page="ProductDetail" asp-route-slug="@item.Product.Slug" class="title">@item.Product.Name</a>
-                        <span class="price">Price: @item.UnitPrice</span>
-                        <span class="qty">Qty: @item.Quantity</span>
+                        <a asp-page="ProductDetail" asp-route-slug="@cartItem.Product.Slug" class="title">@cartItem.Product.Name</a>
+                        <span class="price">Price: @cartItem.UnitPrice</span>
+                        <span class="qty">Qty: @cartItem.Quantity</span>
                     </div>
 
                     <form asp-page-handler="removetocart" method="post">
                         <button class="remove"><i class="fa fa-trash-o"></i></button>
                         <input type="hidden" asp-for="@Model.Id" name="cartId" />
-                        <input type="hidden" asp-for="@item.Id" name="cartItemId" />
+                        <input type="hidden" asp-for="@cartItem.Id" name="cartItemId" />
                     </form>
 
                 </li>
