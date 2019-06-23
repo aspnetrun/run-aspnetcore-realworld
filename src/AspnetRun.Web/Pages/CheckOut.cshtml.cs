@@ -18,11 +18,11 @@ namespace AspnetRun.Web.Pages
             _checkOutPageService = checkOutPageService ?? throw new ArgumentNullException(nameof(checkOutPageService));
         }
 
-        public CartViewModel CartModel { get; set; } = new CartViewModel();
+        public CartViewModel CartViewModel { get; set; } = new CartViewModel();
 
         public async Task OnGetAsync()
         {
-            CartModel = await _checkOutPageService.GetCart(User.Identity.Name);
+            CartViewModel = await _checkOutPageService.GetCart(User.Identity.Name);
         }
 
         public async Task<IActionResult> OnPostCheckOutAsync()

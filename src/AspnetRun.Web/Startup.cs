@@ -105,6 +105,7 @@ namespace AspnetRun.Web
             services.AddScoped<ICartPageService, CartPageService>();
             services.AddScoped<IWishlistPageService, WishlistPageService>();
             services.AddScoped<IComparePageService, ComparePageService>();
+            services.AddScoped<ICheckOutPageService, CheckOutPageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();
