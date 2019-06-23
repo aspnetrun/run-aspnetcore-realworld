@@ -1,12 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AspnetRun.Web.Interfaces;
+using AspnetRun.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspnetRun.Web.Pages
 {
+    [Authorize]
     public class CheckOutModel : PageModel
     {
         private readonly ICheckOutPageService _checkOutPageService;
@@ -16,19 +18,19 @@ namespace AspnetRun.Web.Pages
             _checkOutPageService = checkOutPageService ?? throw new ArgumentNullException(nameof(checkOutPageService));
         }
 
-        public IEnumerable<ProductViewModel> ProductList { get; set; } = new List<ProductViewModel>();
+        public CartViewModel CartModel { get; set; } = new CartViewModel();
 
         public async Task OnGetAsync()
         {
-            ProductList = await _productPageService.GetProducts(SearchTerm);
+            CartModel = await _checkOutPageService.GetCart(User.Identity.Name);
         }
 
-        public async Task<IActionResult> OnPostAddToCartAsync(int productId)
+        public async Task<IActionResult> OnPostCheckOutAsync()
         {
-            if (!User.Identity.IsAuthenticated)
-                return RedirectToPage("./Account/Login", new { area = "Identity" });
+            //if (!User.Identity.IsAuthenticated)
+            //    return RedirectToPage("./Account/Login", new { area = "Identity" });
 
-            await _productPageService.AddToCart(User.Identity.Name, productId);
+            //await _productPageService.AddToCart(User.Identity.Name, productId);
             return RedirectToPage();
         }
     }
