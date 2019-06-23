@@ -72,11 +72,11 @@
                         <partial name="_LoginPartial" />
 
                         @*<!-- Header Account Links Start -->
-                        <div class="header-account-links">
-                            <a asp-page="Register"><i class="icofont icofont-user-alt-7"></i> <span>my account</span></a>
-                            <a asp-page="Login"><i class="icofont icofont-login d-none"></i> <span>Login</span></a>
-                        </div>
-                        <!-- Header Account Links End -->*@
+                            <div class="header-account-links">
+                                <a asp-page="Register"><i class="icofont icofont-user-alt-7"></i> <span>my account</span></a>
+                                <a asp-page="Login"><i class="icofont icofont-login d-none"></i> <span>Login</span></a>
+                            </div>
+                            <!-- Header Account Links End -->*@
                     </div>
 
                 </div>
@@ -105,7 +105,7 @@
                                 <ul>
                                     <li class="active"><a asp-area="" asp-page="/Index">HOME</a></li>
                                     <li>
-                                        <a asp-area="" asp-page="/Products">Shop</a>                                       
+                                        <a asp-area="" asp-page="/Products">Shop</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">PAGES</a>
@@ -211,8 +211,15 @@
 
     </div>
     <!-- Header Section End -->
-    
-    <vc:shopping-cart></vc:shopping-cart>
+
+    @if (IsSectionDefined("CartNotRequired"))
+    {
+        RenderSection("CartNotRequired");
+    }
+    else
+    {
+        <vc:shopping-cart></vc:shopping-cart>
+    }
 
     @RenderBody();
 
