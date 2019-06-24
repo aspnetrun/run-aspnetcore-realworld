@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspnetRun.Web.ViewModels
 {
@@ -11,7 +9,6 @@ namespace AspnetRun.Web.ViewModels
         public AddressView BillingAddress { get; set; }
         public AddressView ShippingAddress { get; set; }
         public PaymentMethodView PaymentMethod { get; set; }
-        public OrderStatusView Status { get; set; }
         public decimal GrandTotal { get; set; }
 
         public List<OrderItemView> Items { get; set; } = new List<OrderItemView>();
@@ -19,6 +16,7 @@ namespace AspnetRun.Web.ViewModels
 
     public class AddressView
     {
+        [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
@@ -29,13 +27,6 @@ namespace AspnetRun.Web.ViewModels
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-    }
-
-    public enum OrderStatusView
-    {
-        Progress = 1,
-        OnShipping = 2,
-        Finished = 3
     }
 
     public enum PaymentMethodView

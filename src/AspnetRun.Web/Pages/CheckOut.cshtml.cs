@@ -38,5 +38,16 @@ namespace AspnetRun.Web.Pages
             // Order = await _checkOutPageService.CreateOrder(Order);
             return RedirectToPage("./Index");
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            //Product = await _productPageService.CreateProduct(Product);
+            return RedirectToPage("./Index");
+        }
     }
 }
