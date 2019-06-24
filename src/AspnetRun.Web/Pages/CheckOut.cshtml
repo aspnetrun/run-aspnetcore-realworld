@@ -210,7 +210,6 @@
                                         <span asp-validation-for="Order.ShippingAddress.ZipCode" class="text-danger"></span>
                                     </div>
 
-
                                 </div>
 
                             </div>
@@ -255,31 +254,31 @@
                                     <div class="checkout-payment-method">
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_check" name="payment-method" value="check">
+                                            <input asp-for="Order.PaymentMethod" type="radio" id="payment_check" name="payment-method" value="check">
                                             <label for="payment_check">Check Payment</label>
                                             <p data-method="check">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                         </div>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_bank" name="payment-method" value="bank">
+                                            <input asp-for="Order.PaymentMethod" type="radio" id="payment_bank" name="payment-method" value="bank">
                                             <label for="payment_bank">Direct Bank Transfer</label>
                                             <p data-method="bank">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                         </div>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_cash" name="payment-method" value="cash">
+                                            <input asp-for="Order.PaymentMethod" type="radio" id="payment_cash" name="payment-method" value="cash">
                                             <label for="payment_cash">Cash on Delivery</label>
                                             <p data-method="cash">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                         </div>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_paypal" name="payment-method" value="paypal">
+                                            <input asp-for="Order.PaymentMethod" type="radio" id="payment_paypal" name="payment-method" value="paypal">
                                             <label for="payment_paypal">Paypal</label>
                                             <p data-method="paypal">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                         </div>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_payoneer" name="payment-method" value="payoneer">
+                                            <input asp-for="Order.PaymentMethod" type="radio" id="payment_payoneer" name="payment-method" value="payoneer">
                                             <label for="payment_payoneer">Payoneer</label>
                                             <p data-method="payoneer">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                         </div>

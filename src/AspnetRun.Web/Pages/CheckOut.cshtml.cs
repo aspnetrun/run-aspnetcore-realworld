@@ -26,18 +26,7 @@ namespace AspnetRun.Web.Pages
         public async Task OnGetAsync()
         {
             CartViewModel = await _checkOutPageService.GetCart(User.Identity.Name);
-        }
-
-        public async Task<IActionResult> OnPostCheckOutAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            // Order = await _checkOutPageService.CreateOrder(Order);
-            return RedirectToPage("./Index");
-        }
+        }        
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -45,8 +34,9 @@ namespace AspnetRun.Web.Pages
             {
                 return Page();
             }
+            
+            await _checkOutPageService.CheckOut(Order);
 
-            //Product = await _productPageService.CreateProduct(Product);
             return RedirectToPage("./Index");
         }
     }
