@@ -29,8 +29,7 @@ namespace AspnetRun.Web.Services
         }
         
         public async Task CheckOut(OrderViewModel order, string userName)
-        {
-            
+        {            
             var cart = await GetCart(userName);
 
             // transform order items
