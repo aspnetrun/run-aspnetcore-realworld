@@ -58,65 +58,69 @@
                                 <div class="row">
 
                                     <div class="col-md-6 col-12 mb-20">
-
-                                        <label asp-for="Order.BillingAddress.FirstName" class="control-label"></label>
-                                        <input asp-for="Order.BillingAddress.FirstName" class="form-control" type="text" placeholder="First Name" />
+                                        <label asp-for="Order.BillingAddress.FirstName"></label>
+                                        <input asp-for="Order.BillingAddress.FirstName" type="text" placeholder="First Name" />
                                         <span asp-validation-for="Order.BillingAddress.FirstName" class="text-danger"></span>
-
-                                        <label>First Name*</label>
-                                        <input type="text" placeholder="First Name">
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>Last Name*</label>
-                                        <input type="text" placeholder="Last Name">
+                                        <label asp-for="Order.BillingAddress.LastName"></label>
+                                        <input asp-for="Order.BillingAddress.LastName" type="text" placeholder="Last Name" />
+                                        <span asp-validation-for="Order.BillingAddress.LastName" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>Email Address*</label>
-                                        <input type="email" placeholder="Email Address">
+                                        <label asp-for="Order.BillingAddress.EmailAddress"></label>
+                                        <input asp-for="Order.BillingAddress.EmailAddress" type="text" placeholder="Email Address" />
+                                        <span asp-validation-for="Order.BillingAddress.EmailAddress" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>Phone no*</label>
-                                        <input type="text" placeholder="Phone number">
+                                        <label asp-for="Order.BillingAddress.PhoneNo"></label>
+                                        <input asp-for="Order.BillingAddress.PhoneNo" type="text" placeholder="Phone number" />
+                                        <span asp-validation-for="Order.BillingAddress.PhoneNo" class="text-danger"></span>                                        
                                     </div>
 
                                     <div class="col-12 mb-20">
-                                        <label>Company Name</label>
-                                        <input type="text" placeholder="Company Name">
+                                        <label asp-for="Order.BillingAddress.CompanyName"></label>
+                                        <input asp-for="Order.BillingAddress.CompanyName" type="text" placeholder="Company Name" />
+                                        <span asp-validation-for="Order.BillingAddress.CompanyName" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-12 mb-20">
-                                        <label>Address*</label>
-                                        <input type="text" placeholder="Address line 1">
-                                        <input type="text" placeholder="Address line 2">
+                                        <label asp-for="Order.BillingAddress.AddressLine"></label>
+                                        <input asp-for="Order.BillingAddress.AddressLine" type="text" placeholder="Address Line" />
+                                        <span asp-validation-for="Order.BillingAddress.AddressLine" class="text-danger"></span>
                                     </div>
 
-                                    <div class="col-md-6 col-12 mb-20">
-                                        <label>Country*</label>
-                                        <select class="nice-select">
-                                            <option>Bangladesh</option>
+                                    <div class="col-md-6 col-12 mb-20">                                        
+                                        <label asp-for="Order.BillingAddress.Country"></label>
+                                        <select asp-for="Order.BillingAddress.Country" class="nice-select">
+                                            <option>Turkey</option>
                                             <option>China</option>
-                                            <option>country</option>
+                                            <option>Russia</option>
                                             <option>India</option>
                                             <option>Japan</option>
                                         </select>
+                                        <span asp-validation-for="Order.BillingAddress.Country" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>Town/City*</label>
-                                        <input type="text" placeholder="Town/City">
+                                        <label asp-for="Order.BillingAddress.City"></label>
+                                        <input asp-for="Order.BillingAddress.City" type="text" placeholder="City" />
+                                        <span asp-validation-for="Order.BillingAddress.City" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>State*</label>
-                                        <input type="text" placeholder="State">
+                                        <label asp-for="Order.BillingAddress.State"></label>
+                                        <input asp-for="Order.BillingAddress.State" type="text" placeholder="State" />
+                                        <span asp-validation-for="Order.BillingAddress.State" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 col-12 mb-20">
-                                        <label>Zip Code*</label>
-                                        <input type="text" placeholder="Zip Code">
+                                        <label asp-for="Order.BillingAddress.ZipCode"></label>
+                                        <input asp-for="Order.BillingAddress.ZipCode" type="text" placeholder="ZipCode" />
+                                        <span asp-validation-for="Order.BillingAddress.ZipCode" class="text-danger"></span>                                        
                                     </div>
 
                                     <div class="col-12 mb-20">

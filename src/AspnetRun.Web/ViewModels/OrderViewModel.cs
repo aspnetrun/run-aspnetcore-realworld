@@ -6,6 +6,7 @@ namespace AspnetRun.Web.ViewModels
     public class OrderViewModel
     {
         public string UserName { get; set; }
+        [Required]
         public AddressView BillingAddress { get; set; }
         public AddressView ShippingAddress { get; set; }
         public PaymentMethodView PaymentMethod { get; set; }
@@ -17,7 +18,7 @@ namespace AspnetRun.Web.ViewModels
     public class AddressView
     {
         [Required]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; }        
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNo { get; set; }
