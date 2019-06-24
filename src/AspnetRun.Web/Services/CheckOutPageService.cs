@@ -27,10 +27,34 @@ namespace AspnetRun.Web.Services
             var mapped = _mapper.Map<CartViewModel>(cart);
             return mapped;
         }
-
-        public Task CheckOut()
+        
+        public async Task CheckOut(OrderViewModel order, string userName)
         {
+            
+            var cart = await GetCart(userName);
+
+            // transform order items
+            TransformCartItemToOrderItem(order, cart);
+            
+
             throw new NotImplementedException();
+        }
+
+        private void TransformCartItemToOrderItem(OrderViewModel order, CartViewModel cart)
+        {
+            foreach (var cartItem in cart.Items)
+            {
+                order.Items.Add(
+                    new OrderItemView
+                    {
+                        Color = cartItem.Color,
+                        Quantity = cartItem.Quantity,
+                        UnitPrice = cartItem.UnitPrice,
+                        TotalPrice = cartItem.TotalPrice,
+                        ProductId = cartItem.ProductId,
+                        Product = cartItem.Product
+                    });
+            }
         }
     }
 }
