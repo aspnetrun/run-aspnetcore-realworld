@@ -36,8 +36,7 @@ namespace AspnetRun.Web.Pages
             }
             
             await _checkOutPageService.CheckOut(Order, User.Identity.Name);
-
             return RedirectToPage("./Index");
-        }
+        }        
     }
 }

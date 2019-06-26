@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using AspnetRun.Application.Models.Base;
+using System.Collections.Generic;
 
 namespace AspnetRun.Application.Models
 {
-    public class OrderModel
+    public class OrderModel : BaseModel
     {
         public string UserName { get; set; }
         public AddressModel BillingAddress { get; set; }

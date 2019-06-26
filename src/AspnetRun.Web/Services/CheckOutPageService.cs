@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Models;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
@@ -34,11 +35,14 @@ namespace AspnetRun.Web.Services
         {            
             var cart = await GetCart(userName);
             TransformCartItemToOrderItem(order, cart);
-            
-            //await _orderAppService.CheckOut()
+            SetUserNameOfOrder(order, userName);
+
+            // TODO : mapping here to OrderModel and call app.Checkout
+            var mappedOrderModel = _mapper.Map<OrderModel>(order);
+            await _orderAppService.CheckOut(mappedOrderModel);
 
             throw new NotImplementedException();
-        }
+        }        
 
         private void TransformCartItemToOrderItem(OrderViewModel order, CartViewModel cart)
         {
@@ -56,5 +60,11 @@ namespace AspnetRun.Web.Services
                     });
             }
         }
+
+        private void SetUserNameOfOrder(OrderViewModel order, string userName)
+        {
+            order.UserName = userName;
+        }
+
     }
 }
