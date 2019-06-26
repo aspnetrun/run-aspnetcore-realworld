@@ -11,12 +11,14 @@ namespace AspnetRun.Web.Services
     public class CheckOutPageService : ICheckOutPageService
     {
         private readonly ICartService _cartAppService;
+        private readonly IOrderService _orderAppService;
         private readonly IMapper _mapper;
         private readonly ILogger<CheckOutPageService> _logger;
 
-        public CheckOutPageService(ICartService cartAppService, IMapper mapper, ILogger<CheckOutPageService> logger)
+        public CheckOutPageService(ICartService cartAppService, IOrderService orderAppService, IMapper mapper, ILogger<CheckOutPageService> logger)
         {
             _cartAppService = cartAppService ?? throw new ArgumentNullException(nameof(cartAppService));
+            _orderAppService = orderAppService ?? throw new ArgumentNullException(nameof(orderAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -31,10 +33,9 @@ namespace AspnetRun.Web.Services
         public async Task CheckOut(OrderViewModel order, string userName)
         {            
             var cart = await GetCart(userName);
-
-            // transform order items
             TransformCartItemToOrderItem(order, cart);
             
+            //await _orderAppService.CheckOut()
 
             throw new NotImplementedException();
         }
