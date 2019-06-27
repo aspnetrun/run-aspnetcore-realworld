@@ -30,7 +30,7 @@ namespace AspnetRun.Application.Services
             var cartModel = ObjectMapper.Mapper.Map<CartModel>(cart);
 
             if (cart.Items.Any(c => c.Product == null)) // If product can not loaded from razor page, we apply manuel mapping
-            {                
+            {
                 cartModel.Items.Clear();
                 foreach (var item in cart.Items)
                 {
