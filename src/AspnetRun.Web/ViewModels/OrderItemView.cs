@@ -1,6 +1,8 @@
-﻿namespace AspnetRun.Web.ViewModels
+﻿using AspnetRun.Web.ViewModels.Base;
+
+namespace AspnetRun.Web.ViewModels
 {
-    public class OrderItemView
+    public class OrderItemView : BaseViewModel
     {
         public int Quantity { get; set; }
         public string Color { get; set; }

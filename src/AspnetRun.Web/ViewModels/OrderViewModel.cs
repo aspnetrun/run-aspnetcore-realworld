@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using AspnetRun.Web.ViewModels.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AspnetRun.Web.ViewModels
 {
-    public class OrderViewModel
+    public class OrderViewModel : BaseViewModel
     {
         public string UserName { get; set; }
         [Required]
         public AddressViewRequired BillingAddress { get; set; }
         public AddressView ShippingAddress { get; set; }
         public PaymentMethodView PaymentMethod { get; set; }
+        public int Status { get; set; } = 1; // Processing
+
         public List<OrderItemView> Items { get; set; } = new List<OrderItemView>();
 
         public decimal GrandTotal
