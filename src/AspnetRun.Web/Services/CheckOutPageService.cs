@@ -36,8 +36,7 @@ namespace AspnetRun.Web.Services
             var cart = await GetCart(userName);
             TransformCartItemToOrderItem(order, cart);
             SetUserNameOfOrder(order, userName);
-
-            // TODO : mapping here to OrderModel and call app.Checkout
+            
             var mappedOrderModel = _mapper.Map<OrderModel>(order);
             await _orderAppService.CheckOut(mappedOrderModel);            
         }        

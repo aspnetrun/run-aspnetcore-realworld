@@ -31,8 +31,6 @@ namespace AspnetRun.Application.Services
             var newEntity = await _orderRepository.AddAsync(mappedEntity);
             _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
 
-            // TODO : add order items also
-
             var newMappedEntity = ObjectMapper.Mapper.Map<OrderModel>(newEntity);
             return newMappedEntity;
         }
