@@ -5,6 +5,6 @@ namespace AspnetRun.Application.Interfaces
 {
     public interface IOrderService
     {        
-        Task CheckOut(OrderModel order);
+        Task CheckOut(OrderModel orderModel);
     }
 }
