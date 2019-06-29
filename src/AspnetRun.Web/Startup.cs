@@ -88,6 +88,7 @@ namespace AspnetRun.Web
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
             services.AddScoped<ICompareRepository, CompareRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             
 
             // Add Application Layer

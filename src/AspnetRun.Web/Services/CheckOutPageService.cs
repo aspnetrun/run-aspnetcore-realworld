@@ -39,9 +39,7 @@ namespace AspnetRun.Web.Services
 
             // TODO : mapping here to OrderModel and call app.Checkout
             var mappedOrderModel = _mapper.Map<OrderModel>(order);
-            await _orderAppService.CheckOut(mappedOrderModel);
-
-            throw new NotImplementedException();
+            await _orderAppService.CheckOut(mappedOrderModel);            
         }        
 
         private void TransformCartItemToOrderItem(OrderViewModel order, CartViewModel cart)

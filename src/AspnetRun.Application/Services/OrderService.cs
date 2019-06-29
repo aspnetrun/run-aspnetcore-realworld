@@ -3,6 +3,7 @@ using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Models;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Repositories;
 using System;
 using System.Threading.Tasks;
 
@@ -39,7 +40,6 @@ namespace AspnetRun.Application.Services
         private void ValidateOrder(OrderModel orderModel)
         {
             // TODO : apply validations - i.e. - customer has only 3 order or order item should be low than 5 etc..
-
             if (string.IsNullOrWhiteSpace(orderModel.UserName))
             {
                 throw new ApplicationException($"Order username must be defined");
