@@ -32,6 +32,7 @@ namespace AspnetRun.Web.Pages
         {
             if (!ModelState.IsValid)
             {
+                CartViewModel = await _checkOutPageService.GetCart(User.Identity.Name);
                 return Page();
             }
             
