@@ -8,11 +8,10 @@ namespace AspnetRun.Application.Services
     public class OrderService : IOrderService
     {
         // TODO : apply validations - i.e. - customer has only 3 order or order item should be low than 5 etc..
-        public Task CheckOut(OrderModel orderModel)
+        public async Task CheckOut(OrderModel orderModel)
         {
             
-
-            await ValidateProductIfExist(productModel);
+            ValidateOrder(orderModel);
 
             var mappedEntity = ObjectMapper.Mapper.Map<Product>(productModel);
             if (mappedEntity == null)
@@ -27,12 +26,17 @@ namespace AspnetRun.Application.Services
             throw new NotImplementedException();
         }
 
-        private async Task ValidateProductIfExist(ProductModel productModel)
+        private void ValidateOrder(OrderModel orderModel)
         {
-            var existingEntity = await _productRepository.GetByIdAsync(productModel.Id);
-            if (existingEntity != null)
-                throw new ApplicationException($"{productModel.ToString()} with this id already exists");
-        }
+            if (string.IsNullOrWhiteSpace(orderModel.UserName))
+            {
+                throw new ApplicationException($"Order username must be defined");
+            }
 
+            if (orderModel.Items.Count == 0)
+            {
+                throw new ApplicationException($"Order should have at least one item");
+            }
+        }
     }
 }
