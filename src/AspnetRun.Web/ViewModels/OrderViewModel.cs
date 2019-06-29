@@ -10,9 +10,21 @@ namespace AspnetRun.Web.ViewModels
         public AddressViewRequired BillingAddress { get; set; }
         public AddressView ShippingAddress { get; set; }
         public PaymentMethodView PaymentMethod { get; set; }
-        public decimal GrandTotal { get; set; }
-
         public List<OrderItemView> Items { get; set; } = new List<OrderItemView>();
+
+        public decimal GrandTotal
+        {
+            get
+            {
+                decimal grandTotal = 0;
+                foreach (var item in Items)
+                {
+                    grandTotal += item.TotalPrice;
+                }
+
+                return grandTotal;
+            }
+        }
     }
 
     public class AddressViewRequired

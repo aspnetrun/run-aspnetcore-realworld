@@ -28,6 +28,7 @@ namespace AspnetRun.Application.Mapper
                 cfg.CreateMap<Category, CategoryModel>().ReverseMap();
                 cfg.CreateMap<Wishlist, WishlistModel>().ReverseMap();
                 cfg.CreateMap<Compare, CompareModel>().ReverseMap();
+                cfg.CreateMap<Order, OrderModel>().ReverseMap();
             });
         }
     }
