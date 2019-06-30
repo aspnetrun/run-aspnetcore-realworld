@@ -29,7 +29,7 @@ namespace AspnetRun.Application.Services
             var cart = await GetExistingOrCreateNewCart(userName);
             var cartModel = ObjectMapper.Mapper.Map<CartModel>(cart);
 
-            if (cart.Items.Any(c => c.Product == null)) // If product can not loaded from razor page, we apply manuel mapping
+            if (cart.Items.Any(c => c.Product == null)) // If product can not loaded from razor page, we apply manuel mapping.
             {
                 cartModel.Items.Clear();
                 foreach (var item in cart.Items)
@@ -76,6 +76,11 @@ namespace AspnetRun.Application.Services
 
             await _cartRepository.AddAsync(newCart);
             return newCart;
+        }
+
+        public Task ClearCart(string userName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

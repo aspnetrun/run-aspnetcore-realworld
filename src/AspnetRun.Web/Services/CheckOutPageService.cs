@@ -38,8 +38,10 @@ namespace AspnetRun.Web.Services
             SetUserNameOfOrder(order, userName);
             
             var mappedOrderModel = _mapper.Map<OrderModel>(order);
-            await _orderAppService.CheckOut(mappedOrderModel);            
-        }        
+            await _orderAppService.CheckOut(mappedOrderModel);
+
+            await _cartAppService.ClearCart(userName);
+        }
 
         private void TransformCartItemToOrderItem(OrderViewModel order, CartViewModel cart)
         {
