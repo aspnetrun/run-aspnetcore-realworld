@@ -25,6 +25,11 @@ namespace AspnetRun.Infrastructure.Repository
             // return await GetAllAsync();
         }
 
+        public Task<Product> GetProductBySlug(string slug)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
         {
             var spec = new ProductWithCategorySpecification(productName);
@@ -51,5 +56,6 @@ namespace AspnetRun.Infrastructure.Repository
                 .Where(x => x.CategoryId==categoryId)
                 .ToListAsync();
         }
+        
     }
 }

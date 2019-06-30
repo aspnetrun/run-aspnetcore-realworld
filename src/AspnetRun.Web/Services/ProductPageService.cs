@@ -52,9 +52,11 @@ namespace AspnetRun.Web.Services
             return mapped;
         }
 
-        public Task<ProductViewModel> GetProductBySlug(string slug)
+        public async Task<ProductViewModel> GetProductBySlug(string slug)
         {
-            throw new NotImplementedException();
+            var product = await _productAppService.GetProductBySlug(slug);
+            var mapped = _mapper.Map<ProductViewModel>(product);
+            return mapped;
         }
 
         public async Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId)

@@ -36,6 +36,13 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
+        public async Task<ProductModel> GetProductBySlug(string slug)
+        {
+            var product = await _productRepository.GetProductBySlug(slug);
+            var mapped = ObjectMapper.Mapper.Map<ProductModel>(product);
+            return mapped;
+        }
+
         public async Task<IEnumerable<ProductModel>> GetProductByName(string productName)
         {
             var productList = await _productRepository.GetProductByNameAsync(productName);
@@ -102,6 +109,6 @@ namespace AspnetRun.Application.Services
             var existingEntity = _productRepository.GetByIdAsync(productModel.Id);
             if (existingEntity == null)
                 throw new ApplicationException($"{productModel.ToString()} with this id is not exists");
-        }
+        }        
     }
 }
