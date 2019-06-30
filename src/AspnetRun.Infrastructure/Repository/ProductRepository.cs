@@ -25,9 +25,10 @@ namespace AspnetRun.Infrastructure.Repository
             // return await GetAllAsync();
         }
 
-        public Task<Product> GetProductBySlug(string slug)
+        public async Task<Product> GetProductBySlug(string slug)
         {
-            throw new System.NotImplementedException();
+            var spec = new ProductSlugSpecification(slug);
+            return (await GetAsync(spec)).FirstOrDefault();
         }
 
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
