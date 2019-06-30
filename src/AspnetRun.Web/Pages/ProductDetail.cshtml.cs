@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
@@ -25,33 +23,31 @@ namespace AspnetRun.Web.Pages
             Product = await _productPageService.GetProductBySlug(slug);
         }
 
-        //public async Task<IActionResult> OnPostAddToCartAsync(int productId)
-        //{
-        //    if (!User.Identity.IsAuthenticated)
-        //        return RedirectToPage("./Account/Login", new { area = "Identity" });
+        public async Task<IActionResult> OnPostAddToCartAsync(int productId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
 
-        //    await _productPageService.AddToCart(User.Identity.Name, productId);
-        //    return RedirectToPage();
-        //}
+            await _productPageService.AddToCart(User.Identity.Name, productId);
+            return RedirectToPage();
+        }
 
-        //public async Task<IActionResult> OnPostAddToWishlistAsync(int productId)
-        //{
-        //    if (!User.Identity.IsAuthenticated)
-        //        return RedirectToPage("./Account/Login", new { area = "Identity" });
+        public async Task<IActionResult> OnPostAddToWishlistAsync(int productId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
 
-        //    await _productPageService.AddToWishlist(User.Identity.Name, productId);
-        //    return RedirectToPage();
-        //}
+            await _productPageService.AddToWishlist(User.Identity.Name, productId);
+            return RedirectToPage();
+        }
 
-        //public async Task<IActionResult> OnPostAddToCompareAsync(int productId)
-        //{
-        //    if (!User.Identity.IsAuthenticated)
-        //        return RedirectToPage("./Account/Login", new { area = "Identity" });
+        public async Task<IActionResult> OnPostAddToCompareAsync(int productId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
 
-        //    await _productPageService.AddToCompare(User.Identity.Name, productId);
-        //    return RedirectToPage();
-        //}
-
-
+            await _productPageService.AddToCompare(User.Identity.Name, productId);
+            return RedirectToPage();
+        }
     }
 }
