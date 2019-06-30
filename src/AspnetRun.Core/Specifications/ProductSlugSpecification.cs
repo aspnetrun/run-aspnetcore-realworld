@@ -9,6 +9,9 @@ namespace AspnetRun.Core.Specifications
             : base(p => p.Slug.ToLower().Contains(slug.ToLower()))
         {
             AddInclude(p => p.Category);
+            AddInclude(p => p.Specifications);
+            AddInclude(p => p.Reviews);
+            AddInclude(p => p.Tags);
         }
     }
 }
