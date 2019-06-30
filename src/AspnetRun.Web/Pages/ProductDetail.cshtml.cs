@@ -18,11 +18,11 @@ namespace AspnetRun.Web.Pages
             _productPageService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
 
-        public ProductViewModel Product { get; set; } = new ProductViewModel();        
+        public ProductViewModel Product { get; set; } = new ProductViewModel();
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string slug)
         {
-            //Product = await _productPageService.GetProducts(SearchTerm);
+            Product = await _productPageService.GetProductBySlug(slug);
         }
 
         //public async Task<IActionResult> OnPostAddToCartAsync(int productId)

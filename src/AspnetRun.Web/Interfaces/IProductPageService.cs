@@ -8,6 +8,7 @@ namespace AspnetRun.Web.Interfaces
     {
         Task<IEnumerable<ProductViewModel>> GetProducts(string productName);
         Task<ProductViewModel> GetProductById(int productId);
+        Task<ProductViewModel> GetProductBySlug(string slug);
         Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId);
         Task<IEnumerable<CategoryViewModel>> GetCategories();
 

@@ -52,6 +52,11 @@ namespace AspnetRun.Web.Services
             return mapped;
         }
 
+        public Task<ProductViewModel> GetProductBySlug(string slug)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId)
         {
             var list = await _productAppService.GetProductByCategory(categoryId);
@@ -79,7 +84,6 @@ namespace AspnetRun.Web.Services
         public async Task AddToCompare(string userName, int productId)
         {            
             await _compareAppService.AddItem(userName, productId);            
-        }
-
+        }        
     }
 }
