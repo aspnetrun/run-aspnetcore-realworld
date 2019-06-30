@@ -40,5 +40,10 @@ namespace AspnetRun.Core.Entities
                 Items.Remove(removedItem);
             }
         }
+
+        public void ClearItems()
+        {
+            Items.Clear();       
+        }
     }
 }

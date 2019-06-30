@@ -78,9 +78,15 @@ namespace AspnetRun.Application.Services
             return newCart;
         }
 
-        public Task ClearCart(string userName)
+        public async Task ClearCart(string userName)
         {
-            throw new NotImplementedException();
+            var cart = await _cartRepository.GetByUserNameAsync(userName);
+            if (cart == null)
+                throw new ApplicationException("Submitted order should have cart");
+
+            cart.ClearItems();
+
+            await _cartRepository.UpdateAsync(cart);
         }
     }
 }
