@@ -17,10 +17,11 @@ namespace AspnetRun.Web.Pages
         }
 
         public ProductViewModel Product { get; set; } = new ProductViewModel();
-
+        
         public async Task OnGetAsync(string slug)
         {
             Product = await _productPageService.GetProductBySlug(slug);
+            TempData["Slug"] = slug;
         }
 
         public async Task<IActionResult> OnPostAddToCartAsync(int productId)
@@ -28,8 +29,8 @@ namespace AspnetRun.Web.Pages
             if (!User.Identity.IsAuthenticated)
                 return RedirectToPage("./Account/Login", new { area = "Identity" });
 
-            await _productPageService.AddToCart(User.Identity.Name, productId);
-            return RedirectToPage();
+            await _productPageService.AddToCart(User.Identity.Name, productId);            
+            return RedirectToPage(new { slug = TempData["Slug"].ToString() });            
         }
 
         public async Task<IActionResult> OnPostAddToWishlistAsync(int productId)
