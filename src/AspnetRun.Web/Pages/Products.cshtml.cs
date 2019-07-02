@@ -58,14 +58,9 @@ namespace AspnetRun.Web.Pages
 
         public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
         {
-            // TODO : you are here - burada cart tan item sil
-            if (!User.Identity.IsAuthenticated)
-                return RedirectToPage("./Account/Login", new { area = "Identity" });
-
             await _cartComponentService.RemoveItem(cartId, cartItemId);
             return RedirectToPage();
         }
-
 
     }
 }
