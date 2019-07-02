@@ -13,8 +13,9 @@ namespace AspnetRun.Web.Pages
         private readonly IIndexPageService _indexPageService;
         private readonly ICartComponentService _cartComponentService;
 
-        public IndexModel(IIndexPageService indexPageService, ICartComponentService cartComponentService) : this(indexPageService)
+        public IndexModel(IIndexPageService indexPageService, ICartComponentService cartComponentService)
         {
+            _indexPageService = indexPageService ?? throw new ArgumentNullException(nameof(indexPageService));
             _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 

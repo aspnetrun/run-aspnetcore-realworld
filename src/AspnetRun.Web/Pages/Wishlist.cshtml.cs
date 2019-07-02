@@ -12,10 +12,12 @@ namespace AspnetRun.Web.Pages
     public class WishlistModel : PageModel
     {
         private readonly IWishlistPageService _wishlistPageService;
+        private readonly ICartComponentService _cartComponentService;
 
-        public WishlistModel(IWishlistPageService wishlistService)
+        public WishlistModel(IWishlistPageService wishlistPageService, ICartComponentService cartComponentService)
         {
-            _wishlistPageService = wishlistService ?? throw new ArgumentNullException(nameof(wishlistService));
+            _wishlistPageService = wishlistPageService ?? throw new ArgumentNullException(nameof(wishlistPageService));
+            _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 
         public WishlistViewModel WishlistViewModel { get; set; } = new WishlistViewModel();
@@ -35,6 +37,12 @@ namespace AspnetRun.Web.Pages
         public async Task<IActionResult> OnPostRemoveFromWishlistAsync(int wishlistId, int productId)
         {
             await _wishlistPageService.RemoveItem(wishlistId, productId);
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
+        {
+            await _cartComponentService.RemoveItem(cartId, cartItemId);
             return RedirectToPage();
         }
     }

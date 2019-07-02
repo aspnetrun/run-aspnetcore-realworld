@@ -12,10 +12,12 @@ namespace AspnetRun.Web.Pages
     public class CompareModel : PageModel
     {
         private readonly IComparePageService _comparePageService;
+        private readonly ICartComponentService _cartComponentService;
 
-        public CompareModel(IComparePageService CompareService)
+        public CompareModel(IComparePageService comparePageService, ICartComponentService cartComponentService)
         {
-            _comparePageService = CompareService ?? throw new ArgumentNullException(nameof(CompareService));
+            _comparePageService = comparePageService ?? throw new ArgumentNullException(nameof(comparePageService));
+            _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 
         public CompareViewModel CompareViewModel { get; set; } = new CompareViewModel();
@@ -35,6 +37,12 @@ namespace AspnetRun.Web.Pages
         public async Task<IActionResult> OnPostRemoveFromCompareAsync(int compareId, int productId)
         {
             await _comparePageService.RemoveItem(compareId, productId);
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
+        {
+            await _cartComponentService.RemoveItem(cartId, cartItemId);
             return RedirectToPage();
         }
     }
