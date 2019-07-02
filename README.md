@@ -1,6 +1,6 @@
 Here is **implementation of aspnetrun-core base** on real-world **e-commerce web application** project;
 
-![Recordit GIF](http://g.recordit.co/RdO0bFztPK.gif)
+![Recordit GIF](http://g.recordit.co/bfktvkE4BL.gif)
 
 **AspnetRunCoreRealWorld** is an implementation of base aspnetrun project which written with **clean architecture** and best practices. The idea is that **how to implement real life projects** over the base repository i.e. **e-commerce domain** implemented with full **E&E web template**. AspnetRunRealWorld is an implementation of **e-commerce domain** with **Northwind database**.This managed with **layered architecture** for building modern web applications with latest ASP.NET Core & Web API & EF Core technologies. 
 
@@ -37,6 +37,8 @@ We have implemented below **features over the run-aspnetcore boilerplate templat
 * Aspnet core razor tools - View Components, partial Views, Tag Helpers, Model Bindings and Validations, Razor Sections etc.. 
 * Configuration management
 * Custom paging implementation
+
+> Also we have a lot of **missing features** you can check [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and you can develop them. We are waiting for your pull requests.
 
 ## Give a Star! :star:
 If you liked the project or if AspnetRun helped you, please **give a star**. And also please **fork** this repository and send us **pull-requests**. If you find any problem please open **issue**.
@@ -330,6 +332,7 @@ Test projects using **xunit and Mock libraries**.  xunit, because that's what AS
 ## Contributing
 
 Please read [Contributing.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+We have a lot of **missing features** you can check [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and you can develop them. We are waiting for your pull requests.
 
 ## Versioning
 
@@ -346,6 +349,7 @@ This project is deployed on Azure. See the project running on Azure in [here](as
 ## Pull-Request
 
 Please fork this repository, and send me your findings with pull-requests. This is open-source repository so open to contributions.
+Get your item from **missing features** [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and send us your pull requests.
 
 ## Authors
 
