@@ -38,6 +38,8 @@ We have implemented below **features over the run-aspnetcore boilerplate templat
 * Configuration management
 * Custom paging implementation
 
+> Also we have a lot of **missing features** you can check [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and you can develop them. We are waiting for your pull requests.
+
 ## Give a Star! :star:
 If you liked the project or if AspnetRun helped you, please **give a star**. And also please **fork** this repository and send us **pull-requests**. If you find any problem please open **issue**.
 
@@ -329,6 +331,7 @@ Test projects using **xunit and Mock libraries**.  xunit, because that's what AS
 
 ## Contributing
 
+We have a lot of **missing features** you can check [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and you can develop them. We are waiting for your pull requests.
 Please read [Contributing.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
@@ -346,6 +349,7 @@ This project is deployed on Azure. See the project running on Azure in [here](as
 ## Pull-Request
 
 Please fork this repository, and send me your findings with pull-requests. This is open-source repository so open to contributions.
+We have a lot of **missing features** you can check [here from our project page](https://github.com/aspnetrun/run-aspnetcore-realworld/projects/1) and you can develop them. We are waiting for your pull requests.
 
 ## Authors
 
