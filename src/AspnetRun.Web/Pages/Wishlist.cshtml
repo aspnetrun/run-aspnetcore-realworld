@@ -40,7 +40,7 @@
 
                                     <td class="pro-remove">
                                         <form asp-page-handler="removefromwishlist" method="post">
-                                            <button><i class="fa fa-trash-o"></i></button>
+                                            <a href="javascript:;" onclick="parentNode.submit();"><i class="fa fa-trash-o"></i></a>
                                             <input type="hidden" asp-for="@Model.WishlistViewModel.Id" name="wishlistId" />
                                             <input type="hidden" asp-for="@item.Id" name="productId" />
                                         </form>
