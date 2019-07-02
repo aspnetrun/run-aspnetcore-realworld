@@ -28,9 +28,9 @@ namespace AspnetRun.Web.Pages
             WishlistViewModel = await _wishlistPageService.GetWishlist(userName);
         }
 
-        public async Task<IActionResult> OnPostAddToCartAsync(string userName, int productId)
+        public async Task<IActionResult> OnPostAddToCartAsync(int productId)
         {
-            await _wishlistPageService.AddToCart(userName, productId);
+            await _wishlistPageService.AddToCart(User.Identity.Name, productId);
             return RedirectToPage();
         }
 
