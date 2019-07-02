@@ -10,10 +10,12 @@ namespace AspnetRun.Web.Pages
     public class ProductDetailModel : PageModel
     {
         private readonly IProductPageService _productPageService;
+        private readonly ICartComponentService _cartComponentService;
 
-        public ProductDetailModel(IProductPageService productService)
+        public ProductDetailModel(IProductPageService productPageService, ICartComponentService cartComponentService)
         {
-            _productPageService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
+            _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 
         public ProductViewModel Product { get; set; } = new ProductViewModel();
@@ -48,6 +50,12 @@ namespace AspnetRun.Web.Pages
                 return RedirectToPage("./Account/Login", new { area = "Identity" });
 
             await _productPageService.AddToCompare(User.Identity.Name, productId);
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
+        {
+            await _cartComponentService.RemoveItem(cartId, cartItemId);
             return RedirectToPage();
         }
     }
