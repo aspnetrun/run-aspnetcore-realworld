@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Interfaces
 {
-    public interface ICartPageService
+    public interface ICartComponentService
     {
         Task<CartViewModel> GetCart(string userName);
         Task AddItem(string userName, int productId);
-        Task RemoveItem(int cartId, int productId);
+        Task RemoveItem(int cartId, int cartItemId);
     }
 }

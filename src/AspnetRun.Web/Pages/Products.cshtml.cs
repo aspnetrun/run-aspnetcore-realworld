@@ -10,11 +10,13 @@ namespace AspnetRun.Web.Pages
 {
     public class ProductsModel : PageModel
     {
-        private readonly IProductPageService _productPageService;
+        private readonly IProductPageService _productPageService;        
+        private readonly ICartComponentService _cartComponentService; // due to every page has cart, we also inject cart view component service in order to catch post actions
 
-        public ProductsModel(IProductPageService productService)
+        public ProductsModel(IProductPageService productPageService, ICartComponentService cartComponentService)
         {
-            _productPageService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
+            _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 
         public IEnumerable<ProductViewModel> ProductList { get; set; } = new List<ProductViewModel>();
@@ -53,5 +55,17 @@ namespace AspnetRun.Web.Pages
             await _productPageService.AddToCompare(User.Identity.Name, productId);
             return RedirectToPage();
         }
+
+        public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
+        {
+            // TODO : you are here - burada cart tan item sil
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToPage("./Account/Login", new { area = "Identity" });
+
+            await _cartComponentService.RemoveItem(cartId, cartItemId);
+            return RedirectToPage();
+        }
+
+
     }
 }

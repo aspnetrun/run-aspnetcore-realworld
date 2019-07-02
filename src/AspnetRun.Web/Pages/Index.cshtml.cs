@@ -22,10 +22,7 @@ namespace AspnetRun.Web.Pages
 
         public async Task OnGetAsync()
         {
-            ProductList = await _indexPageService.GetProducts();
-
-            //CategoryModel = await _indexPageService.GetCategoryWithProducts(1);
-            //ProductModel = await _indexPageService.GetProducts();            
+            ProductList = await _indexPageService.GetProducts();              
         }
     }
 }

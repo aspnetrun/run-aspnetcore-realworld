@@ -104,7 +104,7 @@ namespace AspnetRun.Web
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
-            services.AddScoped<ICartPageService, CartPageService>();
+            services.AddScoped<ICartComponentService, CartComponentService>();
             services.AddScoped<IWishlistPageService, WishlistPageService>();
             services.AddScoped<IComparePageService, ComparePageService>();
             services.AddScoped<ICheckOutPageService, CheckOutPageService>();

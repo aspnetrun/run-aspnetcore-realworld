@@ -8,11 +8,11 @@ namespace AspnetRun.Web.Pages.Components.ShoppingCart
 {
     public class ShoppingCart : ViewComponent
     {
-        private readonly ICartPageService _cartPageService;
+        private readonly ICartComponentService _cartComponentService;
 
-        public ShoppingCart(ICartPageService cartPageService)
+        public ShoppingCart(ICartComponentService cartComponentService)
         {
-            _cartPageService = cartPageService ?? throw new ArgumentNullException(nameof(cartPageService));
+            _cartComponentService = cartComponentService ?? throw new ArgumentNullException(nameof(cartComponentService));
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -23,7 +23,7 @@ namespace AspnetRun.Web.Pages.Components.ShoppingCart
                 return View(cartViewModel);
             }
 
-            cartViewModel = await _cartPageService.GetCart(User.Identity.Name);
+            cartViewModel = await _cartComponentService.GetCart(User.Identity.Name);
             return View(cartViewModel);
         }
     }

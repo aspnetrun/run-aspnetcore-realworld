@@ -75,7 +75,7 @@ namespace AspnetRun.Web.Services
 
         public async Task AddToCart(string userName, int productId)
         {
-            await _cartAppService.AddItem(userName, productId);            
+            await _cartAppService.AddItem(userName, productId);
         }
 
         public async Task AddToWishlist(string userName, int productId)
@@ -86,6 +86,11 @@ namespace AspnetRun.Web.Services
         public async Task AddToCompare(string userName, int productId)
         {            
             await _compareAppService.AddItem(userName, productId);            
-        }        
+        }
+
+        public async Task RemoveToCart(int cartdId, int cartItemId)
+        {            
+            await _cartAppService.RemoveItem(cartdId, cartItemId);
+        }
     }
 }

@@ -54,11 +54,11 @@ namespace AspnetRun.Application.Services
             await _cartRepository.UpdateAsync(cart);
         }
 
-        public async Task RemoveItem(int cartId, int productId)
+        public async Task RemoveItem(int cartId, int cartItemId)
         {
             var spec = new CartWithItemsSpecification(cartId);
             var cart = (await _cartRepository.GetAsync(spec)).FirstOrDefault();
-            cart.RemoveItem(productId);
+            cart.RemoveItem(cartItemId);
             await _cartRepository.UpdateAsync(cart);
         }
 

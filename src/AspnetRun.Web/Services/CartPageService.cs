@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
 {
-    public class CartPageService : ICartPageService
+    public class CartComponentService : ICartComponentService
     {
         private readonly ICartService _cartAppService;
         private readonly IMapper _mapper;
-        private readonly ILogger<CartPageService> _logger;
+        private readonly ILogger<CartComponentService> _logger;
 
-        public CartPageService(ICartService cartAppService, IMapper mapper, ILogger<CartPageService> logger)
+        public CartComponentService(ICartService cartAppService, IMapper mapper, ILogger<CartComponentService> logger)
         {
             _cartAppService = cartAppService ?? throw new ArgumentNullException(nameof(cartAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -33,9 +33,9 @@ namespace AspnetRun.Web.Services
             await _cartAppService.AddItem(userName, productId);
         }        
 
-        public async Task RemoveItem(int cartId, int productId)
+        public async Task RemoveItem(int cartId, int cartItemId)
         {
-            await _cartAppService.RemoveItem(cartId, productId);
+            await _cartAppService.RemoveItem(cartId, cartItemId);
         }
     }
 }
