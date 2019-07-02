@@ -1,6 +1,6 @@
 Here is **implementation of aspnetrun-core base** on real-world **e-commerce web application** project;
 
-![Recordit GIF](http://g.recordit.co/zyppSpFhWi.gif)
+![Recordit GIF](http://g.recordit.co/bfktvkE4BL.gif)
 
 **AspnetRunCoreRealWorld** is an implementation of base aspnetrun project which written with **clean architecture** and best practices. The idea is that **how to implement real life projects** over the base repository i.e. **e-commerce domain** implemented with full **E&E web template**. AspnetRunRealWorld is an implementation of **e-commerce domain** with **Northwind database**.This managed with **layered architecture** for building modern web applications with latest ASP.NET Core & Web API & EF Core technologies. 
 
