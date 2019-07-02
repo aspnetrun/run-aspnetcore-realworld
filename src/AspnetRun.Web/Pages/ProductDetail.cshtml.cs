@@ -41,7 +41,7 @@ namespace AspnetRun.Web.Pages
                 return RedirectToPage("./Account/Login", new { area = "Identity" });
 
             await _productPageService.AddToWishlist(User.Identity.Name, productId);
-            return RedirectToPage();
+            return RedirectToPage(new { slug = TempData["Slug"].ToString() });
         }
 
         public async Task<IActionResult> OnPostAddToCompareAsync(int productId)
@@ -50,13 +50,13 @@ namespace AspnetRun.Web.Pages
                 return RedirectToPage("./Account/Login", new { area = "Identity" });
 
             await _productPageService.AddToCompare(User.Identity.Name, productId);
-            return RedirectToPage();
+            return RedirectToPage(new { slug = TempData["Slug"].ToString() });
         }
 
         public async Task<IActionResult> OnPostRemoveToCartAsync(int cartId, int cartItemId)
         {
             await _cartComponentService.RemoveItem(cartId, cartItemId);
-            return RedirectToPage();
+            return RedirectToPage(new { slug = TempData["Slug"].ToString() });
         }
     }
 }
