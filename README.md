@@ -48,8 +48,8 @@ Use these instructions to get the project up and running.
 You will need the following tools:
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
-* [.Net Core 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core/2.2)
-* EF Core 2.2 or later
+* [.Net Core 3.x or later](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+* EF Core 3.x or later
 
 ### Installing
 Follow these steps to get your development environment set up:
@@ -303,9 +303,9 @@ Test projects using **xunit and Mock libraries**.  xunit, because that's what AS
 
 
 ## Technologies
-* .NET Core 2.2
-* ASP.NET Core 2.2
-* Entity Framework Core 2.2 
+* .NET Core 3.x
+* ASP.NET Core 3.x
+* Entity Framework Core 3.x 
 * .NET Core Native DI
 * Razor Pages
 * AutoMapper
