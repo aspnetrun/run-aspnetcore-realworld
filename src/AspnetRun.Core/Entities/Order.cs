@@ -6,8 +6,8 @@ namespace AspnetRun.Core.Entities
     public class Order : Entity
     {       
         public string UserName { get; set; }
-        public Address BillingAddress { get; set; }
-        public Address ShippingAddress { get; set; }
+        //public Address BillingAddress { get; set; }
+        //public Address ShippingAddress { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public OrderStatus Status { get; set; }
         public decimal GrandTotal { get; set; }

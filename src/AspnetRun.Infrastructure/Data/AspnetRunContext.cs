@@ -70,16 +70,15 @@ namespace AspnetRun.Infrastructure.Data
         }
 
         private void ConfigureOrder(EntityTypeBuilder<Order> builder)
-        {
-            // NOTE : This Owns methods provide to accept value object like Address
-            builder.OwnsOne(o => o.ShippingAddress);
-            builder.OwnsOne(o => o.BillingAddress);
+        {            
+            //// NOTE : This Owns methods provide to accept value object like Address
+            //builder.OwnsOne(o => o.ShippingAddress);
+            //builder.OwnsOne(o => o.BillingAddress);
         }
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
         {
             // check for conventions - http://www.entityframeworktutorial.net/efcore/configure-many-to-many-relationship-in-ef-core.aspx
-
 
             // add self reference table configuration
             // https://github.com/aspnet/EntityFrameworkCore/issues/10698 

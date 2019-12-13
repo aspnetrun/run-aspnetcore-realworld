@@ -815,8 +815,8 @@ namespace AspnetRun.Infrastructure.Data
                 new Order
                 {
                     UserName = "mehmetozkaya@gmail.com",
-                    BillingAddress = address,
-                    ShippingAddress = addressShipping,
+                    //BillingAddress = address,
+                    //ShippingAddress = addressShipping,
                     PaymentMethod = PaymentMethod.Cash,
                     Status = OrderStatus.Progress,
                     GrandTotal = 347,

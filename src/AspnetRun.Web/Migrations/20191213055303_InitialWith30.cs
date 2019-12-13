@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspnetRun.Web.Migrations
 {
-    public partial class InitialWithIdentity : Migration
+    public partial class InitialWith30 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +51,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Summary = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -68,7 +67,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -81,7 +80,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Description = table.Column<string>(nullable: true),
                     ImageName = table.Column<string>(nullable: true)
@@ -96,7 +95,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -109,7 +108,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Phone = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
@@ -125,7 +124,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Description = table.Column<string>(nullable: true),
                     ImageFile = table.Column<string>(nullable: true)
@@ -140,18 +139,8 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true),
-                    BillingAddress_FirstName = table.Column<string>(nullable: true),
-                    BillingAddress_LastName = table.Column<string>(nullable: true),
-                    BillingAddress_EmailAddress = table.Column<string>(nullable: true),
-                    BillingAddress_PhoneNo = table.Column<string>(nullable: true),
-                    BillingAddress_CompanyName = table.Column<string>(nullable: true),
-                    BillingAddress_AddressLine = table.Column<string>(nullable: true),
-                    BillingAddress_Country = table.Column<string>(nullable: true),
-                    BillingAddress_City = table.Column<string>(nullable: true),
-                    BillingAddress_State = table.Column<string>(nullable: true),
-                    BillingAddress_ZipCode = table.Column<string>(nullable: true),
                     PaymentMethod = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     GrandTotal = table.Column<decimal>(nullable: false)
@@ -166,7 +155,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -179,7 +168,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -200,7 +189,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -285,13 +274,13 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Slug = table.Column<string>(nullable: true),
                     Summary = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     ImageFile = table.Column<string>(nullable: true),
-                    UnitPrice = table.Column<decimal>(nullable: true),
+                    UnitPrice = table.Column<decimal>(nullable: false),
                     UnitsInStock = table.Column<int>(nullable: true),
                     Star = table.Column<double>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
@@ -308,38 +297,11 @@ namespace AspnetRun.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    PhoneNo = table.Column<string>(nullable: true),
-                    CompanyName = table.Column<string>(nullable: true),
-                    AddressLine = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Address_Order_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Order",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CartItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(nullable: false),
                     Color = table.Column<string>(nullable: true),
                     UnitPrice = table.Column<decimal>(nullable: false),
@@ -369,7 +331,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(nullable: false),
                     Color = table.Column<string>(nullable: true),
                     UnitPrice = table.Column<decimal>(nullable: false),
@@ -495,7 +457,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     EMail = table.Column<string>(nullable: true),
                     Comment = table.Column<string>(nullable: true),
@@ -518,7 +480,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: true)
@@ -539,7 +501,7 @@ namespace AspnetRun.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: true)
                 },
@@ -656,9 +618,6 @@ namespace AspnetRun.Web.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Address");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

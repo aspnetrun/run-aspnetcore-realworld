@@ -1,26 +1,29 @@
-using AspnetRun.Application.Interfaces;
-using AspnetRun.Application.Services;
-using AspnetRun.Core.Interfaces;
-using AspnetRun.Infrastructure.Logging;
-using AspnetRun.Infrastructure.Data;
-using AspnetRun.Infrastructure.Repository;
-using AspnetRun.Web.HealthChecks;
-using AspnetRun.Web.Interfaces;
-using AspnetRun.Web.Services;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Hosting;
+using AutoMapper;
+
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Repositories.Base;
 using AspnetRun.Core.Configuration;
+using AspnetRun.Core.Interfaces;
+
 using AspnetRun.Infrastructure.Repository.Base;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
+using AspnetRun.Infrastructure.Logging;
+using AspnetRun.Infrastructure.Data;
+using AspnetRun.Infrastructure.Repository;
+
+using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Services;
+
+using AspnetRun.Web.HealthChecks;
+using AspnetRun.Web.Interfaces;
+using AspnetRun.Web.Services;
 
 namespace AspnetRun.Web
 {
@@ -46,12 +49,11 @@ namespace AspnetRun.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -68,8 +70,13 @@ namespace AspnetRun.Web
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthorization();
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });            
         }
 
         private void ConfigureAspnetRunServices(IServiceCollection services)
@@ -129,7 +136,7 @@ namespace AspnetRun.Web
         public void ConfigureIdentity(IServiceCollection services)
         {
             services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<AspnetRunContext>();
 
             services.Configure<IdentityOptions>(options =>
