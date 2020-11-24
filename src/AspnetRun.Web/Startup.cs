@@ -107,7 +107,7 @@ namespace AspnetRun.Web
             services.AddScoped<IOrderService, OrderService>();
 
             // Add Web Layer
-            services.AddAutoMapper(); // Add AutoMapper
+            services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
