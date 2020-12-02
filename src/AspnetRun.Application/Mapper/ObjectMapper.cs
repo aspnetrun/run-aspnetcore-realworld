@@ -31,7 +31,9 @@ namespace AspnetRun.Application.Mapper
                 CreateMap<Category, CategoryModel>().ReverseMap();
                 CreateMap<Wishlist, WishlistModel>().ReverseMap();
                 CreateMap<Compare, CompareModel>().ReverseMap();
-                CreateMap<Order, OrderModel>().ReverseMap();                
+                CreateMap<Order, OrderModel>().ReverseMap();
+                CreateMap<Cart, CartModel>().ReverseMap();
+                CreateMap<CartItem, CartItemModel>().ReverseMap();
             }
         }
     }
