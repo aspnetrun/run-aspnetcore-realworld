@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>8ae454f6-06f4-4333-b048-5683089d9d89</UserSecretsId>
   </PropertyGroup>
 
 
