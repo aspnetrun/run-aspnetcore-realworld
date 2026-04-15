@@ -66,14 +66,14 @@ namespace AspnetRun.Application.Tests.Services
         public async Task Create_New_Product_Validate_If_Exist()
         {
             var category = Category.Create(It.IsAny<int>(), It.IsAny<string>());
-            var product = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());            
+            var product = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
 
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product);
             _mockProductRepository.Setup(x => x.AddAsync(product)).ReturnsAsync(product);
 
             var productService = new ProductService(_mockProductRepository.Object, _mockAppLogger.Object);
 
-            await Assert.ThrowsAsync<ApplicationException>(async () =>
+            await Assert.ThrowsAsync<AspnetRun.Application.Exceptions.ApplicationException>(async () =>
                 await productService.Create(new Models.ProductModel { Id = product.Id, CategoryId = product.CategoryId, Name = product.Name }));
         }
     }

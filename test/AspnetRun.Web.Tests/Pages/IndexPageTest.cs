@@ -4,11 +4,11 @@ using Xunit;
 
 namespace AspnetRun.Web.Tests.Pages
 {
-    public class IndexPageTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class IndexPageTest : IClassFixture<CustomWebApplicationFactory>
     {
         public HttpClient Client { get; }
 
-        public IndexPageTest(CustomWebApplicationFactory<Startup> factory)
+        public IndexPageTest(CustomWebApplicationFactory factory)
         {
             Client = factory.CreateClient();
         }
