@@ -11,7 +11,7 @@ using System.Text;
 
 namespace AspnetRun.Web.Tests
 {
-    public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<Startup>
+    public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
@@ -24,7 +24,7 @@ namespace AspnetRun.Web.Tests
                     .AddEntityFrameworkInMemoryDatabase()
                     .BuildServiceProvider();
 
-                // Add a database context (ApplicationDbContext) using an in-memory 
+                // Add a database context (ApplicationDbContext) using an in-memory
                 // database for testing.
                 services.AddDbContext<AspnetRunContext>(options =>
                 {
@@ -44,7 +44,7 @@ namespace AspnetRun.Web.Tests
                     var loggerFactory = scopedServices.GetRequiredService<ILoggerFactory>();
 
                     var logger = scopedServices
-                        .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+                        .GetRequiredService<ILogger<CustomWebApplicationFactory>>();
 
                     // Ensure the database is created.
                     db.Database.EnsureCreated();
