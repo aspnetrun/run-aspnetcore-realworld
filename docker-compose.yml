@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # 1. THE WEB APPLICATION
+  aspnetrun-web:
+    image: aspnetrun-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # Maps port 80 inside the container to port 8000 on your machine
+      - "8000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      # This overrides the appsettings.json connection string
+      # 'db' refers to the service name below
+      - ConnectionStrings__AspnetRunConnection=Server=db;Database=AspnetRunDb;User Id=sa;Password=Password@12345;MultipleActiveResultSets=true
+    depends_on:
+      - db
+
+  # 2. THE SQL SERVER DATABASE
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      # SQL Server requires a strong password (Capital, lowercase, number, symbol)
+      - SA_PASSWORD=Password@12345
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
